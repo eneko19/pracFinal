@@ -25,7 +25,7 @@ function view() {
   $datos=$producto->get_products();
 
   //Llamado a la vista: mostrar la pantalla
-  require_once("views/home.html");
+  require_once("views/home.phtml");
 }
 
 

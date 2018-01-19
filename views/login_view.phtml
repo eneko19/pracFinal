@@ -1,19 +1,193 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <title>Login</title>
-  </head>
-  <body>
-    <div class="login">
-      <form action="index.php?controller=login&action=login" method="post">
-        <h1>Login</h1>
-        Usuario:
-        <input type="text" name="usuario">
-        Contraseña:
-        <input type="text" name="password">
-        <input type="submit" name="login" value="Login">
-      </form>
+<div class="container">
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg ">
+      <div class="modal-content">
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="container nav-justified pt-4 pb-4">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="pill" href="#login">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#registro">Registro</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active container" id="login">
+              <form class="form-horizontal" role="form" method="POST" action="/login">
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                    <h2>Login</h2>
+                    <hr>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                    <div class="form-group has-danger">
+                      <label class="sr-only" for="email">Usuario</label>
+                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                        <input type="text" name="email" class="form-control" id="email" placeholder="paquito@ejemplo.com" required autofocus>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-control-feedback">
+                      <span class="text-danger align-middle">
+                                      <i class="fa fa-close"></i> Ejemplo de mensaje de error
+                                  </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="sr-only" for="password">Contraseña</label>
+                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fayou fa-key"></i></div>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-control-feedback">
+                      <span class="text-danger align-middle">
+                                  <!-- Put password error message here -->
+                                  </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6" style="padding-top: .35rem">
+                    <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+                      <label class="form-check-label">
+                                      <input class="form-check-input" name="remember"
+                                             type="checkbox" >
+                                      <span style="padding-bottom: .15rem">Recuerdame</span>
+                                  </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" style="padding-top: 1rem">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-sign-in"></i> Login</button>
+                    <a class="btn btn-link" href="/password/reset">He olvidado mi contraseña</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="tab-pane container" id="registro">
+              <form class="form-horizontal" role="form" method="POST" action="/register">
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                    <h2>Registro</h2>
+                    <hr>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 field-label-responsive">
+                    <label for="name">Nombre</label>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Paquito Choco" required autofocus>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-control-feedback">
+                      <span class="text-danger align-middle">
+                                          <!-- Put name validation error messages here -->
+                                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 field-label-responsive">
+                    <label for="email">Dirección E-Mail</label>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                        <input type="text" name="email" class="form-control" id="email" placeholder="paquito@ejemplo.com" required autofocus>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-control-feedback">
+                      <span class="text-danger align-middle">
+                                          <!-- Put e-mail validation error messages here -->
+                                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 field-label-responsive">
+                    <label for="password">Contraseña</label>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group has-danger">
+                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-control-feedback">
+                      <span class="text-danger align-middle">
+                                          <i class="fa fa-close"> Ejemplo de mensaje de error</i>
+                                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 field-label-responsive">
+                    <label for="password">Confirmar Contraseña</label>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem">
+                          <i class="fa fa-repeat"></i>
+                        </div>
+                        <input type="password" name="password-confirmation" class="form-control" id="password-confirm" placeholder="Contraseña" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Registro</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
     </div>
-  </body>
-</html>
+  </div>

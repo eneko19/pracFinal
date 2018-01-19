@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary sticky-top">
+      <a class="navbar-brand" href="#">
+   <img src="img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+  EGComponentes
+ </a>
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+         Login/Register
+       </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </li>
+          <li class="nav-item">
+            <div class="container">
+              <!-- Button to Open the Modal -->
+              <button type="button" class="btn btn-warning ml-4" data-toggle="modal" data-target="#myModal">
+                Login/Register
+              </button>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#">Carrito</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <?php include("views/login_view.phtml"); ?>
+  </div>
+
+</body>
+
+</html>
