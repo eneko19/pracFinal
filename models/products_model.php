@@ -1,16 +1,22 @@
 <?php
-class personas_model{
+class products_model{
 
 private $db;
-private $personas;
+private $products;
 
 private $id;
-private $nombre;
-private $edad;
+private $name;
+private $stock;
+private $price;
+private $sponsored;
+private $shortdescription;
+private $longdescription;
+private $brand;
+private $category;
 
 public function __construct(){
     $this->db=Conectar::conexion();
-    $this->personas=array();
+    $this->products=array();
 }
 
 /* GETTERS & SETTERS */
@@ -23,20 +29,62 @@ public function setId($id) {
   $this->id = $id;
 }
 
-public function getNombre() {
-  return $this->nombre;
+public function getName() {
+  return $this->name;
 }
 
-public function setNombre($nombre) {
-  $this->nombre = $nombre;
+public function setName($name) {
+  $this->name = $name;
 }
 
-public function getEdad() {
-  return $this->edad;
+public function getStock() {
+  return $this->stock;
 }
 
-public function setEdad($edad) {
-  $this->edad = $edad;
+public function setStock($stock) {
+  $this->stock = $stock;
+}
+public function getPrice() {
+  return $this->price;
+}
+
+public function setPrice($price) {
+  $this->price = $price;
+}
+public function getSponsored() {
+  return $this->sponsored;
+}
+
+public function setSponsored($sponsored) {
+  $this->sponsored = $sponsored;
+}
+public function getShortDesc() {
+  return $this->shortDesc;
+}
+
+public function setShortDesc($shortDesc) {
+  $this->shortDesc = $shortDesc;
+}
+public function getLongDesc() {
+  return $this->longDesc;
+}
+
+public function setLongDesc($longDesc) {
+  $this->longDesc = $longDesc;
+}
+public function getBrand() {
+  return $this->brand;
+}
+
+public function setBrand($brand) {
+  $this->brand = $brand;
+}
+public function getCategory() {
+  return $this->category;
+}
+
+public function setCategory($category) {
+  $this->category = $category;
 }
 
 
@@ -44,12 +92,12 @@ public function setEdad($edad) {
 * Extreu totes les persones de la taula
 * @return array Bidimensional de totes les persones
 */
-public function get_personas(){
-    $consulta=$this->db->query("select * from personas;");
+public function get_products(){
+    $consulta=$this->db->query("SELECT * FROM PRODUCT;");
     while($filas=$consulta->fetch_assoc()){
-        $this->personas[]=$filas;
+        $this->products[]=$filas;
     }
-    return $this->personas;
+    return $this->products;
 }
 
 

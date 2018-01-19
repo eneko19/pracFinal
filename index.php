@@ -1,7 +1,7 @@
 <?php
   require_once("db/db.php");
 
-  require_once("controllers/personas_controller.php");
+  require_once("controllers/products_controller.php");
   require_once("controllers/coches_controller.php");
   require_once("controllers/login_controller.php");
 
@@ -88,7 +88,7 @@
       }
 
   } else {
-     $controller = new login_controller();
+     $controller = new products_controller();
      $controller->view();
   }
 ?>
