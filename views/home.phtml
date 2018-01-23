@@ -15,7 +15,6 @@
 </head>
 
 <body>
-  <div class="container-fluid">
     <nav class="navbar navbar-expand-md navbar-light bg-primary sticky-top">
       <a class="navbar-brand mr-4" href="#">
    <img src="img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -44,9 +43,9 @@
 
       </div>
     </nav>
-  </div>
+  <div class="">
     <?php include("views/login_view.phtml"); ?>
-    <div class="">
+  </div>
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -73,14 +72,13 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-  </div>
-  <div class="container bg-dark">
+  <div class="container-fluid bg-dark">
     <div class="row">
       <?php for ($i=0; $i < 8 ; $i++) {
         ?>
-        <div class="col-xs-6 col-sm-6 col-md-4 col-xl-3">
-          <div class="card my-2 h-75">
-            <img class="card-img-top img-fluid" src="img/logo.svg" alt="Card image" style="width:175px;">
+        <div class="col-6 col-sm-6 col-md-4 col-xl-3">
+          <div class="card my-2 h-70" >
+            <img class="card-img-top img-fluid" src="img/logo.svg" alt="Card image">
             <div class="card-body">
               <h4 class="card-title">Nombre</h4>
               <p class="card-text">Descripción pequeña.</p>
@@ -90,9 +88,7 @@
           </div>
         </div>
         <?php   } ?>
-
-  </div>
-
+      </div>
   </div>
 
 </body>
