@@ -14,7 +14,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body class="bg-secondary">
     <nav class="navbar navbar-expand-md navbar-light bg-primary sticky-top">
       <a class="navbar-brand mr-4" href="#">
    <img src="img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -37,8 +37,10 @@
               </button>
 
             <a class="navbar-brand" href="#">
-           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-            Carrito
+             <button type="button" class="btn btn-primary">
+               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+               Carrito <span class="badge badge-dark">4</span>
+            </button>
            </a>
 
       </div>
@@ -72,7 +74,7 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-  <div class="container-fluid bg-dark">
+  <div class="container bg-secondary">
     <div class="row">
       <?php for ($i=0; $i < 8 ; $i++) {
         ?>
