@@ -19,7 +19,7 @@ function add() {
  * @return No
  */
 function view() {
-  $producto=new products_model();
+  $producto = new products_model();
 
   //Uso metodo del modelo de personas
   $datos=$producto->get_products();

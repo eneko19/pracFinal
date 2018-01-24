@@ -58,19 +58,19 @@ public function getSponsored() {
 public function setSponsored($sponsored) {
   $this->sponsored = $sponsored;
 }
-public function getShortDesc() {
-  return $this->shortDesc;
+public function getShortDescription() {
+  return $this->shortdescription;
 }
 
-public function setShortDesc($shortDesc) {
-  $this->shortDesc = $shortDesc;
+public function setShortDescription($shortdescription) {
+  $this->shortdescription = $shortdescription;
 }
 public function getLongDesc() {
-  return $this->longDesc;
+  return $this->longdescription;
 }
 
-public function setLongDesc($longDesc) {
-  $this->longDesc = $longDesc;
+public function setLongDescription($longdescription) {
+  $this->longdescription = $longdescription;
 }
 public function getBrand() {
   return $this->brand;

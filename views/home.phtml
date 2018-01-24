@@ -76,15 +76,15 @@
     </div>
   <div class="container bg-secondary">
     <div class="row">
-      <?php for ($i=0; $i < 8 ; $i++) {
+      <?php foreach ($datos as $dato) {
         ?>
         <div class="col-6 col-sm-6 col-md-4 col-xl-3">
-          <div class="card my-2 h-70" >
+          <div class="card my-3 h-70" >
             <img class="card-img-top img-fluid" src="img/logo.svg" alt="Card image">
             <div class="card-body">
-              <h4 class="card-title">Nombre</h4>
-              <p class="card-text">Descripción pequeña.</p>
-              <p class="card-text text-muted">Precio:</p>
+              <p class="card-title"><strong><?php echo $dato['NAME']?> </strong></p>
+              <p class="card-text text-secondary"><small><?php echo $dato['SHORTDESCRIPTION'] ?></small> </p>
+              <p class="card-text">Precio: <?php echo $dato['PRICE'] ?>€</p>
               <a href="#" class="btn btn-primary">Comprar</a>
             </div>
           </div>

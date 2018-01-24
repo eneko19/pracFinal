@@ -28,7 +28,6 @@ class coches_controller {
     require_once("views/coches_view.phtml");
   }
 
-
 /**
  * Inserta a la taula
  * @return No
