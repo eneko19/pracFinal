@@ -80,6 +80,11 @@
           $controller->login();
         }
 
+        if ($_GET['action'] == "register") {
+          $controller = new login_controller();
+          $controller->register();
+        }
+
         if ($_GET['action'] == "logout") {
           $controller = new login_controller();
           $controller->logout();

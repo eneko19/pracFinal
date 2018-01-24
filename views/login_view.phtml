@@ -21,7 +21,7 @@
           <!-- Tab panes -->
           <div class="tab-content">
             <div class="tab-pane active container" id="login">
-              <form class="form-horizontal" role="form" method="POST" action="/login">
+              <form class="form-horizontal" role="form" method="POST" action="index.php?controller=login&action=login">
                 <div class="row">
                   <div class="col-md-3"></div>
                   <div class="col-md-6">
@@ -33,10 +33,10 @@
                   <div class="col-md-3"></div>
                   <div class="col-md-6">
                     <div class="form-group has-danger">
-                      <label class="sr-only" for="email">Usuario</label>
+                      <label class="sr-only" for="user">Usuario</label>
                       <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                        <input type="text" name="email" class="form-control" id="email" placeholder="paquito@ejemplo.com" required autofocus>
+                        <input type="text" name="user" class="form-control" id="user" placeholder="usuario123" required autofocus>
                       </div>
                     </div>
                   </div>
@@ -89,7 +89,7 @@
               </form>
             </div>
             <div class="tab-pane container" id="registro">
-              <form class="form-horizontal" role="form" method="POST" action="/register">
+              <form class="form-horizontal" role="form" method="POST" action="index.php?controller=login&action=register">
                 <div class="row">
                   <div class="col-md-3"></div>
                   <div class="col-md-6">
@@ -99,13 +99,13 @@
                 </div>
                 <div class="row">
                   <div class="col-md-3 field-label-responsive">
-                    <label for="name">Nombre</label>
+                    <label for="name">Nombre Completo</label>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Paquito Choco" required autofocus>
+                        <input type="text" name="user" class="form-control" id="name" placeholder="Paquito Choco" required autofocus>
                       </div>
                     </div>
                   </div>
@@ -126,6 +126,66 @@
                       <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
                         <input type="text" name="email" class="form-control" id="email" placeholder="paquito@ejemplo.com" required autofocus>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-control-feedback">
+                      <span class="text-danger align-middle">
+                                          <!-- Put e-mail validation error messages here -->
+                                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 field-label-responsive">
+                    <label for="email">Dirección</label>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                        <input type="text" name="direccion" class="form-control" id="address" placeholder="C/Calle Num123" required autofocus>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-control-feedback">
+                      <span class="text-danger align-middle">
+                                          <!-- Put e-mail validation error messages here -->
+                                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 field-label-responsive">
+                    <label for="email">Código Postal</label>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                        <input type="text" name="codPostal" class="form-control" id="postalcode" placeholder="ej- 07181" required autofocus>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-control-feedback">
+                      <span class="text-danger align-middle">
+                                          <!-- Put e-mail validation error messages here -->
+                                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 field-label-responsive">
+                    <label for="email">Usuario</label>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                        <input type="text" name="user" class="form-control" id="user" placeholder="Usuario123" required autofocus>
                       </div>
                     </div>
                   </div>

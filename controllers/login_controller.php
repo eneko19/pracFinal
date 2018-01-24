@@ -16,26 +16,50 @@ class login_controller {
 
 
 /**
- * Inserta a la taula
- * @return No
+ * Inicia sesion de un usuario
  */
   function login() {
       $usuario = new login_model();
 
-      $usuario->setUsuario($_POST['usuario']);
+      $usuario->setUsername($_POST['user']);
       $usuario->setPassword($_POST['password']);
 
       $ok = $usuario->consultar_usuario();
 
           if ($ok) {
             session_start();
-            $_SESSION['usuario'] = $_POST['usuario'];
-            header( "Location: index.php?controller=personas&action=view");
+            $_SESSION['usuario'] = $_POST['USERNAME'];
+            header( "Location: index.php?controller=products&action=view");
           }
           else {
-              header( "Location: index.php?controller=login&action=view");
+              header( "Location: index.php?controller=products&action=view");
           }
       }
+
+      /**
+       * Registra un usuario
+       */
+        function register() {
+
+
+            $usuario = new login_model();
+
+            $usuario->setUserName ($_POST['user']);
+            $usuario->setPassword ($_POST['password']);
+            $usuario->setName ($_POST['name']);
+            $usuario->setEmail ($_POST['email']);
+            $usuario->setAddress ($_POST['address']);
+            $usuario->setPostalCode ($_POST['postalcode']);
+
+            $error = $usuario->insert();
+
+            if (!$error) {
+                header( "Location: index.php?controller=products&action=view");
+            }
+            else {
+                echo $error;
+            }
+        }
 
     }
 ?>
