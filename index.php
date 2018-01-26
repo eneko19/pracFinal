@@ -1,4 +1,6 @@
 <?php
+
+session_start();
   require_once("db/db.php");
 
   require_once("controllers/products_controller.php");
@@ -25,18 +27,6 @@
              $controller->insert();
            }
 
-           if ($_GET['action'] == "delete") {
-             $controller = new personas_controller();
-             $controller->delete();
-           }
-           if ($_GET['action'] == "ordnombre") {
-             $controller = new personas_controller();
-             $controller->ordnombre();
-           }
-           if ($_GET['action'] == "ordedad") {
-             $controller = new personas_controller();
-             $controller->ordedad();
-           }
 
       }
       if ($_GET['controller'] == "coches") {
@@ -46,25 +36,6 @@
           $controller->view();
         }
 
-        if ($_GET['action'] == "add") {
-          $controller = new coches_controller();
-          $controller->add();
-        }
-
-        if ($_GET['action'] == "insert") {
-          $controller = new coches_controller();
-          $controller->insert();
-        }
-
-        if ($_GET['action'] == "delete") {
-          $controller = new coches_controller();
-          $controller->delete();
-        }
-
-        if ($_GET['action'] == "ordmarca") {
-          $controller = new coches_controller();
-          $controller->ordmarca();
-        }
 
       }
 

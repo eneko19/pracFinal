@@ -71,10 +71,10 @@
         </li>
       </ul>
     </div>
+  </div>
+</nav>
 
-      </div>
-    </nav>
-  <div class="">
+  <div class="myModal">
     <?php include("views/login_view.phtml"); ?>
   </div>
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -103,16 +103,33 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+    <div class="container mt-2">
+      <div class="row">
+        <?php for ($i=0; $i < 4 ; $i++) { ?>
+          <div class="col-6 col-md-3 mb-2">
+            <div class="dropdown">
+              <button type="button" class="btn  btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="#">Componentes</a>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+              </div>
+            </div>
+          </div>
+    <?php  } ?>
+
+      </div>
+    </div>
   <div class="container bg-secondary">
     <div class="row">
       <?php foreach ($datos as $dato) {
         ?>
         <div class="col-6 col-sm-6 col-md-4 col-xl-3">
-          <div class="card my-3 h-70" >
-            <img class="card-img-top img-fluid" src="img/logo.svg" alt="Card image">
+          <div class="card my-3" style="height:400px;">
+            <img class="card-img-top img-fluid" src="img/prueba.jpg" alt="Card image">
             <div class="card-body">
-              <p class="card-title"><strong><?php echo $dato['NAME']?> </strong></p>
-              <p class="card-text text-secondary"><small><?php echo $dato['SHORTDESCRIPTION'] ?></small> </p>
+              <p class="card-title"><strong><?php echo $dato['SHORTDESCRIPTION']?> </strong></p>
               <p class="card-text">Precio: <?php echo $dato['PRICE'] ?>€</p>
               <a href="#" class="btn btn-primary">Comprar</a>
             </div>

@@ -93,7 +93,7 @@ public function setCategory($category) {
 * @return array Bidimensional de totes les persones
 */
 public function get_products(){
-    $consulta=$this->db->query("SELECT * FROM PRODUCT;");
+    $consulta=$this->db->query("SELECT * FROM PRODUCT WHERE SPONSORED = 'Y';");
     while($filas=$consulta->fetch_assoc()){
         $this->products[]=$filas;
     }

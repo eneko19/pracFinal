@@ -53,3 +53,7 @@ ul.dropdown-cart li .item-right{
 ul.dropdown-cart li .item-right button{
     margin-top:14px;
 }
+
+#cardBody	{ -	ms-flex:none;
+			flex: none;
+			padding:1.25rem }
