@@ -9,74 +9,70 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/home.css">
 </head>
+<!-- Barra de navegacion -->
+  <nav class="navbar navbar-expand-md navbar-light bg-primary sticky-top">
+    <a class="navbar-brand mr-4" href="#">
+ <img src="img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+<span class="text-light">EGComponentes</span>
+     </a>
 
-<body class="bg-secondary">
-  <!-- Barra de navegacion -->
-    <nav class="navbar navbar-expand-md navbar-light bg-primary sticky-top">
-      <a class="navbar-brand mr-4" href="#">
-   <img src="img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-  EGComponentes
-       </a>
+     <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon "></span>
+    </button>
 
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="form-inline mx-auto">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success my-2 my-md-0 mr-4" type="submit">Search</button>
+          </form>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline mx-auto">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-success my-2 my-md-0 mr-4" type="submit">Search</button>
-            </form>
+            <!-- Button to Open the Modal -->
+            <button type="button" class="btn btn-warning mr-2" data-toggle="modal" data-target="#myModal">
+              Login/Register
+            </button>
 
-              <!-- Button to Open the Modal -->
-              <button type="button" class="btn btn-warning mr-2" data-toggle="modal" data-target="#myModal">
-                Login/Register
-              </button>
+            <div>  <ul class="nav navbar-nav navbar-right">
+                <!-- Carrito de compra -->
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle text-light" data-toggle="dropdown" role="button" aria-expanded="false">
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          <span class="badge badge-dark">4</span>
+          Carrito de compra<span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu dropdown-cart" role="menu">
+          <?php for ($i=0; $i < 6 ; $i++) { ?>
+            <li>
+                <span class="item">
+                  <span class="item-left">
+                      <img src="http://www.prepbootstrap.com/Content/images/template/menucartdropdown/item_1.jpg" alt="" />
+                      <span class="item-info">
+                          <span>Item name</span>
+                          <span>price: 27$</span>
+                      </span>
+                  </span>
+                  <span class="item-right">
+                      <button class="btn btn-danger  fa fa-close"></button>
+                  </span>
+              </span>
+            </li>
+            <?php    } ?>
 
-              <div>  <ul class="nav navbar-nav navbar-right">
-                  <!-- Carrito de compra -->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle text-light" data-toggle="dropdown" role="button" aria-expanded="false">
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-            <span class="badge badge-dark">4</span>
-            Carrito de compra<span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu dropdown-cart" role="menu">
-            <?php for ($i=0; $i < 6 ; $i++) { ?>
-              <li>
-                  <span class="item">
-                    <span class="item-left">
-                        <img src="http://www.prepbootstrap.com/Content/images/template/menucartdropdown/item_1.jpg" alt="" />
-                        <span class="item-info">
-                            <span>Item name</span>
-                            <span>price: 27$</span>
-                        </span>
-                    </span>
-                    <span class="item-right">
-                        <button class="btn btn-danger  fa fa-close"></button>
-                    </span>
-                </span>
-              </li>
-              <?php    } ?>
-
-              <li class="divider"></li>
-              <li><a class="text-center" href="#">View Cart</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+            <li class="divider"></li>
+            <li><a class="text-center" href="#">View Cart</a></li>
+        </ul>
+      </li>
+    </ul>
   </div>
+</div>
 </nav>
-
-  <div class="myModal">
-    <?php include("views/login_view.phtml"); ?>
-  </div>
+<body class="bg-secondary">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -108,12 +104,12 @@
         <?php for ($i=0; $i < 4 ; $i++) { ?>
           <div class="col-6 col-md-3 mb-2">
             <div class="dropdown">
-              <button type="button" class="btn  btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <a href="#">Componentes</a>
+              <button type="button" class="btn btn-block dropdown-toggle text-muted" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="text-light" href="#">Componentes</a>
               </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width:16rem;">
+                <a class="dropdown-item" href="#">Procesador</a>
+                <a class="dropdown-item" href="#">Placa Base</a>
               </div>
             </div>
           </div>
@@ -125,20 +121,82 @@
     <div class="row">
       <?php foreach ($datos as $dato) {
         ?>
-        <div class="col-6 col-sm-6 col-md-4 col-xl-3">
+        <div class="col-12 col-sm-6 col-md-4 col-xl-3">
           <div class="card my-3" style="height:400px;">
             <img class="card-img-top img-fluid" src="img/prueba.jpg" alt="Card image">
             <div class="card-body">
               <p class="card-title"><strong><?php echo $dato['SHORTDESCRIPTION']?> </strong></p>
               <p class="card-text">Precio: <?php echo $dato['PRICE'] ?>€</p>
-              <a href="#" class="btn btn-primary">Comprar</a>
+              <div class="card-footer text-center">
+                <small> <?php
+                if ($dato['STOCK'] == 0) { ?>
+                  <span style="color:red"> <?php echo "No quedan productos"; ?></span>
+                  <?php
+                } elseif ($dato['STOCK'] < 5) { ?>
+                      <span style="color:orange"> <?php echo "Quedan pocos en stock"; ?></span>
+                    <?php } else{?>
+                        <span style="color:green"> <?php echo "Hay productos en stock"; ?></span>
+                    <?php } ?>
+              </small>
+              <a href="index.php?controller=products&action=viewPage&id=<?php echo  $dato['ID']?>" class="btn btn-primary">Comprar</a>
+              </div>
             </div>
           </div>
         </div>
         <?php   } ?>
-      </div>
+  </div>
   </div>
 
 </body>
+<footer class="mt-4">
+     <div class="bg-primary py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+            <div class="row py-0">
+          <div class="col-sm-1 hidden-md-down">
+              <a class="bg-circle bg-info" href="#">
+                <i class="fa fa-2x fa-fw fa-address-card" aria-hidden="true "></i>
+              </a>
+            </div>
+            <div class="col-sm-11 text-white">
+                <div><h4>  Contacto</h4>
+                    <p>   <span class="header-font">EGC</span>omponentes.com</p>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+          <div class="d-inline-block">
+            <div class="bg-circle-outline d-inline-block" style="background-color:#3b5998">
+              <a href="https://www.facebook.com/"><i class="fa fa-2x fa-fw fa-facebook text-white"></i>
+		</a>
+            </div>
+            <div class="bg-circle-outline d-inline-block" style="background-color:#4099FF">
+              <a href="https://twitter.com/">
+                <i class="fa fa-2x fa-fw fa-twitter text-white"></i></a>
+            </div>
+
+            <div class="bg-circle-outline d-inline-block" style="background-color:#0077B5">
+              <a href="https://www.linkedin.com/company/">
+                <i class="fa fa-2x fa-fw fa-linkedin text-white"></i></a>
+            </div>
+            <div class="bg-circle-outline d-inline-block" style="background-color:#d34836">
+              <a href="https://www.google.com/">
+                <i class="fa fa-2x fa-fw fa-google text-white"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</footer>
+    <!--/.footer-->
+<p class="text-center"> Copyright <i class="fa fa-copyright" aria-hidden="true"></i>
+ EGComponentes 2018. Todos los derechos reservados. </p>
+    <!--/.footer-bottom-->
+    <div class="myModal">
+      <?php include("views/login_view.phtml"); ?>
+    </div>
 
 </html>

@@ -125,17 +125,17 @@ public function insertar() {
 * @return [false]  si no hi ha hagut cap error,
 *         [string] amb text d'error si no ha anat bé
 */
-public function delete($id) {
-    $sql = "DELETE FROM personas WHERE id='$id'";
+public function viewPage($id) {
+    $sql = "SELECT * FROM PRODUCT WHERE id='$id'";
 
     $result = $this->db->query($sql);
 
-    if ($this->db->error)
-        return "$sql<br>{$this->db->error}";
-    else {
-        return false;
-    }
+    $fila = $result->fetch_assoc();
+    return $fila;
+    // echo "<pre>".print_r($fila, 1)."</pre>"; die;
+
 }
+
 /**
  * Extreu tots els cotxes de la taula ordenats per marca
  * @return array Registres ordenats per marca

@@ -17,14 +17,13 @@ session_start();
              $controller->view();
            }
 
-           if ($_GET['action'] == "add") {
-             $controller = new personas_controller();
-             $controller->add();
-           }
+           if ($_GET['action'] == "viewPage") {
+             $id = $_GET['id'];
+             $controller = new products_controller();
+             $product = $controller->viewPage($id);
+             $controller->viewProduct();
+            // echo "<pre>".print_r($product, 1)."</pre>"; die;
 
-           if ($_GET['action'] == "insert") {
-             $controller = new personas_controller();
-             $controller->insert();
            }
 
 

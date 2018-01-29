@@ -2,20 +2,151 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <title>Personas</title>
+        <title>Producto</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" </script>
+        <link rel="stylesheet" href="../css/product.css">
     </head>
     <body>
-      <h1>PERSONAS</h1>
-      <table>
-           <tr><td><a href="index.php?controller=personas&action=ordnombre">Nombre</a></td><td><a href="index.php?controller=personas&action=ordedad">Edad</td><td></td></tr>
-        <?php
-            foreach ($datos as $dato) {
-                echo "<tr><td>{$dato['nombre']}</td><td>{$dato['edad']}</td>" .
-                     "<td><a href=\"index.php?controller=personas&action=delete&id={$dato['id']}\">Borrar</a><br/></td><tr/>";
-            }
-        ?>
-        </table>
-        <p><a href="index.php?controller=personas&action=add">Alta de Personas</a></p>
-        <p><a href="index.php?controller=coches&action=view">Ver Coches <a/></p>
+      <nav class="navbar navbar-expand-md navbar-light bg-primary sticky-top">
+        <a class="navbar-brand mr-4" href="#">
+     <img src="../img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    <span class="text-light">EGComponentes</span>
+         </a>
+
+         <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon "></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <form class="form-inline mx-auto">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success my-2 my-md-0 mr-4" type="submit">Search</button>
+              </form>
+
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-warning mr-2" data-toggle="modal" data-target="#myModal">
+                  Login/Register
+                </button>
+
+                <div>  <ul class="nav navbar-nav navbar-right">
+                    <!-- Carrito de compra -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle text-light" data-toggle="dropdown" role="button" aria-expanded="false">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              <span class="badge badge-dark">4</span>
+              Carrito de compra<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-cart" role="menu">
+              <?php for ($i=0; $i < 6 ; $i++) { ?>
+                <li>
+                    <span class="item">
+                      <span class="item-left">
+                          <img src="http://www.prepbootstrap.com/Content/images/template/menucartdropdown/item_1.jpg" alt="" />
+                          <span class="item-info">
+                              <span>Item name</span>
+                              <span>price: 27$</span>
+                          </span>
+                      </span>
+                      <span class="item-right">
+                          <button class="btn btn-danger  fa fa-close"></button>
+                      </span>
+                  </span>
+                </li>
+                <?php    } ?>
+
+                <li class="divider"></li>
+                <li><a class="text-center" href="#">View Cart</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    </nav>
+      <div class="container">
+        <div class="row" style="height:1000px;">
+          <div class="col-6 h-100">
+            <img src="../img/logo.svg" alt="producto" class="rounded">
+          </div>
+          <div class="col-6 h-100">
+              <p class=""><?php echo $product['SHORTDESCRIPTION']?></p>
+              <div class="w-100"></div>
+              <span class=""><strong>Descripción</strong></span>
+              <p class="h-25 border border-dark"><?php echo $product['LONGDESCRIPTION']?> </p>
+              <div class="w-100"></div>
+              <p class=""><?php echo $product['PRICE']?></p>
+              <div class="w-100"></div>
+              <p class=""><?php
+                if ($product['STOCK'] == 0) { ?>
+                <span style="color:red"> <?php echo "No quedan productos"; ?></span>
+                <?php
+                } elseif ($dato['STOCK'] < 5) { ?>
+                    <span style="color:orange"> <?php echo "Quedan pocos en stock"; ?></span>
+                  <?php } else{?>
+                      <span style="color:green"> <?php echo "Hay productos en stock"; ?></span>
+              </p>
+              <div class="w-100"></div>
+              <span>Cantidad:</span> <input type="number" value="1" min="1" id="number" style="width: 3em;">
+              <div class="w-100"></div>
+              <div class="row">
+                <div class="col-6">
+                  <button type="button" name="button" class="btn btn-primary btn-block btn-lg mt-2">Añadir al carrito</button>
+                </div>
+                <div class="col-6">
+                  <button type="button" name="button" class="btn btn-primary btn-block btn-lg mt-2">Comprar</button>
+                </div>
+              </div>
+          </div>
+        <?php   } ?>
+        </div>
+      </div>
+      <footer class="mt-4">
+           <div class="bg-primary py-3">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-7">
+                  <div class="row py-0">
+                <div class="col-sm-1 hidden-md-down">
+                    <a class="bg-circle bg-info" href="#">
+                      <i class="fa fa-2x fa-fw fa-address-card" aria-hidden="true "></i>
+                    </a>
+                  </div>
+                  <div class="col-sm-11 text-white">
+                      <div><h4>  Contacto</h4>
+                          <p>   <span class="header-font">EGC</span>omponentes.com</p>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+              <div class="col-md-5">
+                <div class="d-inline-block">
+                  <div class="bg-circle-outline d-inline-block" style="background-color:#3b5998">
+                    <a href="https://www.facebook.com/"><i class="fa fa-2x fa-fw fa-facebook text-white"></i>
+      		</a>
+                  </div>
+                  <div class="bg-circle-outline d-inline-block" style="background-color:#4099FF">
+                    <a href="https://twitter.com/">
+                      <i class="fa fa-2x fa-fw fa-twitter text-white"></i></a>
+                  </div>
+
+                  <div class="bg-circle-outline d-inline-block" style="background-color:#0077B5">
+                    <a href="https://www.linkedin.com/company/">
+                      <i class="fa fa-2x fa-fw fa-linkedin text-white"></i></a>
+                  </div>
+                  <div class="bg-circle-outline d-inline-block" style="background-color:#d34836">
+                    <a href="https://www.google.com/">
+                      <i class="fa fa-2x fa-fw fa-google text-white"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+      </footer>
+          <!--/.footer-->
+      <p class="text-center"> Copyright <i class="fa fa-copyright" aria-hidden="true"></i>
+       EGComponentes 2018. Todos los derechos reservados. </p>
+          <!--/.footer-bottom-->
     </body>
 </html>

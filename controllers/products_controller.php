@@ -30,6 +30,24 @@ function view() {
 
 
 /**
+ * Elimina una fila de la taula
+ * @return No
+ */
+function viewPage($id) {
+    $producto = new products_model();
+
+    $id = $_GET['id'];
+
+    $producto = $producto->viewPage($id);
+
+    return $producto;
+}
+
+function viewProduct(){
+  require_once("views/products_view.phtml");
+}
+
+/**
  * Inserta a la taula
  * @return No
  */
@@ -51,27 +69,6 @@ function insert() {
     }
 }
 
-
-/**
- * Elimina una fila de la taula
- * @return No
- */
-function delete() {
-  if (isset($_GET['id'])) {
-    $persona=new personas_model();
-
-    $id = $_GET['id'];
-
-    $error = $persona->delete($id);
-
-    if (!$error) {
-        header( "Location: index.php");
-    }
-    else {
-        echo $error;
-    }
-  }
-}
 /**
  * Mostra els cotxes ordenats per marca
  * @return No
