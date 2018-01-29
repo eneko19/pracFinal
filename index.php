@@ -7,7 +7,6 @@ session_start();
   require_once("controllers/coches_controller.php");
   require_once("controllers/login_controller.php");
 
-
   if (isset($_GET['controller']) && isset($_GET['action']) ) {
 
       if ($_GET['controller'] == "products") {
@@ -21,19 +20,10 @@ session_start();
              $id = $_GET['id'];
              $controller = new products_controller();
              $product = $controller->viewPage($id);
-             $controller->viewProduct();
+             $controller->viewProduct($product);
             // echo "<pre>".print_r($product, 1)."</pre>"; die;
 
            }
-
-
-      }
-      if ($_GET['controller'] == "coches") {
-
-        if ($_GET['action'] == "view") {
-          $controller = new coches_controller();
-          $controller->view();
-        }
 
 
       }

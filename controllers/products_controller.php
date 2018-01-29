@@ -30,8 +30,8 @@ function view() {
 
 
 /**
- * Elimina una fila de la taula
- * @return No
+ *
+ * @return
  */
 function viewPage($id) {
     $producto = new products_model();
@@ -41,9 +41,11 @@ function viewPage($id) {
     $producto = $producto->viewPage($id);
 
     return $producto;
+    
 }
 
-function viewProduct(){
+// Muestra la vista de producto
+function viewProduct($product){
   require_once("views/products_view.phtml");
 }
 

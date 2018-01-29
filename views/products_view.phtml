@@ -2,15 +2,15 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <title>Producto</title>
+        <title><?php echo $product['SHORTDESCRIPTION']?></title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" </script>
-        <link rel="stylesheet" href="../css/product.css">
+        <link rel="stylesheet" href="css/product.css">
     </head>
-    <body>
+    <body class="bg-secondary">
       <nav class="navbar navbar-expand-md navbar-light bg-primary sticky-top">
-        <a class="navbar-brand mr-4" href="#">
+        <a class="navbar-brand mr-4" href="index.php">
      <img src="../img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
     <span class="text-light">EGComponentes</span>
          </a>
@@ -64,30 +64,32 @@
       </div>
     </div>
     </nav>
+                <!-- Descripcion del producto -->
       <div class="container">
-        <div class="row" style="height:1000px;">
-          <div class="col-6 h-100">
-            <img src="../img/logo.svg" alt="producto" class="rounded">
+        <div class="row bg-light mt-2" style="height:1000px;">
+          <div class="col-6 h-100 border">
+            <img src="img/logo.svg" alt="producto" class="rounded">
           </div>
-          <div class="col-6 h-100">
-              <p class=""><?php echo $product['SHORTDESCRIPTION']?></p>
+          <div class="col-6 h-100 border ">
+              <h3 class="mt-4 border"><?php echo $product['SHORTDESCRIPTION']?></h3>
               <div class="w-100"></div>
               <span class=""><strong>Descripción</strong></span>
               <p class="h-25 border border-dark"><?php echo $product['LONGDESCRIPTION']?> </p>
               <div class="w-100"></div>
-              <p class=""><?php echo $product['PRICE']?></p>
+              <p class="">Precio: <?php echo $product['PRICE']?>€</p>
               <div class="w-100"></div>
               <p class=""><?php
                 if ($product['STOCK'] == 0) { ?>
                 <span style="color:red"> <?php echo "No quedan productos"; ?></span>
                 <?php
-                } elseif ($dato['STOCK'] < 5) { ?>
-                    <span style="color:orange"> <?php echo "Quedan pocos en stock"; ?></span>
+              } elseif ($product['STOCK'] < 5) { ?>
+                    <span style="color:orange"> <?php echo "Quedan pocos productos en stock"; ?></span>
                   <?php } else{?>
                       <span style="color:green"> <?php echo "Hay productos en stock"; ?></span>
               </p>
+            <?php } ?>
               <div class="w-100"></div>
-              <span>Cantidad:</span> <input type="number" value="1" min="1" id="number" style="width: 3em;">
+              <span>Cantidad:</span> <input class="mb-4" type="number" value="1" min="1" max="<?php echo $product['STOCK']?>" id="number" style="width: 3em;">
               <div class="w-100"></div>
               <div class="row">
                 <div class="col-6">
@@ -98,7 +100,6 @@
                 </div>
               </div>
           </div>
-        <?php   } ?>
         </div>
       </div>
       <footer class="mt-4">

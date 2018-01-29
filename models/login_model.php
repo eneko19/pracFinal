@@ -98,7 +98,7 @@ public function insert() {
 * @return array Bidimensional de tots els usuaris de la taula
 */
 public function consultar_usuario(){
-    $consulta=("SELECT * FROM USER WHERE USERNAME ='{$this->usuario}' AND PASSWORD = '{$this->password}';");
+    $consulta=("SELECT * FROM USER WHERE USERNAME ='{$this->username}' AND PASSWORD = '{$this->password}';");
 
      $resultado = $this->db->query($consulta) or trigger_error(mysqli_error($this->db)." ".$consulta);
 

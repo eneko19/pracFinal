@@ -21,18 +21,21 @@ class login_controller {
   function login() {
       $usuario = new login_model();
 
-      $usuario->setUsername($_POST['user']);
-      $usuario->setPassword($_POST['password']);
+      $username = !empty($_POST['user']) ? $_POST['user'] : "";
+      $password = !empty($_POST['password']) ? $_POST['password'] : "";
+
+      $usuario->setUsername($username);
+      $usuario->setPassword($password);
 
       $ok = $usuario->consultar_usuario();
 
           if ($ok) {
-            session_start();
-            $_SESSION['usuario'] = $_POST['USERNAME'];
-            header( "Location: index.php?controller=products&action=view");
+            $_SESSION['usuario'] = $username;
+            require_once("views/home.phtml");
+            return true;
           }
           else {
-              header( "Location: index.php?controller=products&action=view");
+              return false;
           }
       }
 
