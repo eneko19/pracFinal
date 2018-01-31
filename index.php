@@ -2,6 +2,7 @@
 
   require_once("db/db.php");
   require_once("controllers/products_controller.php");
+  require_once("controllers/categories_controller.php");
   require_once("controllers/coches_controller.php");
   require_once("controllers/login_controller.php");
 
@@ -26,7 +27,22 @@
              $controller = new products_controller();
              $controller->addView();
            }
+           if ($_GET['action'] == "insert") {
+             $controller = new products_controller();
+             $controller->insert();
+           }
       }
+      if ($_GET['controller'] == "categories") {
+
+          if ($_GET['action'] == "insert") {
+            $controller = new categories_controller();
+            $controller->insert();
+          }
+          if ($_GET['action'] == "add") {
+            $controller = new categories_controller();
+            $controller->add();
+          }
+        }
 
       if ($_GET['controller'] == "login") {
           $controller = new products_controller();

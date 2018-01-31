@@ -93,7 +93,7 @@ public function setCategory($category) {
 * @return array Bidimensional de totes les persones
 */
 public function get_products(){
-    $consulta=$this->db->query("SELECT * FROM PRODUCT WHERE SPONSORED = 'Y';");
+    $consulta=$this->db->query("SELECT * FROM PRODUCT WHERE SPONSORED = 'y';");
     while($filas=$consulta->fetch_assoc()){
         $this->products[]=$filas;
     }
@@ -108,7 +108,10 @@ public function get_products(){
 */
 public function insertar() {
 
-     $sql = "INSERT INTO personas (nombre, edad) VALUES ('{$this->nombre}','{$this->edad}')";
+     $sql = "INSERT INTO PRODUCT (NAME, SHORTDESCRIPTION, LONGDESCRIPTION, STOCK, PRICE, SPONSORED, BRAND, CATEGORY)
+              VALUES ('{$this->name}','{$this->shortdescription}','{$this->longdescription}','{$this->stock}','{$this->price}',
+              '{$this->sponsored}','{$this->brand}','{$this->category}')";
+
      $result = $this->db->query($sql);
 
      if ($this->db->error)
@@ -132,8 +135,7 @@ public function viewPage($id) {
 
     $fila = $result->fetch_assoc();
     return $fila;
-    // echo "<pre>".print_r($fila, 1)."</pre>"; die;
-
+     //echo "<pre>".print_r($fila, 1)."</pre>"; die;
 }
 
 /**

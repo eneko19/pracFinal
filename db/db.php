@@ -5,7 +5,7 @@
  */
 class Conectar{
     public static function conexion(){
-        $conexion=new mysqli("localhost", "user", "user", "store08");
+        $conexion=new mysqli("localhost", "user", "user", "COMPUTERSTORE");
         $conexion->query("SET NAMES 'utf8'");
         return $conexion;
     }

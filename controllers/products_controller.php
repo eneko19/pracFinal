@@ -54,49 +54,21 @@ function viewProduct($product){
  * @return No
  */
 function insert() {
-    $persona=new personas_model();
+    $producto = new products_model();
 
-    if (isset($_POST['insert'])) {
-        $persona->setNombre( $_POST['nombre'] );
-        $persona->setEdad( $_POST['edad'] );
+        $producto->setName($_POST['nombre']);
+        $producto->setShortDescription( $_POST['descCorta']);
+        $producto->setLongDescription( $_POST['descLarga']);
+        $producto->setSponsored( $_POST['sponsor']);
+        $producto->setPrice( $_POST['precio']);
+        $producto->setStock( $_POST['stock']);
+        $producto->setBrand( $_POST['marca']);
+        $producto->setCategory( $_POST['categoria']);
 
-        $error = $persona->insertar();
+        $error = $producto->insertar();
 
-        if (!$error) {
-            header( "Location: index.php");
-        }
-        else {
-            echo $error;
-        }
-    }
 }
 
-/**
- * Mostra els cotxes ordenats per marca
- * @return No
- */
-  function ordnombre() {
-    $persona=new personas_model();
-
-    //Uso metodo del modelo de coches
-    $datos=$persona->ordnombre();
-
-    //Llamado a la vista: mostrar la pantalla
-    require_once("views/personas_view.phtml");
-  }
-  /**
-   * Mostra els cotxes ordenats per marca
-   * @return No
-   */
-    function ordedad() {
-      $persona=new personas_model();
-
-      //Uso metodo del modelo de coches
-      $datos=$persona->ordedad();
-
-      //Llamado a la vista: mostrar la pantalla
-      require_once("views/personas_view.phtml");
-    }
     /*
     ** Fucnion que muestra la pagina de añadir producto
     */

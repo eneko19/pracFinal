@@ -42,9 +42,9 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item bg-light" href="index.php?controller=products&action=addView">Afegir productes</a>
-                    <a class="dropdown-item bg-light" href="#">Afegir categories</a>
+                    <a class="dropdown-item bg-light" href="index.php?controller=categories&action=add">Afegir categories</a>
                     <a class="dropdown-item bg-light" href="#">Crear promocions</a>
-                    <a class="dropdown-item bg-light" href="index.php?controller=login&action=logout">Cerrar sesion</a>
+                    <a class="dropdown-item bg-light" href="index.php?controller=login&action=logout"><i class="fa fa-sign-out mr-2" aria-hidden="true"></i>Cerrar sesion</a>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
                     <span class="text-warning mr-4">Hola, <?php echo $_SESSION['usuario'] ?>  </span>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item bg-light" href="#">Editar perfil</a>
+                    <a disabled class="dropdown-item bg-light" href="#">Editar perfil</a>
                     <a class="dropdown-item bg-light" href="#">Historial de compras</a>
                     <a class="dropdown-item bg-light" href="index.php?controller=login&action=logout">Cerrar sesion</a>
                 </div>
