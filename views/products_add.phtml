@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Añadir producto</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    </head>
+    <body class="bg-secondary">
+        <div class="container br-light border border-dark mt-4">
+            <form name="addProd" action="controllers/products_controller.php">
+                <h1 class="text-center">Añadir producto</h1>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Descripcion corta</span>
+                  </div>
+                  <input type="text" class="form-control" name="descCorta">
+                </div>
+
+                <div class="input-group ">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Descripcion larga</span>
+                  </div>
+                  <textarea class="form-control"></textarea>
+                </div>
+
+                <fieldset class="form-group">
+                    <div class="row">
+                      <legend class="col-form-label col-sm-4 pt-0">Producto promocionado:</legend>
+                      <div class="col-sm-8">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="SPONSORED" id="gridRadios1" value="y" checked>
+                          <label class="form-check-label" for="gridRadios1">
+                            Si
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="SPONSORED" id="gridRadios2" value="n">
+                          <label class="form-check-label" for="gridRadios2">
+                            No
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  Precio:
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">€</span>
+                    </div>
+                    <input type="text" class="form-control">
+                    <div class="input-group-append">
+                      <span class="input-group-text">.00</span>
+                    </div>
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Stock</span>
+                    </div>
+                    <input type="number" class="form-control" >
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Marca</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01">
+                      <option selected>Elige...</option>
+                      <option value="1">One</option>
+                    </select>
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Categoria</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect02">
+                      <option selected>Elige...</option>
+                      <option value="1">One</option>
+                    </select>
+                  </div>
+                   <button class="btn btn-lg btn-light" type="submit">Añadir</button>
+            </form>
+        </div>
+    </body>
+</html>

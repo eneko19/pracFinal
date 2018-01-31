@@ -31,7 +31,6 @@ class login_controller {
 
           if ($ok) {
             $_SESSION['usuario'] = $username;
-            require_once("views/home.phtml");
             return true;
           }
           else {
@@ -43,11 +42,9 @@ class login_controller {
        * Registra un usuario
        */
         function register() {
-
-
             $usuario = new login_model();
 
-            $usuario->setUserName ($_POST['user']);
+            $usuario->setUserName ($_POST['username']);
             $usuario->setPassword ($_POST['password']);
             $usuario->setName ($_POST['name']);
             $usuario->setEmail ($_POST['email']);
@@ -63,6 +60,15 @@ class login_controller {
                 echo $error;
             }
         }
-
+              
+      /**
+       * Finaliza la sesion de usuario
+       */
+        function logout(){
+           // Borra contingut de $_SESSION
+           session_unset();
+           // elimina la sessio
+           session_destroy();
+        }
     }
 ?>

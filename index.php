@@ -1,12 +1,11 @@
 <?php
 
-session_start();
   require_once("db/db.php");
-
   require_once("controllers/products_controller.php");
   require_once("controllers/coches_controller.php");
   require_once("controllers/login_controller.php");
 
+  session_start();
   if (isset($_GET['controller']) && isset($_GET['action']) ) {
 
       if ($_GET['controller'] == "products") {
@@ -22,33 +21,40 @@ session_start();
              $product = $controller->viewPage($id);
              $controller->viewProduct($product);
             // echo "<pre>".print_r($product, 1)."</pre>"; die;
-
            }
-
-
+           if ($_GET['action'] == "addView") {
+             $controller = new products_controller();
+             $controller->addView();
+           }
       }
 
       if ($_GET['controller'] == "login") {
+          $controller = new products_controller();
 
         if ($_GET['action'] == "view") {
-          $controller = new login_controller();
-          $controller->view();
+          $login = new login_controller();
+          $login->view();
         }
 
         if ($_GET['action'] == "login") {
-          $controller = new login_controller();
-          $controller->login();
+          $login = new login_controller();
+          $loged = $login->login();
+          if (!$loged) {
+              echo("error");
+          }
         }
 
         if ($_GET['action'] == "register") {
-          $controller = new login_controller();
-          $controller->register();
+          $login = new login_controller();
+          $login->register();
         }
 
         if ($_GET['action'] == "logout") {
-          $controller = new login_controller();
-          $controller->logout();
+          $login = new login_controller();
+          $login->logout();
         }
+
+        $controller->view();
 
       }
 

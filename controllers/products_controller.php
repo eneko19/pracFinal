@@ -41,7 +41,7 @@ function viewPage($id) {
     $producto = $producto->viewPage($id);
 
     return $producto;
-    
+
 }
 
 // Muestra la vista de producto
@@ -96,6 +96,12 @@ function insert() {
 
       //Llamado a la vista: mostrar la pantalla
       require_once("views/personas_view.phtml");
+    }
+    /*
+    ** Fucnion que muestra la pagina de añadir producto
+    */
+    function addView(){
+      require_once("views/products_add.phtml");
     }
 
 }
