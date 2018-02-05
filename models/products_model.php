@@ -138,27 +138,5 @@ public function viewPage($id) {
      //echo "<pre>".print_r($fila, 1)."</pre>"; die;
 }
 
-/**
- * Extreu tots els cotxes de la taula ordenats per marca
- * @return array Registres ordenats per marca
- */
-public function ordnombre(){
-    $consulta=$this->db->query("select * from personas ORDER BY nombre");
-    while($filas=$consulta->fetch_assoc()){
-        $this->personas[]=$filas;
-    }
-    return $this->personas;
-}
-/**
- * Extreu tots els cotxes de la taula ordenats per marca
- * @return array Registres ordenats per marca
- */
-public function ordedad(){
-    $consulta=$this->db->query("select * from personas ORDER BY edad");
-    while($filas=$consulta->fetch_assoc()){
-        $this->personas[]=$filas;
-    }
-    return $this->personas;
-}
 }
 ?>
