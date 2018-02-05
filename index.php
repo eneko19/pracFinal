@@ -33,14 +33,16 @@
            }
       }
       if ($_GET['controller'] == "categories") {
+            $controllerP = new products_controller();
 
           if ($_GET['action'] == "insert") {
             $controller = new categories_controller();
             $controller->insert();
+            $controllerP->view();
           }
           if ($_GET['action'] == "add") {
             $controller = new categories_controller();
-            $controller->add();
+            $controller->view();
           }
         }
 

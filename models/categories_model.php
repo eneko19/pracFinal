@@ -53,8 +53,13 @@ class categories_model {
   */
   public function insertar() {
 
-       $sql = "INSERT INTO PRODUCT (NAME, PARENTCATEGORY ) VALUES ('{$this->name}','{$this->parentcategory}')";
 
+      if ($this->parentcategory == "NULL") {
+        $sql = "INSERT INTO CATEGORY (NAME ) VALUES ('{$this->name}')";
+
+      }else {
+       $sql = "INSERT INTO CATEGORY (NAME, PARENTCATEGORY ) VALUES ('{$this->name}','{$this->parentcategory}')";
+      }
        $result = $this->db->query($sql);
 
        if ($this->db->error)
@@ -63,4 +68,18 @@ class categories_model {
            return false;
        }
     }
+
+        /**
+    * Extreu totes les persones de la taula
+    * @return array Bidimensional de totes les persones
+    */
+    public function get_categories(){
+        $consulta=$this->db->query("SELECT * FROM CATEGORY WHERE PARENTCATEGORY IS NULL;");
+        while($filas=$consulta->fetch_assoc()){
+            $this->categoria[]=$filas;
+        }
+        return $this->categoria;
+    }
+
+
 }

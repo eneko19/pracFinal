@@ -1,13 +1,100 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Añadir producto</title>
+        <title>Añadir categoria</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/product.css">
     </head>
+    <!-- Barra de navegacion -->
+    <nav class="navbar navbar-expand-md navbar-light bg-primary sticky-top">
+        <a class="navbar-brand mr-4" href="index.php">
+            <img src="img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            <span class="text-light">EGComponentes</span>
+        </a>
+
+        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon "></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline mx-auto">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success my-2 my-md-0 mr-4" type="submit">Search</button>
+            </form>
+
+            <?php if (isset($_SESSION['usuario'])){
+                    if ($_SESSION['usuario'] == "admin") { ?>
+                <div class="dropdown mr-2">
+                    <button class="btn bg-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user-circle-o text-warning" aria-hidden="true"></i>
+                        <span class="text-warning mr-4">Hola, <?php echo $_SESSION['usuario'] ?>  </span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item bg-light" href="index.php?controller=products&action=addView">Afegir productes</a>
+                        <a class="dropdown-item bg-light" href="index.php?controller=categories&action=add">Afegir categories</a>
+                        <a class="dropdown-item bg-light" href="#">Crear promocions</a>
+                        <a class="dropdown-item bg-light" href="index.php?controller=login&action=logout"><i class="fa fa-sign-out mr-2" aria-hidden="true"></i>Cerrar sesion</a>
+                    </div>
+                </div>
+
+            <?php } else { ?>
+                <div class="dropdown mr-2">
+                    <button class="btn bg-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user-circle-o text-warning" aria-hidden="true"></i>
+                        <span class="text-warning mr-4">Hola, <?php echo $_SESSION['usuario'] ?>  </span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a disabled class="dropdown-item bg-light" href="#">Editar perfil</a>
+                        <a class="dropdown-item bg-light" href="#">Historial de compras</a>
+                        <a class="dropdown-item bg-light" href="index.php?controller=login&action=logout">Cerrar sesion</a>
+                    </div>
+                </div>
+            <?php }
+
+            } else { ?>
+                <button type="button" class="btn btn-warning mr-2" data-toggle="modal" data-target="#myModal">
+                    Login/Register
+                </button>"
+            <?php }?>
+
+            <div>  <ul class="nav navbar-nav navbar-right">
+                    <!-- Carrito de compra -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle text-light" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span class="badge badge-dark">4</span>
+                            Carrito de compra<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-cart" role="menu">
+                            <?php for ($i = 0; $i < 6; $i++) { ?>
+                                <li>
+                                    <span class="item">
+                                        <span class="item-left">
+                                            <img src="http://www.prepbootstrap.com/Content/images/template/menucartdropdown/item_1.jpg" alt="" />
+                                            <span class="item-info">
+                                                <span>Item name</span>
+                                                <span>price: 27$</span>
+                                            </span>
+                                        </span>
+                                        <span class="item-right">
+                                            <button class="btn btn-danger  fa fa-close"></button>
+                                        </span>
+                                    </span>
+                                </li>
+                            <?php } ?>
+
+                            <li class="divider"></li>
+                            <li><a class="text-center" href="#">View Cart</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <body class="bg-secondary">
         <div class="container br-light border border-dark mt-4">
-            <form name="addProd" action="index.php?controller=products&action=insert" method="post">
+            <form name="addProd" action="index.php?controller=categories&action=insert" method="post">
                 <h1 class="text-center">Añadir categoria</h1>
 
                 <div class="input-group mb-3">
@@ -17,78 +104,17 @@
                   <input type="text" class="form-control" name="nombre">
                 </div>
 
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Descripcion corta</span>
-                  </div>
-                  <input type="text" class="form-control" name="descCorta">
-                </div>
-
-                <div class="input-group ">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Descripcion larga</span>
-                  </div>
-                  <textarea class="form-control" name="descLarga"></textarea>
-                </div>
-
-                <fieldset class="form-group">
-                    <div class="row">
-                      <legend class="col-form-label col-sm-4 pt-0">Producto promocionado:</legend>
-                      <div class="col-sm-8">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="sponsor" id="gridRadios1" value="y" checked>
-                          <label class="form-check-label" for="gridRadios1">
-                            Si
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="sponsor" id="gridRadios2" value="n">
-                          <label class="form-check-label" for="gridRadios2">
-                            No
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </fieldset>
-
-                  Precio:
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">€</span>
+                      <label class="input-group-text" for="inputGroupSelect01">Categoria padre</label>
                     </div>
-                    <input type="text" class="form-control" name="precio">
-                    <div class="input-group-append">
-                      <span class="input-group-text">.00</span>
-                    </div>
-                  </div>
-
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroup-sizing-default">Stock</span>
-                    </div>
-                    <input type="number" class="form-control" name="stock" >
-                  </div>
-
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text" for="inputGroupSelect01">Marca</label>
-                    </div>
-                    <select class="custom-select" id="inputGroupSelect01" name="marca">
-                      <option selected>Elige...</option>
-                      <option value="1">One</option>
+                    <select class="custom-select" id="parentcategory" name="parentcategory">
+                      <option value="NULL" selected>Elige...</option>
+                      <?php foreach ($datos as $dato) { ?>
+                      <option value="<?php echo $dato['ID'] ?>"><?php echo $dato['NAME'] ?></option>
+                      <?php } ?>
                     </select>
                   </div>
-
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text" for="inputGroupSelect01">Categoria</label>
-                    </div>
-                    <select class="custom-select" id="inputGroupSelect02" name="categoria">
-                      <option selected>Elige...</option>
-                      <option value="1">One</option>
-                    </select>
-                  </div>
-                   <a href="index.php?controller=products&action=view"><button class="btn btn-lg btn-light">Volver</button></a>
                    <button class="btn btn-lg btn-light" type="submit">Añadir</button>
             </form>
         </div>

@@ -16,13 +16,20 @@ class categories_controller {
  * Inserta a la taula
  */
 function insert() {
-    $categoria = new categoires_model();
+    $categoria = new categories_model();
 
         $categoria->setName($_POST['nombre']);
         $categoria->setParentCategory( $_POST['parentcategory']);
 
-        $error = $producto->insertar();
+        $error = $categoria->insertar();
+}
 
+function view(){
+    $categoria = new categories_model();
+
+    $datos = $categoria->get_categories();
+
+    require_once("views/categories_add.phtml");
 }
 
 
