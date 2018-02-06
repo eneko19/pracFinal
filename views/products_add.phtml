@@ -85,7 +85,9 @@
                     </div>
                     <select class="custom-select" id="inputGroupSelect02" name="categoria">
                       <option selected>Elige...</option>
-                      <option value="1">One</option>
+                      <?php foreach ($datos as $dato) { ?>
+                      <option value=" <?php echo $dato['ID'] ?>"><?php echo $dato['NAME'] ?></option>
+                    <?php } ?>
                     </select>
                   </div>
                    <a href="index.php?controller=products&action=view"><button class="btn btn-lg btn-light">Volver</button></a>

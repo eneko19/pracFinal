@@ -26,6 +26,7 @@
            if ($_GET['action'] == "addView") {
              $controller = new products_controller();
              $controller->addView();
+        
            }
            if ($_GET['action'] == "insert") {
              $controller = new products_controller();

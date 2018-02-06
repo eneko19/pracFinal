@@ -29,6 +29,7 @@ function view(){
 
     $datos = $categoria->get_categories();
 
+
     require_once("views/categories_add.phtml");
 }
 

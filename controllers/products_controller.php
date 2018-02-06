@@ -73,6 +73,11 @@ function insert() {
     ** Fucnion que muestra la pagina de añadir producto
     */
     function addView(){
+
+      $categoria = new categories_model();
+
+      $datos = $categoria->get_categories();
+
       require_once("views/products_add.phtml");
     }
 

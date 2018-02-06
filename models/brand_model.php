@@ -5,13 +5,12 @@
  *
  * @author eneko
  */
-class categories_model {
+class brand_model {
   private $db;
-  private $categoria;
+  private $marca;
 
   private $id;
   private $name;
-  private $parentcategory;
 
   public function __construct(){
       $this->db=Conectar::conexion();
@@ -33,14 +32,6 @@ class categories_model {
 
   public function setName($name) {
     $this->name = $name;
-  }
-
-  public function getParentCategory() {
-    return $this->parentcategory;
-  }
-
-  public function setParentCategory($parentcategory) {
-    $this->parentcategory = $parentcategory;
   }
 
 
@@ -72,8 +63,8 @@ class categories_model {
     * Extreu totes les persones de la taula
     * @return array Bidimensional de totes les persones
     */
-    public function get_categories(){
-        $consulta=$this->db->query("SELECT * FROM CATEGORY WHERE PARENTCATEGORY IS NULL;");
+    public function get_brands(){
+        $consulta=$this->db->query("SELECT * FROM BRAND;");
         while($filas=$consulta->fetch_assoc()){
             $this->categoria[]=$filas;
         }
