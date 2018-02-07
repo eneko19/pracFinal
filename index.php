@@ -26,12 +26,20 @@
            if ($_GET['action'] == "addView") {
              $controller = new products_controller();
              $controller->addView();
-        
+
            }
            if ($_GET['action'] == "insert") {
              $controller = new products_controller();
              $controller->insert();
+             $controller->view();
            }
+           if ($_GET['action'] == "search") {
+             $valor = $_POST["buscador"];
+             $controller = new products_controller();
+             $controller->search($valor);
+           }
+
+
       }
       if ($_GET['controller'] == "categories") {
             $controllerP = new products_controller();

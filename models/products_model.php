@@ -138,5 +138,15 @@ public function viewPage($id) {
      //echo "<pre>".print_r($fila, 1)."</pre>"; die;
 }
 
+  public function search($valor){
+
+    $consulta=$this->db->query("SELECT * FROM PRODUCT WHERE SHORTDESCRIPTION like '%$valor%';");
+    while($filas=$consulta->fetch_assoc()){
+        $this->products[]=$filas;
+    }
+    return $this->products;
+
+
+  }
 }
 ?>

@@ -1,6 +1,7 @@
 <?php
 //Llamada al modelo
 require_once("models/products_model.php");
+require_once("models/brand_model.php");
 
 
 class products_controller {
@@ -76,9 +77,23 @@ function insert() {
 
       $categoria = new categories_model();
 
-      $datos = $categoria->get_categories();
+      $datosC = $categoria->get_categories();
+
+      $brand = new brand_model();
+
+      $datosB = $brand->get_brands();
+
 
       require_once("views/products_add.phtml");
+    }
+
+    function search($valor){
+
+      $producto = new products_model();
+
+      $datos = $producto->search($valor);
+      require_once("views/home.phtml");
+
     }
 
 }

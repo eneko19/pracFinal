@@ -75,7 +75,9 @@
                     </div>
                     <select class="custom-select" id="inputGroupSelect01" name="marca">
                       <option selected>Elige...</option>
-                      <option value="1">One</option>
+                        <?php foreach ($datosB as $dato) { ?>
+                      <option value=" <?php echo $dato['ID'] ?>"> <?php echo $dato['NAME'] ?></option>
+                        <?php } ?>
                     </select>
                   </div>
 
@@ -85,7 +87,7 @@
                     </div>
                     <select class="custom-select" id="inputGroupSelect02" name="categoria">
                       <option selected>Elige...</option>
-                      <?php foreach ($datos as $dato) { ?>
+                      <?php foreach ($datosC as $dato) { ?>
                       <option value=" <?php echo $dato['ID'] ?>"><?php echo $dato['NAME'] ?></option>
                     <?php } ?>
                     </select>
