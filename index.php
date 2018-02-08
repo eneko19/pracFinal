@@ -3,8 +3,8 @@
   require_once("db/db.php");
   require_once("controllers/products_controller.php");
   require_once("controllers/categories_controller.php");
-  require_once("controllers/coches_controller.php");
   require_once("controllers/login_controller.php");
+    require_once("controllers/promotion_controller.php");
 
   session_start();
   if (isset($_GET['controller']) && isset($_GET['action']) ) {
@@ -14,6 +14,9 @@
            if ($_GET['action'] == "view") {
              $controller = new products_controller();
              $controller->view();
+
+             $controllerP = new promotion_controller();
+             $controllerP->get_carousel();
            }
 
            if ($_GET['action'] == "viewPage") {

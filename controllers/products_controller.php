@@ -25,6 +25,10 @@ function view() {
   //Uso metodo del modelo de personas
   $datos=$producto->get_products();
 
+  $promotion = new promotion_model();
+
+  $datosCar = $promotion->get_carousel();
+
   //Llamado a la vista: mostrar la pantalla
   require_once("views/home.phtml");
 }

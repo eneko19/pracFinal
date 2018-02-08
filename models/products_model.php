@@ -93,10 +93,14 @@ public function setCategory($category) {
 * @return array Bidimensional de totes les persones
 */
 public function get_products(){
-    $consulta=$this->db->query("SELECT * FROM PRODUCT WHERE SPONSORED = 'y';");
+    $consulta=$this->db->query("SELECT *, img.URL FROM PRODUCT prod
+      join IMAGE img on prod.ID = img.PRODUCT  WHERE SPONSORED = 'y';");
+
     while($filas=$consulta->fetch_assoc()){
         $this->products[]=$filas;
     }
+
+
     return $this->products;
 }
 
@@ -140,7 +144,9 @@ public function viewPage($id) {
 
   public function search($valor){
 
-    $consulta=$this->db->query("SELECT * FROM PRODUCT WHERE SHORTDESCRIPTION like '%$valor%';");
+    $consulta=$this->db->query("SELECT *, img.URL FROM PRODUCT prod
+      join IMAGE img on prod.ID = img.PRODUCT WHERE SHORTDESCRIPTION like '%$valor%';");
+
     while($filas=$consulta->fetch_assoc()){
         $this->products[]=$filas;
     }
