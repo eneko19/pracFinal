@@ -15,8 +15,6 @@
              $controller = new products_controller();
              $controller->view();
 
-             $controllerP = new promotion_controller();
-             $controllerP->get_carousel();
            }
 
            if ($_GET['action'] == "viewPage") {
@@ -90,6 +88,8 @@
 
   } else {
      $controller = new products_controller();
+     $controllerP = new promotion_controller();
      $controller->view();
+
   }
 ?>

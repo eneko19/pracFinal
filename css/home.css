@@ -114,7 +114,10 @@ ul.dropdown-cart li .item-right button {
   outline: none;
   color: #ececec;
 }
-
+.imgCarousel {
+    max-width: 15%;
+    max-height: 20%;
+}
 .footer {
   background: #EDEFF1;
   height: auto;

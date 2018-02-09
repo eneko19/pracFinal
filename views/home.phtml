@@ -103,22 +103,27 @@
     </div>
 </nav>
 <body class="bg-secondary">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
+
+          <!-- Carousel -->
+    <div id="carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner bg-dark py-1" role="listbox">
-            <div class="carousel-item active">
-                <img class="d-block img-fluid" src="img/slide1.png" alt="First slide" >
+          <?php	$cont = 0;
+			foreach ( $datosCar as $dato ) { ?>
+            <div class="carousel-item <?php if ( $cont == 0 ) { ?> active <?php $cont++; } ?>">
+                <img class="d-block img-fluid imgCarousel" src="<?php echo $dato["URL"] ?>" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                  <h3><?php echo $dato["SHORTDESCRIPTION"] ?></h3>
+                  <h4><span class="badge badge-danger"><?php echo $dato["DISCOUNTPERCENTAGE"] ?>%</span></h4>
+                  <p>Por solo <?php echo $dato["PRECIOFINAL"] ?>€</p>
+                </div>
             </div>
+          <?php } ?>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>

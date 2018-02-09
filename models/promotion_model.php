@@ -88,7 +88,7 @@ class promotion_model {
     * @return array Bidimensional de totes les persones
     */
     public function get_carousel(){
-        $consulta=$this->db->query("SELECT img.URL, pt.NAME,pt.SHORTDESCRIPTION,pn.DISCOUNTPERCENTAGE, FORMAT((pt.PRICE * (1-(pn.DISCOUNTPERCENTAGE/100))),2) AS PRECIODESCONTADO, pt.PRICE FROM PROMOTION pn join PRODUCT pt on pt.ID = pn.PRODUCT join IMAGE img on img.PRODUCT = pt.ID;");
+        $consulta=$this->db->query("SELECT img.URL, pt.NAME,pt.SHORTDESCRIPTION,pn.DISCOUNTPERCENTAGE, FORMAT((pt.PRICE * (1-(pn.DISCOUNTPERCENTAGE/100))),2) AS PRECIOFINAL, pt.PRICE FROM PROMOTION pn join PRODUCT pt on pt.ID = pn.PRODUCT join IMAGE img on img.PRODUCT = pt.ID;");
         while($filas=$consulta->fetch_assoc()){
             $this->promotion[]=$filas;
         }

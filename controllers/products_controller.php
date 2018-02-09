@@ -2,6 +2,7 @@
 //Llamada al modelo
 require_once("models/products_model.php");
 require_once("models/brand_model.php");
+require_once("models/promotion_model.php");
 
 
 class products_controller {
@@ -29,11 +30,13 @@ function view() {
 
   $datosCar = $promotion->get_carousel();
 
+
   //Llamado a la vista: mostrar la pantalla
   require_once("views/home.phtml");
 }
 
 
+// ( ! ) Notice: Undefined index: img.URL in /var/www/html/practicas/pracFinal/views/home.phtml on line 119 Call Stack #TimeMemoryFunctionLocation 10.0000358720{main}( ).../index.php:0 20.0001368088products_controller->view( ).../index.php:92 30.0023406328require_once( '/var/www/html/practicas/pracFinal/views/home.phtml' ).../products_controller.php:
 /**
  *
  * @return
@@ -96,6 +99,10 @@ function insert() {
       $producto = new products_model();
 
       $datos = $producto->search($valor);
+
+      $promotion = new promotion_model();
+
+      $datosCar = $promotion->get_carousel();
       require_once("views/home.phtml");
 
     }
