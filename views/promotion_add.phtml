@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Añadir promoción</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+  </head>
+  <body class="bg-secondary">
+      <div class="container br-light border border-dark mt-4">
+          <form name="addProd" action="index.php?controller=categories&action=insert" method="post">
+              <h1 class="text-center">Añadir promoción</h1>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Descuento</span>
+                </div>
+                <input type="text" class="form-control" name="descuento" min="0" max="100" placeholder="25">
+                <div class="input-group-append">
+                  <span class="input-group-text">%</span>
+                </div>
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Fecha en la que finaliza la promoción</span>
+                </div>
+                <input type="date" class="form-control" name="fechaFinal">
+              </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Producto</label>
+                  </div>
+                  <select class="custom-select" id="parentcategory" name="parentcategory">
+                    <option value="NULL" selected>Elige...</option>
+                    <?php foreach ($datos as $dato) { ?>
+                    <option value="<?php echo $dato['ID'] ?>"><?php echo $dato['NAME'] ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+                 <button class="btn btn-lg btn-light" type="submit">Añadir</button>
+          </form>
+      </div>
+  </body>
+</html>
