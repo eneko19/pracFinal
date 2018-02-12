@@ -79,6 +79,13 @@ class categories_model {
         }
         return $this->categoria;
     }
+    public function get_all_categories(){
+        $consulta=$this->db->query("SELECT * FROM CATEGORY;");
+        while($filas=$consulta->fetch_assoc()){
+            $this->categoria[]=$filas;
+        }
+        return $this->categoria;
+    }
 
 
 }

@@ -1,95 +1,118 @@
 <?php
 
-  require_once("db/db.php");
-  require_once("controllers/products_controller.php");
-  require_once("controllers/categories_controller.php");
-  require_once("controllers/login_controller.php");
-    require_once("controllers/promotion_controller.php");
+require_once("db/db.php");
+require_once("controllers/products_controller.php");
+require_once("controllers/categories_controller.php");
+require_once("controllers/login_controller.php");
+require_once("controllers/promotion_controller.php");
+require_once("controllers/cart_controller.php");
 
-  session_start();
-  if (isset($_GET['controller']) && isset($_GET['action']) ) {
+session_start();
 
-      if ($_GET['controller'] == "products") {
+if(empty($_SESSION['cart'])){
+    $_SESSION['cart'] = [];
+}
+if (isset($_GET['controller']) && isset($_GET['action'])) {
 
-           if ($_GET['action'] == "view") {
-             $controller = new products_controller();
-             $controller->view();
+    if ($_GET['controller'] == "cart") {
+        $cart = new cart_controller();
+        if ($_GET['action'] == "addToCart") {
+            
+             $num = !empty($_GET['numAddUnits']) ? $_GET['numAddUnits'] : 1;
+            $products = [
+                "id"=>$_GET['product'],
+                "numAddUnits"=>$num,
+                "name"=>$_GET['productName'],
+                "price"=>$_GET['productPrice'],
+                "image"=>$_GET['productImage'],
+                "stock"=>$_GET['productStock']
+                ];
+            $num = !empty($_GET['numUnits']) ? $_GET['numUnits'] : 1;
+            $cart->addToCart($products);
+        }
+        if ($_GET['action'] == "deleteFromCart") {
+            $product = $_GET['product'];
+            $cart->deleteFromCart($product);
+        }
+        header('Location: index.php');
+    }
 
-           }
 
-           if ($_GET['action'] == "viewPage") {
-             $id = $_GET['id'];
-             $controller = new products_controller();
-             $product = $controller->viewPage($id);
-             $controller->viewProduct($product);
+    if ($_GET['controller'] == "products") {        
+
+        if ($_GET['action'] == "view") {
+            $controller = new products_controller();
+            $controller->view();
+        }
+
+        if ($_GET['action'] == "viewPage") {
+            $id = $_GET['id'];
+            $controller = new products_controller();
+            $product = $controller->viewPage($id);
+            $controller->viewProduct($product);
             // echo "<pre>".print_r($product, 1)."</pre>"; die;
-           }
-           if ($_GET['action'] == "addView") {
-             $controller = new products_controller();
-             $controller->addView();
+        }
+        if ($_GET['action'] == "addView") {
+            $controller = new products_controller();
+            $controller->addView();
+        }
+        if ($_GET['action'] == "insert") {
+            $controller = new products_controller();
+            $controller->insert();
+            $controller->view();
+        }
+        if ($_GET['action'] == "search") {
+            $valor = $_POST["buscador"];
+            $controller = new products_controller();
+            $controller->search($valor);
+        }
+    }
+    if ($_GET['controller'] == "categories") {
+        $controllerP = new products_controller();
 
-           }
-           if ($_GET['action'] == "insert") {
-             $controller = new products_controller();
-             $controller->insert();
-             $controller->view();
-           }
-           if ($_GET['action'] == "search") {
-             $valor = $_POST["buscador"];
-             $controller = new products_controller();
-             $controller->search($valor);
-           }
-
-
-      }
-      if ($_GET['controller'] == "categories") {
-            $controllerP = new products_controller();
-
-          if ($_GET['action'] == "insert") {
+        if ($_GET['action'] == "insert") {
             $controller = new categories_controller();
             $controller->insert();
             $controllerP->view();
-          }
-          if ($_GET['action'] == "add") {
+        }
+        if ($_GET['action'] == "add") {
             $controller = new categories_controller();
             $controller->view();
-          }
         }
+    }
 
-      if ($_GET['controller'] == "login") {
-          $controller = new products_controller();
+    if ($_GET['controller'] == "login") {
+        $controller = new products_controller();
 
         if ($_GET['action'] == "view") {
-          $login = new login_controller();
-          $login->view();
+            $login = new login_controller();
+            $login->view();
         }
 
         if ($_GET['action'] == "login") {
-          $login = new login_controller();
-          $loged = $login->login();
-          if (!$loged) {
-              echo("error");
-          }
+            $login = new login_controller();
+            $loged = $login->login();
+            if (!$loged) {
+                echo("error");
+            }
         }
 
         if ($_GET['action'] == "register") {
-          $login = new login_controller();
-          $login->register();
+            $login = new login_controller();
+            $login->register();
         }
 
         if ($_GET['action'] == "logout") {
-          $login = new login_controller();
-          $login->logout();
+            $login = new login_controller();
+            $login->logout();
         }
 
         $controller->view();
-
-      }
-
-  } else {
-     $controller = new products_controller();
-     $controllerP = new promotion_controller();
-     $controller->view();
-
-  }
+    }
+} else {
+    $controller = new products_controller();
+    $cart = $controller->getCart();
+    $controller->view();
+    
+}
 ?>

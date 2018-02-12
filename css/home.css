@@ -7,12 +7,14 @@
 }
 
 ul.dropdown-cart {
-  min-width: 210px;
+  min-width: 300px;
   border: 2px solid #343434;
   padding: 2px;
   margin: -10px;
   margin-top: 14px;
   margin-bottom: auto;
+  position: absolute;
+  left: -300px;
 }
 
 ul.dropdown-cart li .item {
@@ -114,10 +116,17 @@ ul.dropdown-cart li .item-right button {
   outline: none;
   color: #ececec;
 }
+/** Imagenes del carousel **/
 .imgCarousel {
-    max-width: 15%;
-    max-height: 20%;
+    max-width: 15%!important;
+    max-height: 20%!important;
 }
+/** Imagen del carrito */
+.dropdown img {
+    width: 15%;
+}
+
+/** Footer **/
 .footer {
   background: #EDEFF1;
   height: auto;

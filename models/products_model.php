@@ -133,7 +133,8 @@ public function insertar() {
 *         [string] amb text d'error si no ha anat bé
 */
 public function viewPage($id) {
-    $sql = "SELECT * FROM PRODUCT WHERE id='$id'";
+    $sql = "SELECT *, img.URL FROM PRODUCT prod
+      join IMAGE img on prod.ID = img.PRODUCT WHERE id='$id'";
 
     $result = $this->db->query($sql);
 

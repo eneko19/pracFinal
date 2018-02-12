@@ -79,6 +79,11 @@
 .footer a {
   color: #78828D
 }
+
+.border img{
+    width: 600px!important;
+    margin-top: 50px!important;
+}
 /********** Dropdown item Color **********/
 .dropdown .nav-link {color:#fff; text-decoration: none;}
 .dropdown .dropdown-menu a{color: #000; text-decoration: none;}

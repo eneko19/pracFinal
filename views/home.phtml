@@ -11,220 +11,249 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/home.css">
-</head>
-<!-- Barra de navegacion -->
-<nav class="navbar navbar-expand-md navbar-light bg-primary sticky-top">
-    <a class="navbar-brand mr-4" href="index.php">
-        <img src="img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-        <span class="text-light">EGComponentes</span>
-    </a>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/home.css">
+    </head>
+    <!-- Barra de navegacion -->
+    <nav class="navbar navbar-expand-md navbar-light bg-primary sticky-top">
+        <a class="navbar-brand mr-4" href="index.php">
+            <img src="img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            <span class="text-light">EGComponentes</span>
+        </a>
 
-    <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon "></span>
-    </button>
+        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon "></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline mx-auto" action="index.php?controller=products&action=search" method="POST">
-            <input class="form-control mr-sm-2" type="search" name="buscador" placeholder="Search" aria-label="Search">
-            <button class="btn btn-success my-2 my-md-0 mr-4" type="submit">Search</button>
-        </form>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline mx-auto" action="index.php?controller=products&action=search" method="POST">
+                <input class="form-control mr-sm-2" type="search" name="buscador" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success my-2 my-md-0 mr-4" type="submit">Search</button>
+            </form>
 
-        <?php if (isset($_SESSION['usuario'])){
-                if ($_SESSION['usuario'] == "admin") { ?>
-            <div class="dropdown mr-2">
-                <button class="btn bg-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-user-circle-o text-warning" aria-hidden="true"></i>
-                    <span class="text-warning mr-4">Hola, <?php echo $_SESSION['usuario'] ?>  </span>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item bg-light" href="index.php?controller=products&action=addView">Afegir productes</a>
-                    <a class="dropdown-item bg-light" href="index.php?controller=categories&action=add">Afegir categories</a>
-                    <a class="dropdown-item bg-light" href="#">Crear promocions</a>
-                    <a class="dropdown-item bg-light" href="index.php?controller=login&action=logout"><i class="fa fa-sign-out mr-2" aria-hidden="true"></i>Cerrar sesion</a>
-                </div>
-            </div>
+            <?php
+            if (isset($_SESSION['usuario'])) {
+                if ($_SESSION['usuario'] == "admin") {
+                    ?>
+                    <div class="dropdown mr-2">
+                        <button class="btn bg-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user-circle-o text-warning" aria-hidden="true"></i>
+                            <span class="text-warning mr-4">Hola, <?php echo $_SESSION['usuario'] ?>  </span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item bg-light" href="index.php?controller=products&action=addView">Afegir productes</a>
+                            <a class="dropdown-item bg-light" href="index.php?controller=categories&action=add">Afegir categories</a>
+                            <a class="dropdown-item bg-light" href="#">Crear promocions</a>
+                            <a class="dropdown-item bg-light" href="index.php?controller=login&action=logout"><i class="fa fa-sign-out mr-2" aria-hidden="true"></i>Cerrar sesion</a>
+                        </div>
+                    </div>
 
-        <?php } else { ?>
-            <div class="dropdown mr-2">
-                <button class="btn bg-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-user-circle-o text-warning" aria-hidden="true"></i>
-                    <span class="text-warning mr-4">Hola, <?php echo $_SESSION['usuario'] ?>  </span>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a disabled class="dropdown-item bg-light" href="#">Editar perfil</a>
-                    <a class="dropdown-item bg-light" href="#">Historial de compras</a>
-                    <a class="dropdown-item bg-light" href="index.php?controller=login&action=logout">Cerrar sesion</a>
-                </div>
-            </div>
-        <?php }
+                <?php } else { ?>
+                    <div class="dropdown mr-2">
+                        <button class="btn bg-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user-circle-o text-warning" aria-hidden="true"></i>
+                            <span class="text-warning mr-4">Hola, <?php echo $_SESSION['usuario'] ?>  </span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a disabled class="dropdown-item bg-light" href="#">Editar perfil</a>
+                            <a class="dropdown-item bg-light" href="#">Historial de compras</a>
+                            <a class="dropdown-item bg-light" href="index.php?controller=login&action=logout">Cerrar sesion</a>
+                        </div>
+                    </div>
+                    <?php
+                }
+            } else {
+                ?>
+                <button type="button" class="btn btn-warning mr-2" data-toggle="modal" data-target="#myModal">
+                    Login/Register
+                </button>"
+            <?php } ?>
 
-        } else { ?>
-            <button type="button" class="btn btn-warning mr-2" data-toggle="modal" data-target="#myModal">
-                Login/Register
-            </button>"
-        <?php }?>
-
-        <div>  <ul class="nav navbar-nav navbar-right">
-                <!-- Carrito de compra -->
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle text-light" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        <span class="badge badge-dark">4</span>
-                        Carrito de compra<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-cart" role="menu">
-                        <?php for ($i = 0; $i < 6; $i++) { ?>
-                            <li>
-                                <span class="item">
-                                    <span class="item-left">
-                                        <img src="http://www.prepbootstrap.com/Content/images/template/menucartdropdown/item_1.jpg" alt="" />
-                                        <span class="item-info">
-                                            <span>Item name</span>
-                                            <span>price: 27$</span>
+            <div>  <ul class="nav navbar-nav navbar-right">
+                    <!-- Carrito de compra -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle text-light" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span class="badge badge-dark">4</span>
+                            Carrito de compra<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-cart" role="menu">
+                            <?php foreach ($_SESSION['cart'] as $carrito){ ?>
+                            
+                             <?php if(empty($_SESSION['cart'])){?>
+                            <p class="">No hay productos en el carrito</p>
+                            <?php }else{ ?>
+                                <li>
+                                    <span class="item">
+                                        <span class="item-left">
+                                            <img class="imgCart" src="<?php echo $carrito['image']?>" alt="<?php echo $carrito['name']?>"/>
+                                            <span class="item-info">
+                                                <span><strong><?php echo $carrito['name']?></strong></span>
+                                                <span class="text-muted">Cantidad: <?php echo $carrito['numUnits']?></span>
+                                                <span> <kbd>Precio: <?php echo $carrito['price']?>€</kbd></span>
+                                            </span>
+                                        </span>
+                                        <span class="item-right">
+                                            <a href="index.php?controller=cart&action=deleteFromCart&product=<?php echo $carrito['id']?>"><button class="btn btn-danger  fa fa-close"></button></a>
                                         </span>
                                     </span>
-                                    <span class="item-right">
-                                        <button class="btn btn-danger  fa fa-close"></button>
-                                    </span>
-                                </span>
-                            </li>
-                        <?php } ?>
-
-                        <li class="divider"></li>
-                        <li><a class="text-center" href="#">View Cart</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<body class="bg-secondary">
-
-          <!-- Carousel -->
-    <div id="carousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner bg-dark py-1" role="listbox">
-          <?php	$cont = 0;
-			foreach ( $datosCar as $dato ) { ?>
-            <div class="carousel-item <?php if ( $cont == 0 ) { ?> active <?php $cont++; } ?>">
-                <img class="d-block img-fluid imgCarousel" src="<?php echo $dato["URL"] ?>" alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
-                  <h3><?php echo $dato["SHORTDESCRIPTION"] ?></h3>
-                  <h4><span class="badge badge-danger"><?php echo $dato["DISCOUNTPERCENTAGE"] ?>%</span></h4>
-                  <p>Por solo <?php echo $dato["PRECIOFINAL"] ?>€</p>
-                </div>
+                                </li>
+                            <?php }} ?>
+                            <li class="divider"></li>
+                            <li><a class="text-center" href="#">View Cart</a></li>
+                      </ul>
+                    </li>
+                </ul>
             </div>
-          <?php } ?>
         </div>
-        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-    <div class="container mt-2">
-        <div class="row">
-            <?php for ($i = 0; $i < 4; $i++) { ?>
-                <div class="col-6 col-md-3 mb-2">
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-block dropdown-toggle text-muted" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <a class="text-light" href="#">Componentes</a>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width:16rem;">
-                            <a class="dropdown-item" href="#">Procesador</a>
-                            <a class="dropdown-item" href="#">Placa Base</a>
+    </nav>
+    <body class="bg-secondary">
+
+        <!-- Carousel -->
+        <div id="carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner bg-dark py-1" role="listbox">
+                <?php
+                $cont = 0;
+                foreach ($datosCar as $dato) {
+                    ?>
+                    <div class="carousel-item <?php if ($cont == 0) { ?> active <?php
+                        $cont++;
+                    }
+                    ?>">
+                        <img class="d-block img-fluid imgCarousel" src="<?php echo $dato["URL"] ?>" alt="First slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3><?php echo $dato["SHORTDESCRIPTION"] ?></h3>
+                            <h4><span class="badge badge-danger"><?php echo $dato["DISCOUNTPERCENTAGE"] ?>%</span></h4>
+                            <p>Por solo <?php echo $dato["PRECIOFINAL"] ?>€</p>
                         </div>
                     </div>
-                </div>
-            <?php } ?>
-
+                <?php } ?>
+            </div>
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-    </div>
-    <div class="container bg-secondary">
-        <div class="row">
-            <?php foreach ($datos as $dato) {
-                ?>
-                <div class="col-12 col-sm-6 col-md-4 col-xl-3">
-                    <div class="card my-3">
-                        <img class="card-img-top img-fluid" src="<?php echo $dato['URL'] ?> " alt="Card image">
-                        <div class="card-body">
-                            <p class="card-title"><strong><?php echo $dato['SHORTDESCRIPTION'] ?> </strong></p>
-                            <p class="card-text">Precio: <?php echo $dato['PRICE'] ?>€</p>
-                            <div class="card-footer text-center">
-                                <small> <?php if ($dato['STOCK'] == 0) { ?>
-                                        <span style="color:red"> <?php echo "No quedan productos"; ?></span>
-                                    <?php } elseif ($dato['STOCK'] < 5) {
-                                        ?>
-                                        <span style="color:orange"> <?php echo "Quedan pocos en stock"; ?></span>
-                                    <?php } else { ?>
-                                        <span style="color:green"> <?php echo "Hay productos en stock"; ?></span>
-                                    <?php } ?>
-                                </small>
-                                <a href="index.php?controller=products&action=viewPage&id=<?php echo $dato['ID'] ?>" class="btn btn-primary">Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
-    </div>
-
-</body>
-<footer class="mt-4">
-    <div class="bg-primary py-3">
-        <div class="container">
+        <div class="container mt-2">
             <div class="row">
-                <div class="col-md-7">
-                    <div class="row py-0">
-                        <div class="col-sm-1 hidden-md-down">
-                            <a class="bg-circle bg-info" href="#">
-                                <i class="fa fa-2x fa-fw fa-address-card" aria-hidden="true "></i>
-                            </a>
+                <?php
+                foreach ($orderedCategories as $id => $category) {
+                    $catName = $category[0];
+                    ?>
+                    <div class="col-6 col-md-3 mb-2">
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-block dropdown-toggle text-muted" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="text-light" href="#"><?php echo $catName; ?></a>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width:16rem;">
+
+                                <?php
+                                for ($i = 1; $i < count($category); $i++) {
+//                                echo "<pre>".print_r($category, 1)."</pre>"; die;
+                                    $idSubcategory = $category[$i]['ID'];
+                                    $nameSubCategory = $category[$i]['NAME'];
+                                    ?>
+                                    <a class="dropdown-item" href="#"><?php echo $nameSubCategory; ?></a>
+                                    <?php
+                                }
+                                ?>
+                            </div>
+
                         </div>
-                        <div class="col-sm-11 text-white">
-                            <div><h4>  Contacto</h4>
-                                <p>   <span class="header-font">EGC</span>omponentes.com</p>
+                    </div>
+                    <?php
+                }
+                ?>
+            </div>
+        </div>
+        <div class="container bg-secondary">
+            <div class="row">
+                <?php foreach ($datos as $dato) {
+                    ?>
+                    <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                        <div class="card my-3">
+                             <a href="index.php?controller=products&action=viewPage&id=<?php echo $dato['ID'] ?>">
+                                 <img class="card-img-top img-fluid" src="<?php echo $dato['URL'] ?> " alt="Card image">
+                             </a>
+                            <div class="card-body">
+                                <p class="card-title"><strong><?php echo $dato['SHORTDESCRIPTION'] ?> </strong></p>
+                                <p class="card-text">Precio: <?php echo $dato['PRICE'] ?>€</p>
+                                <div class="card-footer text-center">
+                                    <small> <?php if ($dato['STOCK'] == 0) { ?>
+                                            <span style="color:red"> <?php echo "No quedan productos"; ?></span>
+                                        <?php } elseif ($dato['STOCK'] < 5) {
+                                            ?>
+                                            <span style="color:orange"> <?php echo "Quedan pocos en stock"; ?></span>
+                                        <?php } else { ?>
+                                            <span style="color:green"> <?php echo "Hay productos en stock"; ?></span>
+                                        <?php } ?>
+                                    </small>
+                                    <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID']?>&productName=<?php echo $dato['SHORTDESCRIPTION']?>
+                                       &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL']?>&productStock=<?php echo $dato['STOCK']?>" class="btn btn-primary">Comprar</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="d-inline-block">
-                        <div class="bg-circle-outline d-inline-block" style="background-color:#3b5998">
-                            <a href="https://www.facebook.com/"><i class="fa fa-2x fa-fw fa-facebook text-white"></i>
-                            </a>
-                        </div>
-                        <div class="bg-circle-outline d-inline-block" style="background-color:#4099FF">
-                            <a href="https://twitter.com/">
-                                <i class="fa fa-2x fa-fw fa-twitter text-white"></i></a>
-                        </div>
+                <?php } ?>
+            </div>
+        </div>
 
-                        <div class="bg-circle-outline d-inline-block" style="background-color:#0077B5">
-                            <a href="https://www.linkedin.com/company/">
-                                <i class="fa fa-2x fa-fw fa-linkedin text-white"></i></a>
+    </body>
+    <footer class="mt-4">
+        <div class="bg-primary py-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="row py-0">
+                            <div class="col-sm-1 hidden-md-down">
+                                <a class="bg-circle bg-info" href="#">
+                                    <i class="fa fa-2x fa-fw fa-address-card" aria-hidden="true "></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-11 text-white">
+                                <div><h4>  Contacto</h4>
+                                    <p>   <span class="header-font">EGC</span>omponentes.com</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="bg-circle-outline d-inline-block" style="background-color:#d34836">
-                            <a href="https://www.google.com/">
-                                <i class="fa fa-2x fa-fw fa-google text-white"></i></a>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="d-inline-block">
+                            <div class="bg-circle-outline d-inline-block" style="background-color:#3b5998">
+                                <a href="https://www.facebook.com/"><i class="fa fa-2x fa-fw fa-facebook text-white"></i>
+                                </a>
+                            </div>
+                            <div class="bg-circle-outline d-inline-block" style="background-color:#4099FF">
+                                <a href="https://twitter.com/">
+                                    <i class="fa fa-2x fa-fw fa-twitter text-white"></i></a>
+                            </div>
+
+                            <div class="bg-circle-outline d-inline-block" style="background-color:#0077B5">
+                                <a href="https://www.linkedin.com/company/">
+                                    <i class="fa fa-2x fa-fw fa-linkedin text-white"></i></a>
+                            </div>
+                            <div class="bg-circle-outline d-inline-block" style="background-color:#d34836">
+                                <a href="https://www.google.com/">
+                                    <i class="fa fa-2x fa-fw fa-google text-white"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </footer>
+    <!--/.footer-->
+    <p class="text-center"> Copyright <i class="fa fa-copyright" aria-hidden="true"></i>
+        EGComponentes 2018. Todos los derechos reservados. </p>
+    <!--/.footer-bottom-->
+    <div class="myModal">
+        <?php include("views/login_view.phtml"); ?>
     </div>
-</footer>
-<!--/.footer-->
-<p class="text-center"> Copyright <i class="fa fa-copyright" aria-hidden="true"></i>
-    EGComponentes 2018. Todos los derechos reservados. </p>
-<!--/.footer-bottom-->
-<div class="myModal">
-    <?php include("views/login_view.phtml"); ?>
-</div>
 
 </html>
