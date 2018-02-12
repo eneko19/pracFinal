@@ -79,6 +79,15 @@ class categories_model {
         }
         return $this->categoria;
     }
+
+    public function get_categoriesToProduct(){
+        $consulta=$this->db->query("SELECT * FROM CATEGORY WHERE PARENTCATEGORY IS NOT NULL;");
+        while($filas=$consulta->fetch_assoc()){
+            $this->categoria[]=$filas;
+        }
+
+        return $this->categoria;
+    }
     public function get_all_categories(){
         $consulta=$this->db->query("SELECT * FROM CATEGORY;");
         while($filas=$consulta->fetch_assoc()){

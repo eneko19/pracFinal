@@ -17,101 +17,7 @@
         <link rel="stylesheet" href="css/home.css">
     </head>
     <!-- Barra de navegacion -->
-    <nav class="navbar navbar-expand-md navbar-light bg-primary sticky-top">
-        <a class="navbar-brand mr-4" href="index.php">
-            <img src="img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-            <span class="text-light">EGComponentes</span>
-        </a>
-
-        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon "></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline mx-auto" action="index.php?controller=products&action=search" method="POST">
-                <input class="form-control mr-sm-2" type="search" name="buscador" placeholder="Search" aria-label="Search">
-                <button class="btn btn-success my-2 my-md-0 mr-4" type="submit">Search</button>
-            </form>
-
-            <?php
-            if (isset($_SESSION['usuario'])) {
-                if ($_SESSION['usuario'] == "admin") {
-                    ?>
-                    <div class="dropdown mr-2">
-                        <button class="btn bg-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user-circle-o text-warning" aria-hidden="true"></i>
-                            <span class="text-warning mr-4">Hola, <?php echo $_SESSION['usuario'] ?>  </span>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item bg-light" href="index.php?controller=products&action=addView">Afegir productes</a>
-                            <a class="dropdown-item bg-light" href="index.php?controller=categories&action=add">Afegir categories</a>
-                            <a class="dropdown-item bg-light" href="#">Crear promocions</a>
-                            <a class="dropdown-item bg-light" href="index.php?controller=login&action=logout"><i class="fa fa-sign-out mr-2" aria-hidden="true"></i>Cerrar sesion</a>
-                        </div>
-                    </div>
-
-                <?php } else { ?>
-                    <div class="dropdown mr-2">
-                        <button class="btn bg-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user-circle-o text-warning" aria-hidden="true"></i>
-                            <span class="text-warning mr-4">Hola, <?php echo $_SESSION['usuario'] ?>  </span>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a disabled class="dropdown-item bg-light" href="#">Editar perfil</a>
-                            <a class="dropdown-item bg-light" href="#">Historial de compras</a>
-                            <a class="dropdown-item bg-light" href="index.php?controller=login&action=logout">Cerrar sesion</a>
-                        </div>
-                    </div>
-                    <?php
-                }
-            } else {
-                ?>
-                <button type="button" class="btn btn-warning mr-2" data-toggle="modal" data-target="#myModal">
-                    Login/Register
-                </button>"
-            <?php } ?>
-
-            <div>  <ul class="nav navbar-nav navbar-right">
-                    <!-- Carrito de compra -->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle text-light" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span class="badge badge-dark">2</span>
-                            Carrito de compra<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-cart" role="menu">
-                            
-                            <?php 
-                            if(!empty($_SESSION['cart'])){
-                                foreach ($_SESSION['cart'] as $carrito){ ?>
-                                <li>
-                                    <span class="item">
-                                        <span class="item-left">
-                                            <img class="imgCart" src="<?php echo $carrito['image']?>" alt="<?php echo $carrito['name']?>"/>
-                                            <span class="item-info">
-                                                <span><strong><?php echo $carrito['name']?></strong></span>
-                                                <span class="text-muted">Cantidad: <?php echo $carrito['numUnits']?></span>
-                                                <span> <kbd>Precio: <?php echo $carrito['price']?>€</kbd></span>
-                                            </span>
-                                        </span>
-                                        <span class="item-right">
-                                            <a href="index.php?controller=cart&action=deleteFromCart&product=<?php echo $carrito['id']?>"><button class="btn btn-danger  fa fa-close"></button></a>
-                                        </span>
-                                    </span>
-                                </li>
-                            <?php } ?>
-                            <li class="divider"></li>
-                            <li><a class="text-center" href="#">View Cart</a></li>
-                      </ul>
-                    </li>
-                            <?php } else{ ?>
-                    <span class="badge">No hay artículos en tu carrito</span>
-                           <?php } ?>
-                            
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php require_once("views/header.phtml");  ?>
     <body class="bg-secondary">
 
         <!-- Carousel -->
@@ -190,15 +96,23 @@
                                 <div class="card-footer text-center">
                                     <small> <?php if ($dato['STOCK'] == 0) { ?>
                                             <span style="color:red"> <?php echo "No quedan productos"; ?></span>
+                                          </small>
+                                          <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID']?>&productName=<?php echo $dato['SHORTDESCRIPTION']?>
+                                             &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL']?>&productStock=<?php echo $dato['STOCK']?>" class="btn btn-primary disabled">Comprar</a>
+
                                         <?php } elseif ($dato['STOCK'] < 5) {
                                             ?>
                                             <span style="color:orange"> <?php echo "Quedan pocos en stock"; ?></span>
+                                          </small>
+                                          <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID']?>&productName=<?php echo $dato['SHORTDESCRIPTION']?>
+                                             &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL']?>&productStock=<?php echo $dato['STOCK']?>" class="btn btn-primary">Comprar</a>
                                         <?php } else { ?>
                                             <span style="color:green"> <?php echo "Hay productos en stock"; ?></span>
+                                          </small>
+                                          <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID']?>&productName=<?php echo $dato['SHORTDESCRIPTION']?>
+                                             &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL']?>&productStock=<?php echo $dato['STOCK']?>" class="btn btn-primary">Comprar</a>
                                         <?php } ?>
-                                    </small>
-                                    <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID']?>&productName=<?php echo $dato['SHORTDESCRIPTION']?>
-                                       &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL']?>&productStock=<?php echo $dato['STOCK']?>" class="btn btn-primary">Comprar</a>
+
                                 </div>
                             </div>
                         </div>

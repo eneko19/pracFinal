@@ -17,7 +17,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
     if ($_GET['controller'] == "cart") {
         $cart = new cart_controller();
         if ($_GET['action'] == "addToCart") {
-            
+
              $num = !empty($_GET['numAddUnits']) ? $_GET['numAddUnits'] : 1;
             $products = [
                 "id"=>$_GET['product'],
@@ -27,7 +27,6 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
                 "image"=>$_GET['productImage'],
                 "stock"=>$_GET['productStock']
                 ];
-            $num = !empty($_GET['numUnits']) ? $_GET['numUnits'] : 1;
             $cart->addToCart($products);
         }
         if ($_GET['action'] == "deleteFromCart") {
@@ -38,7 +37,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
     }
 
 
-    if ($_GET['controller'] == "products") {        
+    if ($_GET['controller'] == "products") {
 
         if ($_GET['action'] == "view") {
             $controller = new products_controller();
@@ -75,7 +74,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             $controller->insert();
             $controllerP->view();
         }
-        if ($_GET['action'] == "add") {
+        if ($_GET['action'] == "view") {
             $controller = new categories_controller();
             $controller->view();
         }
@@ -109,10 +108,26 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
 
         $controller->view();
     }
+    if ($_GET['controller'] == "promotion") {
+      $controllerP = new products_controller();
+
+        $controller = new products_controller();
+
+        if ($_GET['action'] == "view") {
+            $promotion = new promotion_controller();
+            $promotion->view();
+        }
+        if ($_GET['action'] == "insert") {
+            $promotion = new promotion_controller();
+            $promotion->insert();
+            $controllerP->view();
+        }
+
+    }
 } else {
     $controller = new products_controller();
     $cart = $controller->getCart();
     $controller->view();
-    
+
 }
 ?>

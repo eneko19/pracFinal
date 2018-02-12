@@ -33,7 +33,10 @@
   outline: none;
   color: #ececec;
 }
-
+/** Imagen del carrito */
+.dropdown img {
+    width: 15%;
+}
 .footer {
   background: #EDEFF1;
   height: auto;

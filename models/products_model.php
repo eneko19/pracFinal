@@ -103,6 +103,16 @@ public function get_products(){
 
     return $this->products;
 }
+public function get_productsToPromotion(){
+    $consulta=$this->db->query("SELECT * FROM PRODUCT;");
+
+    while($filas=$consulta->fetch_assoc()){
+        $this->products[]=$filas;
+    }
+
+
+    return $this->products;
+}
 
 
 /**

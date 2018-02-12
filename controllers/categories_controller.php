@@ -27,7 +27,6 @@ function insert() {
 function view(){
     $categoria = new categories_model();
 
-
     $datos = $categoria->get_categories();
 
 

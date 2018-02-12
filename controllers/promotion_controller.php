@@ -10,20 +10,21 @@ class promotion_controller {
  * Inserta a la taula
  */
 function insert() {
-    $categoria = new categories_model();
+    $promotion = new promotion_model();
 
-        $categoria->setName($_POST['nombre']);
-        $categoria->setParentCategory( $_POST['parentcategory']);
+    $promotion->setDiscountPercentage($_POST['descuento']);
+    $promotion->setEndDate( $_POST['fechaFinal']);
+    $promotion->setProduct( $_POST['categoriaPadre']);
 
-        $error = $categoria->insertar();
+    $error = $promotion->insertar();
 }
 
 function view(){
-    $promotion = new promotion_model();
+    $product = new products_model();
 
-    $datosCar = $promotion->get_carousel();
+    $datos = $product->get_productsToPromotion();
 
-    require_once("views/home.phtml");
+    require_once("views/promotion_add.phtml");
 }
 
 

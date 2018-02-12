@@ -67,13 +67,8 @@ class promotion_model {
   */
   public function insertar() {
 
+      $sql = "INSERT INTO PROMOTION (DISCOUNTPERCENTAGE,ENDDATE,PRODUCT ) VALUES ('{$this->discountpercentage}','{$this->enddate}','{$this->product}')";
 
-      if ($this->parentcategory == "NULL") {
-        $sql = "INSERT INTO CATEGORY (NAME ) VALUES ('{$this->name}')";
-
-      }else {
-       $sql = "INSERT INTO CATEGORY (NAME, PARENTCATEGORY ) VALUES ('{$this->name}','{$this->parentcategory}')";
-      }
        $result = $this->db->query($sql);
 
        if ($this->db->error)

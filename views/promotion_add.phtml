@@ -7,7 +7,7 @@
   </head>
   <body class="bg-secondary">
       <div class="container br-light border border-dark mt-4">
-          <form name="addProd" action="index.php?controller=categories&action=insert" method="post">
+          <form name="addProd" action="index.php?controller=promotion&action=insert" method="post">
               <h1 class="text-center">Añadir promoción</h1>
 
               <div class="input-group mb-3">
@@ -31,7 +31,7 @@
                   <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">Producto</label>
                   </div>
-                  <select class="custom-select" id="parentcategory" name="parentcategory">
+                  <select class="custom-select" id="parentcategory" name="categoriaPadre">
                     <option value="NULL" selected>Elige...</option>
                     <?php foreach ($datos as $dato) { ?>
                     <option value="<?php echo $dato['ID'] ?>"><?php echo $dato['NAME'] ?></option>

@@ -125,6 +125,12 @@ ul.dropdown-cart li .item-right button {
 .dropdown img {
     width: 15%;
 }
+/** Imagen del producto */
+
+.border img{
+    width: 600px!important;
+    margin-top: 50px!important;
+}
 
 /** Footer **/
 .footer {

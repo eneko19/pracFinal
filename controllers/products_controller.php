@@ -21,7 +21,7 @@ class products_controller {
      */
     function view() {
         $producto = new products_model();
-        
+
         $orderedCategories = $this->getAllCategories();
 
         //Uso metodo del modelo de personas
@@ -44,7 +44,6 @@ class products_controller {
         $producto = new products_model();
 
         $id = $_GET['id'];
-
         $producto = $producto->viewPage($id);
 
         return $producto;
@@ -82,7 +81,7 @@ class products_controller {
 
         $categoria = new categories_model();
 
-        $datosC = $categoria->get_categories();
+        $datosC = $categoria->get_categoriesToProduct();
 
         $brand = new brand_model();
 
@@ -97,13 +96,13 @@ class products_controller {
         $producto = new products_model();
 
         $datos = $producto->search($valor);
-        
+
         $orderedCategories = $this->getAllCategories();
 
         $promotion = new promotion_model();
 
         $datosCar = $promotion->get_carousel();
-        
+
         require_once("views/home.phtml");
     }
 
@@ -133,10 +132,10 @@ class products_controller {
         }
         return $orderedCategories;
     }
-    
+
     public function getCart(){
         $productsOnCart = $_SESSION['cart'];
-        
+
     }
 
 }
