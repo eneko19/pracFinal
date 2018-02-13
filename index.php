@@ -65,6 +65,11 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             $controller = new products_controller();
             $controller->search($valor);
         }
+        if ($_GET['action'] == "viewCat") {
+            $idSubCat = $_GET['idSubcategory'];
+            $controller = new products_controller();
+            $controller->viewPageCat($idSubCat);
+        }
     }
     if ($_GET['controller'] == "categories") {
         $controllerP = new products_controller();
@@ -104,6 +109,9 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
         if ($_GET['action'] == "logout") {
             $login = new login_controller();
             $login->logout();
+            if(empty($_SESSION['cart'])){
+                $_SESSION['cart'] = [];
+            }
         }
 
         $controller->view();

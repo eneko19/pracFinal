@@ -60,7 +60,7 @@
                         <span class="badge badge-dark"><?php echo count($_SESSION['cart']); ?></span>
                         Carrito de compra<span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu dropdown-cart" role="menu">
+                    <ul class="dropdown-menu dropdown-cart scrollCart" role="menu">
                         <?php
                         if(!empty($_SESSION['cart'])){
                             foreach ($_SESSION['cart'] as $carrito){ ?>

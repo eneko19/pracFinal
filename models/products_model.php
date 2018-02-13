@@ -93,8 +93,11 @@ public function setCategory($category) {
 * @return array Bidimensional de totes les persones
 */
 public function get_products(){
-    $consulta=$this->db->query("SELECT *, img.URL FROM PRODUCT prod
-      join IMAGE img on prod.ID = img.PRODUCT  WHERE SPONSORED = 'y';");
+    $consulta=$this->db->query("SELECT *, img.URL,FORMAT((prod.PRICE * (1-(p.DISCOUNTPERCENTAGE/100))),2) AS PRECIOFINAL
+    FROM PRODUCT prod
+    join IMAGE img on prod.ID = img.PRODUCT
+    join PROMOTION p on p.PRODUCT = prod.ID
+    WHERE SPONSORED = 'y';");
 
     while($filas=$consulta->fetch_assoc()){
         $this->products[]=$filas;
@@ -151,6 +154,23 @@ public function viewPage($id) {
     $fila = $result->fetch_assoc();
     return $fila;
      //echo "<pre>".print_r($fila, 1)."</pre>"; die;
+}
+
+/**
+* Muestra los productos segun la categoria
+* @param  int $id Identificador del registre
+* @return [false]  si no hi ha hagut cap error,
+*         [string] amb text d'error si no ha anat bé
+*/
+public function viewPageCat($idSubCat) {
+
+      $consulta=$this->db->query("SELECT *, img.URL FROM PRODUCT prod
+        join IMAGE img on prod.ID = img.PRODUCT WHERE CATEGORY='$idSubCat';");
+
+      while($filas=$consulta->fetch_assoc()){
+          $this->products[]=$filas;
+      }
+      return $this->products;
 }
 
   public function search($valor){

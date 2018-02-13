@@ -53,6 +53,20 @@ class products_controller {
     function viewProduct($product) {
         require_once("views/products_view.phtml");
     }
+    /**
+     *
+     * @return
+     */
+    function viewPageCat($idSubCat) {
+        $producto = new products_model();
+
+        $idSubCat = $_GET['idSubcategory'];
+        $datos = $producto->viewPageCat($idSubCat);
+
+        $orderedCategories = $this->getAllCategories();
+        require_once("views/homeCat.phtml");
+    }
+
 
     /**
      * Inserta a la taula

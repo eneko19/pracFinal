@@ -16,7 +16,12 @@ ul.dropdown-cart {
   position: absolute;
   left: -300px;
 }
-
+/** Scroll del carrito **/
+.scrollCart {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+/** Estilo del carrito **/
 ul.dropdown-cart li .item {
   display: block;
   padding: 3px 10px;
@@ -60,6 +65,7 @@ ul.dropdown-cart li .item-right button {
   margin-top: 14px;
 }
 
+/** footer **/
 .header-font {
   font-family: "Josefin Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #fd1506;
