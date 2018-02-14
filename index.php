@@ -47,8 +47,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
         if ($_GET['action'] == "viewPage") {
             $id = $_GET['id'];
             $controller = new products_controller();
-            $product = $controller->viewPage($id);
-            $controller->viewProduct($product);
+            $controller->viewPage($id);
             // echo "<pre>".print_r($product, 1)."</pre>"; die;
         }
         if ($_GET['action'] == "addView") {

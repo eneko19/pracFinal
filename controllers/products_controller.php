@@ -44,15 +44,10 @@ class products_controller {
         $producto = new products_model();
 
         $id = $_GET['id'];
-        $producto = $producto->viewPage($id);
-
-        return $producto;
-    }
-
-// Muestra la vista de producto
-    function viewProduct($product) {
+        $product = $producto->viewPage($id);
         require_once("views/products_view.phtml");
     }
+
     /**
      *
      * @return

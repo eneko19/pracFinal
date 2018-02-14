@@ -89,15 +89,20 @@
 
                     <div class="col-12 col-sm-6 col-md-4 col-xl-3">
                         <div class="card my-3">
-                             <a href="index.php?controller=products&action=viewPage&id=<?php echo $dato['ID'] ?>">
+                             <a href="index.php?controller=products&action=viewPage&id=<?php echo $dato['ID']?>">
                                  <img class="card-img-top img-fluid" src="<?php echo $dato['URL'] ?> " alt="Card image">
                              </a>
                             <div class="card-body">
                                 <p class="card-title"><strong><?php echo $dato['SHORTDESCRIPTION'] ?> </strong></p>
-                                <?php if ($dato['DISCOUNTPERCENTAGE'] === null)  { ?>
-                                  <p class="card-text">Precio: <?php echo $dato['PRICE'];?>€</p>
+                                <?php if (empty($dato['DISCOUNTPERCENTAGE']))  { ?>
+                                  <p class="card-text text-center"><strong><?php echo $dato['PRICE'];?>€</strong></p>
                               <?php  }else{ ?>
-                                <p class="card-text">Precio: <?php echo $dato['PRECIOFINAL']; ?>€</p>
+                                  <p class="card-text">
+                                      <span><strong><?php echo $dato['PRECIOFINAL'];?>€</strong></span>
+                                      <span class="text-muted"><small><s><?php echo $dato['PRICE']; ?>€</s></small></span>
+                                      <span class="badge badge-danger"><?php echo $dato['DISCOUNTPERCENTAGE'];?>%</span>
+                                  </p>
+
                             <?php  } ?>
                                 <div class="card-footer text-center">
                                     <small> <?php if ($dato['STOCK'] == 0) { ?>

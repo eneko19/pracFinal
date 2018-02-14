@@ -93,10 +93,10 @@ public function setCategory($category) {
 * @return array Bidimensional de totes les persones
 */
 public function get_products(){
-    $consulta=$this->db->query("SELECT *, img.URL,FORMAT((prod.PRICE * (1-(p.DISCOUNTPERCENTAGE/100))),2) AS PRECIOFINAL
+    $consulta=$this->db->query("SELECT *,prod.ID, img.URL,FORMAT((prod.PRICE * (1-(p.DISCOUNTPERCENTAGE/100))),2) AS PRECIOFINAL
     FROM PRODUCT prod
     join IMAGE img on prod.ID = img.PRODUCT
-    join PROMOTION p on p.PRODUCT = prod.ID
+    left join PROMOTION p on p.PRODUCT = prod.ID
     WHERE SPONSORED = 'y';");
 
     while($filas=$consulta->fetch_assoc()){
@@ -146,13 +146,13 @@ public function insertar() {
 *         [string] amb text d'error si no ha anat bé
 */
 public function viewPage($id) {
-    $sql = "SELECT *, img.URL FROM PRODUCT prod
-      join IMAGE img on prod.ID = img.PRODUCT WHERE id='$id'";
+    $sql = "SELECT prod.*, img.URL FROM PRODUCT prod join IMAGE img on prod.ID = img.PRODUCT WHERE prod.ID=$id";
 
     $result = $this->db->query($sql);
 
     $fila = $result->fetch_assoc();
     return $fila;
+    
      //echo "<pre>".print_r($fila, 1)."</pre>"; die;
 }
 
@@ -164,7 +164,7 @@ public function viewPage($id) {
 */
 public function viewPageCat($idSubCat) {
 
-      $consulta=$this->db->query("SELECT *, img.URL FROM PRODUCT prod
+      $consulta=$this->db->query("SELECT *,prod.ID, img.URL FROM PRODUCT prod
         join IMAGE img on prod.ID = img.PRODUCT WHERE CATEGORY='$idSubCat';");
 
       while($filas=$consulta->fetch_assoc()){
