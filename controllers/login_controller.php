@@ -60,7 +60,18 @@ class login_controller {
                 echo $error;
             }
         }
-              
+        function loginFailed() {
+
+        $abrirModal = "<script type='text/javascript'>
+         $(document).ready(function(){
+         $('#myModal').modal('show');
+         });
+         </script>";
+        return $abrirModal;
+
+    }
+
+
       /**
        * Finaliza la sesion de usuario
        */

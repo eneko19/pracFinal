@@ -146,13 +146,17 @@ public function insertar() {
 *         [string] amb text d'error si no ha anat bé
 */
 public function viewPage($id) {
-    $sql = "SELECT prod.*, img.URL FROM PRODUCT prod join IMAGE img on prod.ID = img.PRODUCT WHERE prod.ID=$id";
+    $sql = "SELECT *,prod.ID, img.URL,FORMAT((prod.PRICE * (1-(p.DISCOUNTPERCENTAGE/100))),2) AS PRECIOFINAL
+    FROM PRODUCT prod
+    join IMAGE img on prod.ID = img.PRODUCT
+    left join PROMOTION p on p.PRODUCT = prod.ID
+    WHERE prod.ID=$id";
 
     $result = $this->db->query($sql);
 
     $fila = $result->fetch_assoc();
     return $fila;
-    
+
      //echo "<pre>".print_r($fila, 1)."</pre>"; die;
 }
 
@@ -164,8 +168,11 @@ public function viewPage($id) {
 */
 public function viewPageCat($idSubCat) {
 
-      $consulta=$this->db->query("SELECT *,prod.ID, img.URL FROM PRODUCT prod
-        join IMAGE img on prod.ID = img.PRODUCT WHERE CATEGORY='$idSubCat';");
+      $consulta=$this->db->query("SELECT *,prod.ID, img.URL,FORMAT((prod.PRICE * (1-(p.DISCOUNTPERCENTAGE/100))),2) AS PRECIOFINAL
+        FROM PRODUCT prod
+        join IMAGE img on prod.ID = img.PRODUCT
+        left join PROMOTION p on p.PRODUCT = prod.ID
+        WHERE CATEGORY='$idSubCat';");
 
       while($filas=$consulta->fetch_assoc()){
           $this->products[]=$filas;

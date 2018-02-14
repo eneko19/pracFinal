@@ -59,6 +59,10 @@ class products_controller {
         $datos = $producto->viewPageCat($idSubCat);
 
         $orderedCategories = $this->getAllCategories();
+        // Marcas
+        $brand = new brand_model();
+        $marcas = $brand->get_brands();
+
         require_once("views/homeCat.phtml");
     }
 

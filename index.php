@@ -96,7 +96,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             $login = new login_controller();
             $loged = $login->login();
             if (!$loged) {
-                echo("error");
+            $logedFail = $login->loginFailed();
             }
         }
 

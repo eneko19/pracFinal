@@ -15,6 +15,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/home.css">
+        <?php if (!empty($logedFail)) {
+            echo $abrirModal;
+        }
+        ?>
     </head>
     <!-- Barra de navegacion -->
     <?php require_once("views/header.phtml");  ?>
@@ -86,7 +90,6 @@
                 <?php foreach ($datos as $dato) {
 
                     ?>
-
                     <div class="col-12 col-sm-6 col-md-4 col-xl-3">
                         <div class="card my-3">
                              <a href="index.php?controller=products&action=viewPage&id=<?php echo $dato['ID']?>">
@@ -97,7 +100,7 @@
                                 <?php if (empty($dato['DISCOUNTPERCENTAGE']))  { ?>
                                   <p class="card-text text-center"><strong><?php echo $dato['PRICE'];?>€</strong></p>
                               <?php  }else{ ?>
-                                  <p class="card-text">
+                                  <p class="card-text text-center">
                                       <span><strong><?php echo $dato['PRECIOFINAL'];?>€</strong></span>
                                       <span class="text-muted"><small><s><?php echo $dato['PRICE']; ?>€</s></small></span>
                                       <span class="badge badge-danger"><?php echo $dato['DISCOUNTPERCENTAGE'];?>%</span>

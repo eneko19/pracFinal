@@ -17,11 +17,8 @@ function view(){
     $brand = new brand_model();
 
     $datos = $brand->get_brands();
-
-
     require_once("views/categories_add.phtml");
 }
-
 
 }
 ?>

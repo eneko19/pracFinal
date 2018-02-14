@@ -31,7 +31,16 @@
               <span class=""><strong>Descripción</strong></span>
               <p class="h-25 border border-dark"><?php echo $product['LONGDESCRIPTION']?> </p>
               <div class="w-100"></div>
-              <p class="">Precio: <?php echo $product['PRICE']?>€</p>
+              <?php if (empty($product['DISCOUNTPERCENTAGE']))  { ?>
+                <p class="card-text"><strong><?php echo $product['PRICE'];?>€</strong></p>
+            <?php  }else{ ?>
+                <p class="card-text">
+                    <span><strong><?php echo $product['PRECIOFINAL'];?>€</strong></span>
+                    <span class="text-muted"><small><s><?php echo $product['PRICE']; ?>€</s></small></span>
+                    <span class="badge badge-danger"><?php echo $product['DISCOUNTPERCENTAGE'];?>%</span>
+                </p>
+
+          <?php  } ?>
               <div class="w-100"></div>
               <p class=""><?php
                 if ($product['STOCK'] == 0) { ?>

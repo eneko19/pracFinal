@@ -134,7 +134,7 @@ ul.dropdown-cart li .item-right button {
 /** Imagen del producto */
 
 .border img{
-    width: 600px!important;
+    width: 100%!important;
     margin-top: 50px!important;
 }
 
