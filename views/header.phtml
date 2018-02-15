@@ -73,7 +73,13 @@
                                         <span class="item-info">
                                             <span><strong><?php echo $carrito['name']?></strong></span>
                                             <span class="text-muted">Cantidad: <?php echo $carrito['numUnits']?></span>
-                                            <span> <kbd>Precio: <?php echo $carrito['price']?>€</kbd></span>
+                                            <span> <kbd>Precio: <?php
+                                            if(empty($carrito['finalPrice'])){
+                                              echo $carrito['price'];
+                                            }else{
+                                              echo $carrito['finalPrice'];
+                                            }
+                                            ?>€</kbd></span>
                                         </span>
                                     </span>
                                     <span class="item-right">

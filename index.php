@@ -25,7 +25,8 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
                 "name"=>$_GET['productName'],
                 "price"=>$_GET['productPrice'],
                 "image"=>$_GET['productImage'],
-                "stock"=>$_GET['productStock']
+                "stock"=>$_GET['productStock'],
+                "finalPrice"=>$_GET['productPriceFinal']
                 ];
             $cart->addToCart($products);
             header('Location: index.php');
@@ -44,7 +45,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             $cart = new cart_controller();
             $cart->view();
         }
-        
+
     }
 
 

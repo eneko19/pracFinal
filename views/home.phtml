@@ -112,19 +112,19 @@
                                             <span style="color:red"> <?php echo "No quedan productos"; ?></span>
                                           </small>
                                           <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID']?>&productName=<?php echo $dato['SHORTDESCRIPTION']?>
-                                             &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL']?>&productStock=<?php echo $dato['STOCK']?>" class="btn btn-primary disabled">Comprar</a>
+                                             &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL']?>&productStock=<?php echo $dato['STOCK']?>&productPriceFinal=<?php echo $dato['PRECIOFINAL'] ?>" class="btn btn-primary disabled">Comprar</a>
 
                                         <?php } elseif ($dato['STOCK'] < 5) {
                                             ?>
                                             <span style="color:orange"> <?php echo "Quedan pocos en stock"; ?></span>
                                           </small>
                                           <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID']?>&productName=<?php echo $dato['SHORTDESCRIPTION']?>
-                                             &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL']?>&productStock=<?php echo $dato['STOCK']?>" class="btn btn-primary">Comprar</a>
+                                             &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL']?>&productStock=<?php echo $dato['STOCK']?>&productPriceFinal=<?php echo $dato['PRECIOFINAL'] ?>" class="btn btn-primary">Comprar</a>
                                         <?php } else { ?>
                                             <span style="color:green"> <?php echo "Hay productos en stock"; ?></span>
                                           </small>
                                           <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID']?>&productName=<?php echo $dato['SHORTDESCRIPTION']?>
-                                             &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL']?>&productStock=<?php echo $dato['STOCK']?>" class="btn btn-primary">Comprar</a>
+                                             &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL']?>&productStock=<?php echo $dato['STOCK']?>&productPriceFinal=<?php echo $dato['PRECIOFINAL'] ?>" class="btn btn-primary">Comprar</a>
                                         <?php } ?>
 
                                 </div>
