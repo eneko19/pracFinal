@@ -28,12 +28,23 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
                 "stock"=>$_GET['productStock']
                 ];
             $cart->addToCart($products);
+            header('Location: index.php');
         }
         if ($_GET['action'] == "deleteFromCart") {
             $product = $_GET['product'];
             $cart->deleteFromCart($product);
+            header('Location: index.php');
         }
-        header('Location: index.php');
+        if ($_GET['action'] == "deleteFromCartView") {
+            $product = $_GET['product'];
+            $cart->deleteFromCart($product);
+            header('Location: index.php?controller=cart&action=view');
+        }
+        if ($_GET['action'] == "view") {
+            $cart = new cart_controller();
+            $cart->view();
+        }
+        
     }
 
 

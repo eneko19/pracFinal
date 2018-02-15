@@ -23,6 +23,10 @@ class cart_controller {
         unset($_SESSION['cart'][$product]);
         
     }
+    
+    function view(){
+        require_once("views/cart_view.phtml");
+    }
 
 }
 

@@ -137,7 +137,17 @@ ul.dropdown-cart li .item-right button {
     width: 100%!important;
     margin-top: 50px!important;
 }
-
+/** Quito el vertical-top de la tabla **/
+.table td, .table th {
+    padding: .75rem;
+     vertical-align: baseline!important;
+    border-top: 1px solid #dee2e6;
+}
+/** Imagen del cart View **/
+.imgCartView{
+    width: 20%!important;
+    
+}
 /** Footer **/
 .footer {
   background: #EDEFF1;

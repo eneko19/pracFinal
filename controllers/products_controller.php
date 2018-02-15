@@ -9,15 +9,14 @@ class products_controller {
 
     /**
      * Muestra pantalla 'add'
-     * @return No
      */
     function add() {
         require_once("views/products_add.phtml");
     }
 
     /**
-     * Mostra llistat
-     * @return No
+     * Muestra la página principal con todas sus categorias para el menu, los productos y las promociones para el carrousel
+     * Requiere la vista de home.phtml
      */
     function view() {
         $producto = new products_model();
@@ -37,8 +36,8 @@ class products_controller {
     }
 
     /**
-     *
-     * @return
+     * Muestra la página de un producto dado su id
+     * Recoge el id y lo manda a la función del modelo
      */
     function viewPage($id) {
         $producto = new products_model();
@@ -49,8 +48,8 @@ class products_controller {
     }
 
     /**
-     *
-     * @return
+     * Muestra en la página todos los productos según la subcategoría
+     * Recoge el id de la subcategoría y lo manda a la función del modelo
      */
     function viewPageCat($idSubCat) {
         $producto = new products_model();
@@ -59,7 +58,7 @@ class products_controller {
         $datos = $producto->viewPageCat($idSubCat);
 
         $orderedCategories = $this->getAllCategories();
-        // Marcas
+        // Para mostrar las marcas en la nueva vista
         $brand = new brand_model();
         $marcas = $brand->get_brands();
 
@@ -68,12 +67,13 @@ class products_controller {
 
 
     /**
-     * Inserta a la taula
+     * Inserta un nuevo producto a la base de datos
      * @return No
      */
     function insert() {
         $producto = new products_model();
 
+        // Guarda las variables recogidas del formulario en los seters del modelo
         $producto->setName($_POST['nombre']);
         $producto->setShortDescription($_POST['descCorta']);
         $producto->setLongDescription($_POST['descLarga']);
@@ -87,23 +87,28 @@ class products_controller {
     }
 
     /*
-     * * Fucnion que muestra la pagina de añadir producto
+     * * Función que muestra la pagina de añadir producto
      */
-
     function addView() {
 
         $categoria = new categories_model();
 
+        // Saca la categorías para mostrarlas en las options
         $datosC = $categoria->get_categoriesToProduct();
 
         $brand = new brand_model();
-
+        
+        // Saca las marcas para mostrarlas en las options
         $datosB = $brand->get_brands();
 
 
         require_once("views/products_add.phtml");
     }
-
+    
+    /*
+     * * Función que filtra los productos según el valor que le pases
+     * 
+     */
     function search($valor) {
 
         $producto = new products_model();
@@ -118,7 +123,10 @@ class products_controller {
 
         require_once("views/home.phtml");
     }
-
+    
+    /*
+     * * Función que muestra las categorías y sus subcategorías
+     */
     public function getAllCategories() {
         $cat = new categories_model();
         $allCategories = $cat->get_all_categories();
@@ -146,6 +154,9 @@ class products_controller {
         return $orderedCategories;
     }
 
+    /*
+     * * Función que muestra la pagina de añadir producto
+     */
     public function getCart(){
         $productsOnCart = $_SESSION['cart'];
 
