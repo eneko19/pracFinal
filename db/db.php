@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Classe amb mètode estàtic que serveix per connectar a Base de Dades
+ * Classe con método estático que sirve para conectarse a la Base de Datos
  */
 class Conectar{
     public static function conexion(){

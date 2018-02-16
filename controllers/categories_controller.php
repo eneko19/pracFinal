@@ -6,14 +6,14 @@ require_once("models/categories_model.php");
 class categories_controller {
 
   /*
-  ** Fucnion que muestra la pagina de añadir producto
+  ** Funció que muestra la pagina de añadir categoría
   */
   function add(){
     require_once("views/categories_add.phtml");
   }
 
 /**
- * Inserta a la taula
+ * Función que añade categorías a la tabla
  */
 function insert() {
     $categoria = new categories_model();
@@ -24,6 +24,9 @@ function insert() {
         $error = $categoria->insertar();
 }
 
+/**
+ * Función que muestra todos las categorías en la vista de categorías
+ */
 function view(){
     $categoria = new categories_model();
 

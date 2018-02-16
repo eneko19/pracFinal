@@ -34,31 +34,6 @@ class brand_model {
     $this->name = $name;
   }
 
-
-
-  /**
-  * Inserta un registre a la taula
-  * @return [false]  si no hi ha hagut cap error,
-  *         [string] amb text d'error si no ha anat bé
-  */
-  public function insertar() {
-
-
-      if ($this->parentcategory == "NULL") {
-        $sql = "INSERT INTO CATEGORY (NAME ) VALUES ('{$this->name}')";
-
-      }else {
-       $sql = "INSERT INTO CATEGORY (NAME, PARENTCATEGORY ) VALUES ('{$this->name}','{$this->parentcategory}')";
-      }
-       $result = $this->db->query($sql);
-
-       if ($this->db->error)
-           return "$sql<br>{$this->db->error}";
-       else {
-           return false;
-       }
-    }
-
         /**
     * Extreu totes les persones de la taula
     * @return array Bidimensional de totes les persones

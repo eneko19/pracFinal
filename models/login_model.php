@@ -75,9 +75,9 @@ public function setPostalCode($postalcode) {
 /*********** FUNCIONES **************/
 
 /**
-* Inserta un registre a la taula
-* @return [false]  si no hi ha hagut cap error,
-*         [string] amb text d'error si no ha anat bé
+* Inserta un registro a la tabla
+* @return [false]  si no ha habido ningún error,
+*         [string] devyulve la swl y el error cuando ha habido algún problema
 */
 public function insert() {
      $sql = "INSERT INTO USER (USERNAME, PASSWORD, NAME,EMAIL,ADDRESS,POSTALCODE)
@@ -94,8 +94,8 @@ public function insert() {
 }
 
 /**
-* Consula los usuarios de la tabla
-* @return array Bidimensional de tots els usuaris de la taula
+* Consula los usuarios de la tabla por usuario y contraseña
+* @return array Bidimensional del usuario que sea igual a la consulta
 */
 public function consultar_usuario(){
     $consulta=("SELECT * FROM USER WHERE USERNAME ='{$this->username}' AND PASSWORD = '{$this->password}';");

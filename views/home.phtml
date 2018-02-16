@@ -15,13 +15,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/home.css">
-        <?php if (!empty($logedFail)) {
+        <?php
+        if (!empty($logedFail)) {
             echo $abrirModal;
         }
         ?>
     </head>
     <!-- Barra de navegacion -->
-    <?php require_once("views/header.phtml");  ?>
+    <?php require_once("views/header.phtml"); ?>
     <body class="bg-secondary">
 
         <!-- Carousel -->
@@ -88,103 +89,91 @@
         <div class="container bg-secondary">
             <div class="row">
                 <?php foreach ($datos as $dato) {
-
                     ?>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-3">
                         <div class="card my-3">
-                             <a href="index.php?controller=products&action=viewPage&id=<?php echo $dato['ID']?>">
-                                 <img class="card-img-top img-fluid" src="<?php echo $dato['URL'] ?> " alt="Card image">
-                             </a>
+                            <a href="index.php?controller=products&action=viewPage&id=<?php echo $dato['ID'] ?>">
+                                <img class="card-img-top img-fluid" src="<?php echo $dato['URL'] ?> " alt="Card image">
+                            </a>
                             <div class="card-body">
                                 <p class="card-title"><strong><?php echo $dato['SHORTDESCRIPTION'] ?> </strong></p>
-                                <?php if (empty($dato['DISCOUNTPERCENTAGE']))  { ?>
-                                  <p class="card-text text-center"><strong><?php echo $dato['PRICE'];?>€</strong></p>
-                              <?php  }else{ ?>
-                                  <p class="card-text text-center">
-                                      <span><strong><?php echo $dato['PRECIOFINAL'];?>€</strong></span>
-                                      <span class="text-muted"><small><s><?php echo $dato['PRICE']; ?>€</s></small></span>
-                                      <span class="badge badge-danger"><?php echo $dato['DISCOUNTPERCENTAGE'];?>%</span>
-                                  </p>
+                                <?php if (empty($dato['DISCOUNTPERCENTAGE'])) { ?>
+                                    <p class="card-text text-center"><strong><?php echo $dato['PRICE']; ?>€</strong></p>
+                                <?php } else { ?>
+                                    <p class="card-text text-center">
+                                        <span><strong><?php echo $dato['PRECIOFINAL']; ?>€</strong></span>
+                                        <span class="text-muted"><small><s><?php echo $dato['PRICE']; ?>€</s></small></span>
+                                        <span class="badge badge-danger"><?php echo $dato['DISCOUNTPERCENTAGE']; ?>%</span>
+                                    </p>
 
-                            <?php  } ?>
-                                <div class="card-footer text-center">
-                                    <small> <?php if ($dato['STOCK'] == 0) { ?>
-                                            <span style="color:red"> <?php echo "No quedan productos"; ?></span>
-                                          </small>
-                                          <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID']?>&productName=<?php echo $dato['SHORTDESCRIPTION']?>
-                                             &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL']?>&productStock=<?php echo $dato['STOCK']?>&productPriceFinal=<?php echo $dato['PRECIOFINAL'] ?>" class="btn btn-primary disabled">Comprar</a>
+                                <?php } ?>
+                                <?php
+                                if (isset($_SESSION['usuario'])) {
+                                    if ($_SESSION['usuario'] == "admin") {
+                                        ?>
+                                        <div class="card-footer text-center">
+                                            <small> <?php if ($dato['STOCK'] == 0) { ?>
+                                                    <span style="color:red"> <?php echo "No quedan productos"; ?></span>
+                                                </small>
+                                            <?php } elseif ($dato['STOCK'] < 5) {
+                                                ?>
+                                                <span style="color:orange"> <?php echo "Quedan pocos en stock"; ?></span>
+                                                </small>
+                                               <?php } else { ?>
+                                                <span style="color:green"> <?php echo "Hay productos en stock"; ?></span>
+                                                </small>
+                                            <?php } ?>
+                                            <?php } else{ ?>
+                                        <div class="card-footer text-center">
+                                            <small> <?php if ($dato['STOCK'] == 0) { ?>
+                                                    <span style="color:red"> <?php echo "No quedan productos"; ?></span>
+                                                </small>
+                                                <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID'] ?>&productName=<?php echo $dato['SHORTDESCRIPTION'] ?>
+                                                   &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL'] ?>&productStock=<?php echo $dato['STOCK'] ?>&productPriceFinal=<?php echo $dato['PRECIOFINAL'] ?>" class="btn btn-primary disabled">Comprar</a>
 
-                                        <?php } elseif ($dato['STOCK'] < 5) {
-                                            ?>
-                                            <span style="color:orange"> <?php echo "Quedan pocos en stock"; ?></span>
-                                          </small>
-                                          <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID']?>&productName=<?php echo $dato['SHORTDESCRIPTION']?>
-                                             &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL']?>&productStock=<?php echo $dato['STOCK']?>&productPriceFinal=<?php echo $dato['PRECIOFINAL'] ?>" class="btn btn-primary">Comprar</a>
-                                        <?php } else { ?>
-                                            <span style="color:green"> <?php echo "Hay productos en stock"; ?></span>
-                                          </small>
-                                          <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID']?>&productName=<?php echo $dato['SHORTDESCRIPTION']?>
-                                             &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL']?>&productStock=<?php echo $dato['STOCK']?>&productPriceFinal=<?php echo $dato['PRECIOFINAL'] ?>" class="btn btn-primary">Comprar</a>
+                                            <?php } elseif ($dato['STOCK'] < 5) {
+                                                ?>
+                                                <span style="color:orange"> <?php echo "Quedan pocos en stock"; ?></span>
+                                                </small>
+                                                <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID'] ?>&productName=<?php echo $dato['SHORTDESCRIPTION'] ?>
+                                                   &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL'] ?>&productStock=<?php echo $dato['STOCK'] ?>&productPriceFinal=<?php echo $dato['PRECIOFINAL'] ?>" class="btn btn-primary">Comprar</a>
+                                               <?php } else { ?>
+                                                <span style="color:green"> <?php echo "Hay productos en stock"; ?></span>
+                                                </small>
+                                                <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID'] ?>&productName=<?php echo $dato['SHORTDESCRIPTION'] ?>
+                                                   &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL'] ?>&productStock=<?php echo $dato['STOCK'] ?>&productPriceFinal=<?php echo $dato['PRECIOFINAL'] ?>" class="btn btn-primary">Comprar</a>
+                                            <?php } ?>
+                                            <?php }} else{ ?>
+                                        <div class="card-footer text-center">
+                                            <small> <?php if ($dato['STOCK'] == 0) { ?>
+                                                    <span style="color:red"> <?php echo "No quedan productos"; ?></span>
+                                                </small>
+                                                <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID'] ?>&productName=<?php echo $dato['SHORTDESCRIPTION'] ?>
+                                                   &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL'] ?>&productStock=<?php echo $dato['STOCK'] ?>&productPriceFinal=<?php echo $dato['PRECIOFINAL'] ?>" class="btn btn-primary disabled">Comprar</a>
+
+                                            <?php } elseif ($dato['STOCK'] < 5) {
+                                                ?>
+                                                <span style="color:orange"> <?php echo "Quedan pocos en stock"; ?></span>
+                                                </small>
+                                                <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID'] ?>&productName=<?php echo $dato['SHORTDESCRIPTION'] ?>
+                                                   &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL'] ?>&productStock=<?php echo $dato['STOCK'] ?>&productPriceFinal=<?php echo $dato['PRECIOFINAL'] ?>" class="btn btn-primary">Comprar</a>
+                                               <?php } else { ?>
+                                                <span style="color:green"> <?php echo "Hay productos en stock"; ?></span>
+                                                </small>
+                                                <a href="index.php?controller=cart&action=addToCart&product=<?php echo $dato['ID'] ?>&productName=<?php echo $dato['SHORTDESCRIPTION'] ?>
+                                                   &productPrice=<?php echo $dato['PRICE'] ?>&productImage=<?php echo $dato['URL'] ?>&productStock=<?php echo $dato['STOCK'] ?>&productPriceFinal=<?php echo $dato['PRECIOFINAL'] ?>" class="btn btn-primary">Comprar</a>
+                                            <?php } ?>
                                         <?php } ?>
-
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php } ?>
-            </div>
-        </div>
-
-    </body>
-    <footer class="mt-4">
-        <div class="bg-primary py-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="row py-0">
-                            <div class="col-sm-1 hidden-md-down">
-                                <a class="bg-circle bg-info" href="#">
-                                    <i class="fa fa-2x fa-fw fa-address-card" aria-hidden="true "></i>
-                                </a>
-                            </div>
-                            <div class="col-sm-11 text-white">
-                                <div><h4>  Contacto</h4>
-                                    <p>   <span class="header-font">EGC</span>omponentes.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="d-inline-block">
-                            <div class="bg-circle-outline d-inline-block" style="background-color:#3b5998">
-                                <a href="https://www.facebook.com/"><i class="fa fa-2x fa-fw fa-facebook text-white"></i>
-                                </a>
-                            </div>
-                            <div class="bg-circle-outline d-inline-block" style="background-color:#4099FF">
-                                <a href="https://twitter.com/">
-                                    <i class="fa fa-2x fa-fw fa-twitter text-white"></i></a>
-                            </div>
-
-                            <div class="bg-circle-outline d-inline-block" style="background-color:#0077B5">
-                                <a href="https://www.linkedin.com/company/">
-                                    <i class="fa fa-2x fa-fw fa-linkedin text-white"></i></a>
-                            </div>
-                            <div class="bg-circle-outline d-inline-block" style="background-color:#d34836">
-                                <a href="https://www.google.com/">
-                                    <i class="fa fa-2x fa-fw fa-google text-white"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
-        </div>
-    </footer>
-    <!--/.footer-->
-    <p class="text-center"> Copyright <i class="fa fa-copyright" aria-hidden="true"></i>
-        EGComponentes 2018. Todos los derechos reservados. </p>
-    <!--/.footer-bottom-->
-    <div class="myModal">
-        <?php include("views/login_view.phtml"); ?>
-    </div>
+
+        </body>
+
+        <?php require_once("footer.phtml"); ?>
 
 </html>

@@ -8,7 +8,7 @@ require_once("models/promotion_model.php");
 class products_controller {
 
     /**
-     * Muestra pantalla 'add'
+     * Muestra pantalla 'add' de producto
      */
     function add() {
         require_once("views/products_add.phtml");
@@ -65,7 +65,6 @@ class products_controller {
         require_once("views/homeCat.phtml");
     }
 
-
     /**
      * Inserta un nuevo producto a la base de datos
      * @return No
@@ -89,6 +88,7 @@ class products_controller {
     /*
      * * Función que muestra la pagina de añadir producto
      */
+
     function addView() {
 
         $categoria = new categories_model();
@@ -97,18 +97,19 @@ class products_controller {
         $datosC = $categoria->get_categoriesToProduct();
 
         $brand = new brand_model();
-        
+
         // Saca las marcas para mostrarlas en las options
         $datosB = $brand->get_brands();
 
 
         require_once("views/products_add.phtml");
     }
-    
+
     /*
      * * Función que filtra los productos según el valor que le pases
      * 
      */
+
     function search($valor) {
 
         $producto = new products_model();
@@ -123,10 +124,11 @@ class products_controller {
 
         require_once("views/home.phtml");
     }
-    
+
     /*
      * * Función que muestra las categorías y sus subcategorías
      */
+
     public function getAllCategories() {
         $cat = new categories_model();
         $allCategories = $cat->get_all_categories();
@@ -157,9 +159,9 @@ class products_controller {
     /*
      * * Función que muestra la pagina de añadir producto
      */
-    public function getCart(){
-        $productsOnCart = $_SESSION['cart'];
 
+    public function getCart() {
+        $productsOnCart = $_SESSION['cart'];
     }
 
 }

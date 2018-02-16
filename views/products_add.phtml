@@ -15,95 +15,96 @@
     </head>
     <?php require_once("header.phtml"); ?>
     <body class="bg-secondary">
-        <div class="container br-light border border-dark mt-4">
+        <div class="container bg-light  mt-4 vistaContainer">
             <form name="addProd" action="index.php?controller=products&action=insert" method="post">
                 <h1 class="text-center">Añadir producto</h1>
 
                 <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Nombre</span>
-                  </div>
-                  <input type="text" class="form-control" name="nombre">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Nombre</span>
+                    </div>
+                    <input type="text" class="form-control" name="nombre">
                 </div>
 
                 <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Descripcion corta</span>
-                  </div>
-                  <input type="text" class="form-control" name="descCorta">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Descripcion corta</span>
+                    </div>
+                    <input type="text" class="form-control" name="descCorta">
                 </div>
 
                 <div class="input-group ">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Descripcion larga</span>
-                  </div>
-                  <textarea class="form-control" name="descLarga"></textarea>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Descripcion larga</span>
+                    </div>
+                    <textarea class="form-control" name="descLarga"></textarea>
                 </div>
 
                 <fieldset class="form-group">
                     <div class="row">
-                      <legend class="col-form-label col-sm-4 pt-0">Producto promocionado:</legend>
-                      <div class="col-sm-8">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="sponsor" id="gridRadios1" value="y" checked>
-                          <label class="form-check-label" for="gridRadios1">
-                            Si
-                          </label>
+                        <legend class="col-form-label col-sm-4 pt-0">Producto promocionado:</legend>
+                        <div class="col-sm-8">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sponsor" id="gridRadios1" value="y" checked>
+                                <label class="form-check-label" for="gridRadios1">
+                                    Si
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sponsor" id="gridRadios2" value="n">
+                                <label class="form-check-label" for="gridRadios2">
+                                    No
+                                </label>
+                            </div>
                         </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="sponsor" id="gridRadios2" value="n">
-                          <label class="form-check-label" for="gridRadios2">
-                            No
-                          </label>
-                        </div>
-                      </div>
                     </div>
-                  </fieldset>
+                </fieldset>
 
-                  Precio:
-                  <div class="input-group mb-3">
+
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">€</span>
+                        <span class="input-group-text">Precio</span>
                     </div>
                     <input type="text" class="form-control" name="precio">
                     <div class="input-group-append">
-                      <span class="input-group-text">.00</span>
+                        <span class="input-group-text">.00€</span>
                     </div>
-                  </div>
+                </div>
 
-                  <div class="input-group mb-3">
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroup-sizing-default">Stock</span>
+                        <span class="input-group-text" id="inputGroup-sizing-default">Stock</span>
                     </div>
                     <input type="number" class="form-control" name="stock" >
-                  </div>
+                </div>
 
-                  <div class="input-group mb-3">
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <label class="input-group-text" for="inputGroupSelect01">Marca</label>
+                        <label class="input-group-text" for="inputGroupSelect01">Marca</label>
                     </div>
                     <select class="custom-select" id="inputGroupSelect01" name="marca">
-                      <option selected>Elige...</option>
+                        <option selected>Elige...</option>
                         <?php foreach ($datosB as $dato) { ?>
-                      <option value=" <?php echo $dato['ID'] ?>"> <?php echo $dato['NAME'] ?></option>
+                            <option value=" <?php echo $dato['ID'] ?>"> <?php echo $dato['NAME'] ?></option>
                         <?php } ?>
                     </select>
-                  </div>
+                </div>
 
-                  <div class="input-group mb-3">
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <label class="input-group-text" for="inputGroupSelect01">Categoria</label>
+                        <label class="input-group-text" for="inputGroupSelect01">Categoria</label>
                     </div>
                     <select class="custom-select" id="inputGroupSelect02" name="categoria">
-                      <option selected>Elige...</option>
-                      <?php foreach ($datosC as $dato) { ?>
-                      <option value=" <?php echo $dato['ID'] ?>"><?php echo $dato['NAME'] ?></option>
-                    <?php } ?>
+                        <option selected>Elige...</option>
+                        <?php foreach ($datosC as $dato) { ?>
+                            <option value=" <?php echo $dato['ID'] ?>"><?php echo $dato['NAME'] ?></option>
+                        <?php } ?>
                     </select>
-                  </div>
-                   <a href="index.php?controller=products&action=view"><button class="btn btn-lg btn-light">Volver</button></a>
-                   <button class="btn btn-lg btn-light" type="submit">Añadir</button>
+                </div>
+                <a href="index.php?controller=products&action=view"><button class="btn btn-lg btn-light">Volver</button></a>
+                <button class="btn btn-lg btn-dark" type="submit">Añadir</button>
             </form>
         </div>
     </body>
+    <?php require_once("footer.phtml"); ?>
 </html>

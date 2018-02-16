@@ -46,9 +46,9 @@ class categories_model {
 
 
   /**
-  * Inserta un registre a la taula
-  * @return [false]  si no hi ha hagut cap error,
-  *         [string] amb text d'error si no ha anat bé
+  * Inserta una categoría a la tabla
+  * @return [false]  si no ha habido ningún error,
+  *         [string] devuelve el error y la sql si no ha ido bien
   */
   public function insertar() {
 
@@ -68,9 +68,9 @@ class categories_model {
        }
     }
 
-        /**
-    * Extreu totes les persones de la taula
-    * @return array Bidimensional de totes les persones
+   /**
+    * Extrae todas las categorías que sean null de la tabla
+    * @return array Bidimensional de todas las categorías que son null
     */
     public function get_categories(){
         $consulta=$this->db->query("SELECT * FROM CATEGORY WHERE PARENTCATEGORY IS NULL;");
@@ -79,7 +79,11 @@ class categories_model {
         }
         return $this->categoria;
     }
-
+    
+   /**
+    * Extrae todas las categorías que no sean null de la tabla
+    * @return array Bidimensional de todas las categorías que no son null
+    */
     public function get_categoriesToProduct(){
         $consulta=$this->db->query("SELECT * FROM CATEGORY WHERE PARENTCATEGORY IS NOT NULL;");
         while($filas=$consulta->fetch_assoc()){
@@ -88,6 +92,11 @@ class categories_model {
 
         return $this->categoria;
     }
+    
+   /**
+    * Extrae todas las categorías de la tabla
+    * @return array Bidimensional de todas las categorías 
+    */
     public function get_all_categories(){
         $consulta=$this->db->query("SELECT * FROM CATEGORY;");
         while($filas=$consulta->fetch_assoc()){

@@ -12,6 +12,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="popover"]').popover();
+            });
+        </script>
         <link rel="stylesheet" href="css/home.css">
         <?php
         if (!empty($logedFail)) {
@@ -20,105 +25,82 @@
         ?>
     </head>
     <!-- Barra de navegacion -->
-<?php require_once("views/header.phtml"); ?>
+    <?php require_once("views/header.phtml"); ?>
     <body class="bg-secondary">
-        <div class="container">
+        <div class="container vistaContainer">
             <div class="row">
                 <div class="col-8 bg-light mt-3">
                     <h2>
-                        <th scope="col"><strong>(<?php echo count($_SESSION['cart'])?>)</strong> Artículos <strong>en tu cest</strong>a</th>
+                        <th scope="col"><strong>(<?php echo count($_SESSION['cart']) ?>)</strong> Artículos <strong>en tu cest</strong>a</th>
                     </h2>
                     <table class="table table-hover bg-white ">
-                <thead>
-                    <tr class="">
-                        <th scope="col"></th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Unidades</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    if (!empty($_SESSION['cart'])) {
-                        foreach ($_SESSION['cart'] as $carrito) {
-                            ?>
-                            <tr>
-                                <td scope="row" class="imgCartView"><img class="img-fluid" src="<?php echo $carrito['image'] ?>" alt="<?php echo $carrito['name'] ?>"/></td>
-                                <td><small><strong><?php echo $carrito['name']?></strong></small></td>
-                                <td class="text-center"><?php echo $carrito['numUnits']?></td>
-                                <td><?php
-                                if($carrito['price'] > 1){
-                                    $precionFinal =  ($carrito['price']*$carrito['numUnits']);
-                                    echo $precionFinal;
-                                  }else{
-                                    echo $carrito['price'];
-                                  }?>€</td>
-                                <td><a href="index.php?controller=cart&action=deleteFromCartView&product=<?php echo $carrito['id']?>"><button class="btn btn-danger  fa fa-close"></button></a></td>
+                        <thead>
+                            <tr class="">
+                                <th scope="col"></th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Unidades</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col"></th>
                             </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if (!empty($_SESSION['cart'])) {
+                                foreach ($_SESSION['cart'] as $carrito) {
+                                    ?>
+                                    <tr>
+                                        <td scope="row" class="imgCartView"><img class="img-fluid" src="<?php echo $carrito['image'] ?>" alt="<?php echo $carrito['name'] ?>"/></td>
+                                        <td><small><strong><?php echo $carrito['name'] ?></strong></small></td>
+                                        <td class="text-center"><?php echo $carrito['numUnits'] ?></td>
+                                        <td><?php
+                                            if ($carrito['price'] > 1) {
+                                                $precionFinal = ($carrito['price'] * $carrito['numUnits']);
+                                                echo $precionFinal;
+                                            } else {
+                                                echo $carrito['price'];
+                                            }
+                                            ?>€</td>
+                                        <td><a href="index.php?controller=cart&action=deleteFromCartView&product=<?php echo $carrito['id'] ?>"><button class="btn btn-danger  fa fa-close"></button></a></td>
+                                    </tr>
 
-    <?php }
-} ?>
-                </tbody>
-            </table>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-4">
-                  
+                <div class="col-4 mt-3">
+                    <div class="card">
+                        <h5 class="card-header">Elije el tipo de envío</h5>
+                        <div class="card-body">
+                            <p class="card-text">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="envio" value="envio1" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Envío a domicilio
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="envio" value="envio2">
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Envío a almacen 
+                                </label>
+                            </div>
+                            <a class="text-danger" data-toggle="popover" data-trigger="hover" data-placement="right" title="Preferencias de envío" data-content="Una vez elijas el tipo de envío no podrás volver a cambiarlo, nosotros no nos hacemos cargo de las manazas que tengas :)">
+                                (Ver detalles)
+                            </a>
+                            </p>
+                            <a href="#" class="btn btn-primary btn-block">Finalizar compra</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </div>
 
     </body>
-    <footer class="mt-4 ">
-        <div class="bg-primary py-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="row py-0">
-                            <div class="col-sm-1 hidden-md-down">
-                                <a class="bg-circle bg-info" href="#">
-                                    <i class="fa fa-2x fa-fw fa-address-card" aria-hidden="true "></i>
-                                </a>
-                            </div>
-                            <div class="col-sm-11 text-white">
-                                <div><h4>  Contacto</h4>
-                                    <p>   <span class="header-font">EGC</span>omponentes.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="d-inline-block">
-                            <div class="bg-circle-outline d-inline-block" style="background-color:#3b5998">
-                                <a href="https://www.facebook.com/"><i class="fa fa-2x fa-fw fa-facebook text-white"></i>
-                                </a>
-                            </div>
-                            <div class="bg-circle-outline d-inline-block" style="background-color:#4099FF">
-                                <a href="https://twitter.com/">
-                                    <i class="fa fa-2x fa-fw fa-twitter text-white"></i></a>
-                            </div>
-
-                            <div class="bg-circle-outline d-inline-block" style="background-color:#0077B5">
-                                <a href="https://www.linkedin.com/company/">
-                                    <i class="fa fa-2x fa-fw fa-linkedin text-white"></i></a>
-                            </div>
-                            <div class="bg-circle-outline d-inline-block" style="background-color:#d34836">
-                                <a href="https://www.google.com/">
-                                    <i class="fa fa-2x fa-fw fa-google text-white"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!--/.footer-->
-    <p class="text-center"> Copyright <i class="fa fa-copyright" aria-hidden="true"></i>
-        EGComponentes 2018. Todos los derechos reservados. </p>
-    <!--/.footer-bottom-->
-    <div class="myModal">
-<?php include("views/login_view.phtml"); ?>
-    </div>
+    <?php require_once("footer.phtml"); ?>
 
 </html>

@@ -2,119 +2,69 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <title><?php echo $product['SHORTDESCRIPTION']?></title>
+        <title><?php echo $product['SHORTDESCRIPTION'] ?></title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" </script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="css/home.css">
-    </head>
-    <body class="bg-secondary">
-     <!-- Barra de navegacion -->
-     <?php require_once("views/header.phtml"); ?>
-                <!-- Descripcion del producto -->
-      <div class="container">
-        <div class="row bg-light mt-2" style="height:1000px;">
-          <div class="col-6 h-100 border">
-              <img src="<?php echo $product['URL']?>" alt="producto" class="rounded imgProduct">
-          </div>
-          <div class="col-6 h-100 border ">
-              <h3 class="mt-4 border"><?php echo $product['SHORTDESCRIPTION']?></h3>
-              <div class="w-100"></div>
-              <span class=""><strong>Descripción</strong></span>
-              <p class="h-25 border border-dark"><?php echo $product['LONGDESCRIPTION']?> </p>
-              <div class="w-100"></div>
-              <?php if (empty($product['DISCOUNTPERCENTAGE']))  { ?>
-                <p class="card-text"><strong><?php echo $product['PRICE'];?>€</strong></p>
-            <?php  }else{ ?>
-                <p class="card-text">
-                    <span><strong><?php echo $product['PRECIOFINAL'];?>€</strong></span>
-                    <span class="text-muted"><small><s><?php echo $product['PRICE']; ?>€</s></small></span>
-                    <span class="badge badge-danger"><?php echo $product['DISCOUNTPERCENTAGE'];?>%</span>
-                </p>
-
-          <?php  } ?>
-              <div class="w-100"></div>
-              <p class=""><?php
-                if ($product['STOCK'] == 0) { ?>
-                <span style="color:red"> <?php echo "No quedan productos"; ?></span>
-                <?php
-              } elseif ($product['STOCK'] < 5) { ?>
-                    <span style="color:orange"> <?php echo "Quedan pocos productos en stock"; ?></span>
-                  <?php } else{?>
-                      <span style="color:green"> <?php echo "Hay productos en stock"; ?></span>
-              </p>
-            <?php } ?>
-              <div class="w-100"></div>
-              <span>Cantidad:</span> <input class="mb-4" type="number" value="1" min="1" max="<?php echo $product['STOCK']?>" id="number" style="width: 3em;">
-              <div class="w-100"></div>
-              <div class="row">
-                <div class="col-6">
-                <a href="" class="btn btn-primary btn-block btn-lg mt-2">Añadir al carrito</a>
-                </div>
-                <div class="col-6">
-                  <button type="button" name="button" class="btn btn-primary btn-block btn-lg mt-2">Comprar</button>
-                </div>
-              </div>
-          </div>
-        </div>
-      </div>
-      <footer class="mt-4">
-           <div class="bg-primary py-3">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-7">
-                  <div class="row py-0">
-                <div class="col-sm-1 hidden-md-down">
-                    <a class="bg-circle bg-info" href="#">
-                      <i class="fa fa-2x fa-fw fa-address-card" aria-hidden="true "></i>
-                    </a>
-                  </div>
-                  <div class="col-sm-11 text-white">
-                      <div><h4>  Contacto</h4>
-                          <p>   <span class="header-font">EGC</span>omponentes.com</p>
-                      </div>
-                  </div>
-                  </div>
-              </div>
-              <div class="col-md-5">
-                <div class="d-inline-block">
-                  <div class="bg-circle-outline d-inline-block" style="background-color:#3b5998">
-                    <a href="https://www.facebook.com/"><i class="fa fa-2x fa-fw fa-facebook text-white"></i>
-      		</a>
-                  </div>
-                  <div class="bg-circle-outline d-inline-block" style="background-color:#4099FF">
-                    <a href="https://twitter.com/">
-                      <i class="fa fa-2x fa-fw fa-twitter text-white"></i></a>
-                  </div>
-
-                  <div class="bg-circle-outline d-inline-block" style="background-color:#0077B5">
-                    <a href="https://www.linkedin.com/company/">
-                      <i class="fa fa-2x fa-fw fa-linkedin text-white"></i></a>
-                  </div>
-                  <div class="bg-circle-outline d-inline-block" style="background-color:#d34836">
-                    <a href="https://www.google.com/">
-                      <i class="fa fa-2x fa-fw fa-google text-white"></i></a>
-                  </div>
-                </div>
-              </div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body class="bg-secondary">
+    <!-- Barra de navegacion -->
+    <?php require_once("views/header.phtml"); ?>
+    <!-- Descripcion del producto -->
+    <div class="container ">
+        <div class="row bg-light mt-2">
+            <div class="col-6 vistaContainer border">
+                <img src="<?php echo $product['URL'] ?>" alt="producto" class="rounded imgProduct">
             </div>
-          </div>
-          </div>
-      </footer>
-          <!--/.footer-->
-      <p class="text-center"> Copyright <i class="fa fa-copyright" aria-hidden="true"></i>
-       EGComponentes 2018. Todos los derechos reservados. </p>
-          <!--/.footer-bottom-->
-          <div class="myModal">
-              <?php include("views/login_view.phtml"); ?>
-          </div>
-    </body>
+            <div class="col-6 border ">
+                <h3 class="mt-4 border"><?php echo $product['SHORTDESCRIPTION'] ?></h3>
+                <div class="w-100"></div>
+                <span class=""><strong>Descripción</strong></span>
+                <p class="border border-dark h-50"><?php echo $product['LONGDESCRIPTION'] ?> </p>
+                <div class="w-100"></div>
+                <?php if (empty($product['DISCOUNTPERCENTAGE'])) { ?>
+                    <p class="card-text"><strong><?php echo $product['PRICE']; ?>€</strong></p>
+                <?php } else { ?>
+                    <p class="card-text">
+                        <span><strong><?php echo $product['PRECIOFINAL']; ?>€</strong></span>
+                        <span class="text-muted"><small><s><?php echo $product['PRICE']; ?>€</s></small></span>
+                        <span class="badge badge-danger"><?php echo $product['DISCOUNTPERCENTAGE']; ?>%</span>
+                    </p>
+
+                <?php } ?>
+                <div class="w-100"></div>
+                <p class=""><?php if ($product['STOCK'] == 0) { ?>
+                        <span style="color:red"> <?php echo "No quedan productos"; ?></span>
+                        <?php } elseif ($product['STOCK'] < 5) {
+                        ?>
+                        <span style="color:orange"> <?php echo "Quedan pocos productos en stock"; ?></span>
+                    <?php } else { ?>
+                        <span style="color:green"> <?php echo "Hay productos en stock"; ?></span>
+                    </p>
+                <?php } ?>
+                <div class="w-100"></div>
+                <span>Cantidad:</span> <input class="mb-4" type="number" value="1" min="1" max="<?php echo $product['STOCK'] ?>" id="number" style="width: 3em;">
+                <div class="w-100"></div>
+                <div class="row">
+                    <div class="col-6">
+                        <a href="" class="btn btn-primary btn-block btn-lg mt-2">Añadir al carrito</a>
+                    </div>
+                    <div class="col-6">
+                        <a href="index.php?controller=cart&action=view" class="btn btn-primary btn-block btn-lg mt-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<?php require_once("footer.phtml"); ?>
 </html>

@@ -6,10 +6,13 @@ require_once("controllers/categories_controller.php");
 require_once("controllers/login_controller.php");
 require_once("controllers/promotion_controller.php");
 require_once("controllers/cart_controller.php");
-
+// Inicia la sesión
 session_start();
 
-if(empty($_SESSION['cart'])){
+/**
+ * Si el carrito esta vacío crea uno
+ */
+if (empty($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 if (isset($_GET['controller']) && isset($_GET['action'])) {
@@ -18,16 +21,16 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
         $cart = new cart_controller();
         if ($_GET['action'] == "addToCart") {
 
-             $num = !empty($_GET['numAddUnits']) ? $_GET['numAddUnits'] : 1;
+            $num = !empty($_GET['numAddUnits']) ? $_GET['numAddUnits'] : 1;
             $products = [
-                "id"=>$_GET['product'],
-                "numAddUnits"=>$num,
-                "name"=>$_GET['productName'],
-                "price"=>$_GET['productPrice'],
-                "image"=>$_GET['productImage'],
-                "stock"=>$_GET['productStock'],
-                "finalPrice"=>$_GET['productPriceFinal']
-                ];
+                "id" => $_GET['product'],
+                "numAddUnits" => $num,
+                "name" => $_GET['productName'],
+                "price" => $_GET['productPrice'],
+                "image" => $_GET['productImage'],
+                "stock" => $_GET['productStock'],
+                "finalPrice" => $_GET['productPriceFinal']
+            ];
             $cart->addToCart($products);
             header('Location: index.php');
         }
@@ -45,7 +48,6 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             $cart = new cart_controller();
             $cart->view();
         }
-
     }
 
 
@@ -108,7 +110,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             $login = new login_controller();
             $loged = $login->login();
             if (!$loged) {
-            $logedFail = $login->loginFailed();
+                $logedFail = $login->loginFailed();
             }
         }
 
@@ -120,7 +122,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
         if ($_GET['action'] == "logout") {
             $login = new login_controller();
             $login->logout();
-            if(empty($_SESSION['cart'])){
+            if (empty($_SESSION['cart'])) {
                 $_SESSION['cart'] = [];
             }
         }
@@ -128,7 +130,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
         $controller->view();
     }
     if ($_GET['controller'] == "promotion") {
-      $controllerP = new products_controller();
+        $controllerP = new products_controller();
 
         $controller = new products_controller();
 
@@ -141,12 +143,10 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             $promotion->insert();
             $controllerP->view();
         }
-
     }
 } else {
     $controller = new products_controller();
     $cart = $controller->getCart();
     $controller->view();
-
 }
 ?>

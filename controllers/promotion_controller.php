@@ -7,7 +7,7 @@ class promotion_controller {
 
 
 /**
- * Inserta a la taula
+ * Inserta una promoción en la tabla
  */
 function insert() {
     $promotion = new promotion_model();
@@ -19,6 +19,9 @@ function insert() {
     $error = $promotion->insertar();
 }
 
+/**
+ * Función que muestra todos los productos y los envia a la vista de promotion
+ */
 function view(){
     $product = new products_model();
 

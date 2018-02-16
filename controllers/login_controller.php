@@ -60,6 +60,10 @@ class login_controller {
                 echo $error;
             }
         }
+        /**
+         * Si el login falla vuelve a abrir el modal de inicio de sesión
+         * @return string script que habre el modal
+         */
         function loginFailed() {
 
         $abrirModal = "<script type='text/javascript'>
@@ -73,7 +77,7 @@ class login_controller {
 
 
       /**
-       * Finaliza la sesion de usuario
+       * Finaliza la sesión de usuario
        */
         function logout(){
            // Borra contingut de $_SESSION
