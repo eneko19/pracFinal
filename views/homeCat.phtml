@@ -15,6 +15,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/home.css">
+        <script src="views/filtros.js"></script>
     </head>
     <!-- Barra de navegacion -->
     <?php require_once("views/header.phtml");  ?>
@@ -68,9 +69,10 @@
                     <div id="precio" class="panel-collapse collapse mb-2">
                       <div class="panel-body bg-secondary">
                         <span>desde</span>
-                        <input type="text" class="form-control" placeholder="min">
+                        <input type="text" class="form-control" id="price-min" name="price-min" class="filterProduct range-price" placeholder="min">
                         <span>hasta</span>
-                        <input type="text" class="form-control" placeholder="max">
+                        <input type="text" class="form-control" id="price-max" name="price-max" class="filterProduct range-price" placeholder="max">
+
                         <a href="#" class="btn btn-success">Filtrar</a>
                       </div>
                     </div>
@@ -85,7 +87,7 @@
                       <div class="panel-body bg-secondary text-left">
                         <?php foreach ($marcas as $marca) { ?>
                           <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <input class="form-check-input filterProduct" type="checkbox"  id="<?php echo $marca['BRAND'];?>">
                             <label class="form-check-label" for="defaultCheck1">
                               <?php echo $marca['NAME'] ?>
                             </label>
@@ -101,7 +103,7 @@
               <?php foreach ($datos as $dato) { ?>
                   <div class="col-xs-12 col-md-6 col-lg-4">
 
-                      <div class="card my-3">
+                      <div class="card my-3" id="<?php echo $dato['BRAND']; ?>">
                            <a href="index.php?controller=products&action=viewPage&id=<?php echo $dato['ID']?>">
                                <img class="card-img-top img-fluid" src="<?php echo $dato['URL'] ?> " alt="Card image">
                            </a>

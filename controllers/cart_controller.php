@@ -36,6 +36,10 @@ class cart_controller {
         require_once("views/cart_view.phtml");
     }
 
+    function deleteCart(){
+      unset($_SESSION['cart']);
+    }
+
 }
 
 ?>

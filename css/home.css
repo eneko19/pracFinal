@@ -149,7 +149,7 @@ ul.dropdown-cart li .item-right button {
 }
 /** Container de la vista de carrito **/
 .vistaContainer{
-    height: 720px;
+    min-height: 720px;
 }
 /** Footer **/
 .footer {

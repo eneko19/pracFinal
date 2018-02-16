@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 /**
  * Description of categories_model
@@ -38,8 +38,11 @@ class brand_model {
     * Extreu totes les persones de la taula
     * @return array Bidimensional de totes les persones
     */
-    public function get_brands(){
-        $consulta=$this->db->query("SELECT * FROM BRAND;");
+    public function get_brands($idSubCat){
+        $consulta=$this->db->query("SELECT distinct p.BRAND, b.NAME
+          FROM PRODUCT p, BRAND b
+          where p.CATEGORY = $idSubCat and p.BRAND = b.ID");
+
         while($filas=$consulta->fetch_assoc()){
             $this->categoria[]=$filas;
         }

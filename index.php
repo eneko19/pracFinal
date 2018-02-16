@@ -48,6 +48,11 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             $cart = new cart_controller();
             $cart->view();
         }
+        if ($_GET['action'] == "deleteCart") {
+            $cart = new cart_controller();
+            $cart->deleteCart();
+            $cart->view();
+        }
     }
 
 

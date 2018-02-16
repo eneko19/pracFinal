@@ -60,7 +60,7 @@ class products_controller {
         $orderedCategories = $this->getAllCategories();
         // Para mostrar las marcas en la nueva vista
         $brand = new brand_model();
-        $marcas = $brand->get_brands();
+        $marcas = $brand->get_brands($idSubCat);
 
         require_once("views/homeCat.phtml");
     }
@@ -107,7 +107,7 @@ class products_controller {
 
     /*
      * * Función que filtra los productos según el valor que le pases
-     * 
+     *
      */
 
     function search($valor) {
