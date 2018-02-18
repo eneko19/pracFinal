@@ -151,6 +151,10 @@ ul.dropdown-cart li .item-right button {
 .vistaContainer{
     min-height: 720px;
 }
+/** Paginacion **/
+.pagination{
+    justify-content: center;
+}
 /** Footer **/
 .footer {
     background: #EDEFF1;

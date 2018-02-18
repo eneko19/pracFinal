@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 
-  $(".filterProduct").change(function() {
+  $(".filtro").change(function() {
     if ($(this).hasClass("activated")) {
       $(this).removeClass("activated");
     } else {

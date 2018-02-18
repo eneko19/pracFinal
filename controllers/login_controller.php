@@ -23,9 +23,11 @@ class login_controller {
 
       $username = !empty($_POST['user']) ? $_POST['user'] : "";
       $password = !empty($_POST['password']) ? $_POST['password'] : "";
+      // $password_encriptada = crypt($password);
+      $password_encriptada = md5($password);
 
       $usuario->setUsername($username);
-      $usuario->setPassword($password);
+      $usuario->setPassword($password_encriptada);
 
       $ok = $usuario->consultar_usuario();
 
@@ -43,9 +45,10 @@ class login_controller {
        */
         function register() {
             $usuario = new login_model();
-
+            $passEncr = md5($_POST['password']);
             $usuario->setUserName ($_POST['username']);
-            $usuario->setPassword ($_POST['password']);
+            //$usuario->setPassword ($_POST['password']);
+            $usuario->setPassword ($passEncr);
             $usuario->setName ($_POST['name']);
             $usuario->setEmail ($_POST['email']);
             $usuario->setAddress ($_POST['address']);
@@ -81,9 +84,9 @@ class login_controller {
        */
         function logout(){
            // Borra contingut de $_SESSION
-           session_unset();
+           unset($_SESSION['usuario']);
            // elimina la sessio
-           session_destroy();
+           
         }
     }
 ?>

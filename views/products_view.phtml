@@ -44,7 +44,7 @@
                 <div class="w-100"></div>
                 <p class=""><?php if ($product['STOCK'] == 0) { ?>
                         <span style="color:red"> <?php echo "No quedan productos"; ?></span>
-                        <?php } elseif ($product['STOCK'] < 5) {
+                    <?php } elseif ($product['STOCK'] < 5) {
                         ?>
                         <span style="color:orange"> <?php echo "Quedan pocos productos en stock"; ?></span>
                     <?php } else { ?>
@@ -54,14 +54,26 @@
                 <div class="w-100"></div>
                 <span>Cantidad:</span> <input class="mb-4" type="number" value="1" min="1" max="<?php echo $product['STOCK'] ?>" id="number" style="width: 3em;">
                 <div class="w-100"></div>
-                <div class="row">
-                    <div class="col-6">
-                        <a href="" class="btn btn-primary btn-block btn-lg mt-2">Añadir al carrito</a>
+                <?php if ($product['STOCK'] == 0) { ?>
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="" class="btn btn-primary btn-block btn-lg mt-2 disabled">Añadir al carrito</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="index.php?controller=cart&action=view" class="btn btn-primary btn-block btn-lg mt-2 disabled">Comprar</a>
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <a href="index.php?controller=cart&action=view" class="btn btn-primary btn-block btn-lg mt-2">Comprar</a>
+                <?php } else { ?>
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="index.php?controller=cart&action=addToCart&product=<?php echo $product['ID'] ?>&productName=<?php echo $product['SHORTDESCRIPTION'] ?>
+                                                   &productPrice=<?php echo $product['PRICE'] ?>&productImage=<?php echo $product['URL'] ?>&productStock=<?php echo $product['STOCK'] ?>&productPriceFinal=<?php echo $product['PRECIOFINAL'] ?>" class="btn btn-primary btn-block btn-lg mt-2">Añadir al carrito</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="index.php?controller=cart&action=view" class="btn btn-primary btn-block btn-lg mt-2">Comprar</a>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </div>

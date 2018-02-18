@@ -1,7 +1,15 @@
 
 <?php
+if (empty($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
 if (isset($_SESSION['usuario'])) {
     if ($_SESSION['usuario'] == "admin") {
+        ?>
+        <?php
+        if (!empty($logedFail)) {
+            echo $abrirModal;
+        }
         ?>
 
         <nav class="navbar navbar-expand-md navbar-light bg-danger sticky-top">
@@ -98,27 +106,28 @@ if (isset($_SESSION['usuario'])) {
                                             </a>
                                             <ul class="dropdown-menu dropdown-cart scrollCart" role="menu">
                                                 <?php
-                                                if (!empty($_SESSION['cart'])) {
-                                                    foreach ($_SESSION['cart'] as $carrito) {
+                                                if (!empty($products)) {
+                                                 
+                                                    foreach ($products as $carrito) {
                                                         ?>
                                                         <li>
                                                             <span class="item">
                                                                 <span class="item-left">
-                                                                    <img class="imgCart" src="<?php echo $carrito['image'] ?>" alt="<?php echo $carrito['name'] ?>"/>
+                                                                    <img class="imgCart" src="<?php echo $carrito['URL'] ?>" alt="<?php echo $carrito['SHORTDESCRIPTION'] ?>"/>
                                                                     <span class="item-info">
-                                                                        <span><strong><?php echo $carrito['name'] ?></strong></span>
-                                                                        <span class="text-muted">Cantidad: <?php echo $carrito['numUnits'] ?></span>
+                                                                        <span><strong><?php echo $carrito['SHORTDESCRIPTION'] ?></strong></span>
+                                                                        <span class="text-muted">Cantidad: <?php echo $carrito['QUANTITY'] ?></span>
                                                                         <span> <kbd>Precio: <?php
-                                                                                if (empty($carrito['finalPrice'])) {
-                                                                                    echo $carrito['price'];
+                                                                                if (empty($carrito['PRECIOFINAL'])) {
+                                                                                    echo $carrito['PRICE'];
                                                                                 } else {
-                                                                                    echo $carrito['finalPrice'];
+                                                                                    echo $carrito['PRECIOFINAL'];
                                                                                 }
                                                                                 ?>€</kbd></span>
                                                                     </span>
                                                                 </span>
                                                                 <span class="item-right">
-                                                                    <a href="index.php?controller=cart&action=deleteFromCart&product=<?php echo $carrito['id'] ?>"><button class="btn btn-danger  fa fa-close"></button></a>
+                                                                    <a href="index.php?controller=cart&action=deleteFromCart&product=<?php echo $carrito['ID'] ?>"><button class="btn btn-danger  fa fa-close"></button></a>
                                                                 </span>
                                                             </span>
                                                         </li>

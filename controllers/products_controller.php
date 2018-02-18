@@ -18,17 +18,32 @@ class products_controller {
      * Muestra la página principal con todas sus categorias para el menu, los productos y las promociones para el carrousel
      * Requiere la vista de home.phtml
      */
-    function view() {
+    function view($pagina) {
         $producto = new products_model();
+        $numResultados = $producto->get_productsPagination();
+        $productPorPagina = 4;
+
+        $datos = $producto->get_products($pagina, $numResultados);
+        $numPaginas = ceil($numResultados / $productPorPagina);
+
 
         $orderedCategories = $this->getAllCategories();
-
-        //Uso metodo del modelo de personas
-        $datos = $producto->get_products();
 
         $promotion = new promotion_model();
 
         $datosCar = $promotion->get_carousel();
+
+        $cart = new cart_model();
+        if (!empty($_SESSION['usuario'])){
+        if (!empty($_SESSION['cart'])) {
+            $idOrder = $_SESSION['idOrder'];
+            $products = $cart->get_cartFromDB($idOrder);
+        }else{
+            $products = $cart->get_lastProducts();
+
+            
+            
+        }}
 
 
         //Llamado a la vista: mostrar la pantalla
@@ -44,6 +59,13 @@ class products_controller {
 
         $id = $_GET['id'];
         $product = $producto->viewPage($id);
+        $cart = new cart_model();
+        if (!empty($_SESSION['usuario'])){
+        if (!empty($_SESSION['cart'])) {
+            $idOrder = $_SESSION['idOrder'];
+            $products = $cart->get_cartFromDB($idOrder);
+        }}
+
         require_once("views/products_view.phtml");
     }
 
@@ -61,6 +83,12 @@ class products_controller {
         // Para mostrar las marcas en la nueva vista
         $brand = new brand_model();
         $marcas = $brand->get_brands($idSubCat);
+        $cart = new cart_model();
+        if (!empty($_SESSION['usuario'])){
+        if (!empty($_SESSION['cart'])) {
+            $idOrder = $_SESSION['idOrder'];
+            $products = $cart->get_cartFromDB($idOrder);
+        }}
 
         require_once("views/homeCat.phtml");
     }
@@ -99,8 +127,7 @@ class products_controller {
         $brand = new brand_model();
 
         // Saca las marcas para mostrarlas en las options
-        $datosB = $brand->get_brands();
-
+        $datosB = $brand->get_brandsToProd();
 
         require_once("views/products_add.phtml");
     }
@@ -111,7 +138,12 @@ class products_controller {
      */
 
     function search($valor) {
-
+                $cart = new cart_model();
+        if (!empty($_SESSION['usuario'])){
+        if (!empty($_SESSION['cart'])) {
+            $idOrder = $_SESSION['idOrder'];
+            $products = $cart->get_cartFromDB($idOrder);
+        }}
         $producto = new products_model();
 
         $datos = $producto->search($valor);

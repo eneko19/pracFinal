@@ -16,7 +16,6 @@ class products_model {
 
     public function __construct() {
         $this->db = Conectar::conexion();
-        $this->products = array();
     }
 
     /* GETTERS & SETTERS */
@@ -97,12 +96,17 @@ class products_model {
      * Extrae todos los productos de las tablas PRODUCT,IMAGE y PROMOTION donde la columna SPONSOR sea igual a "y"
      * @return array Bidimensional de las tablas PRODUCT,IMAGE y PROMOTION donde la columna SPONSOR sea igual a "y"
      */
-    public function get_products() {
+    public function get_products($pagina, $numResultados) {
+        
+        $productPorPagina = 4;   
+        
+        $limit = ($pagina-1) * $productPorPagina;
+        
         $consulta = $this->db->query("SELECT *,prod.ID, img.URL,FORMAT((prod.PRICE * (1-(p.DISCOUNTPERCENTAGE/100))),2) AS PRECIOFINAL
     FROM PRODUCT prod
     join IMAGE img on prod.ID = img.PRODUCT
     left join PROMOTION p on p.PRODUCT = prod.ID
-    WHERE SPONSORED = 'y';");
+    WHERE SPONSORED = 'y' limit {$limit},{$productPorPagina};");
 
         while ($filas = $consulta->fetch_assoc()) {
             $this->products[] = $filas;
@@ -155,7 +159,7 @@ class products_model {
     public function viewPage($id) {
         $sql = "SELECT *,prod.ID, img.URL,FORMAT((prod.PRICE * (1-(p.DISCOUNTPERCENTAGE/100))),2) AS PRECIOFINAL
     FROM PRODUCT prod
-    join IMAGE img on prod.ID = img.PRODUCT
+    left join IMAGE img on prod.ID = img.PRODUCT
     left join PROMOTION p on p.PRODUCT = prod.ID
     WHERE prod.ID=$id";
 
@@ -174,7 +178,7 @@ class products_model {
 
         $consulta = $this->db->query("SELECT *,prod.ID, img.URL,FORMAT((prod.PRICE * (1-(p.DISCOUNTPERCENTAGE/100))),2) AS PRECIOFINAL
         FROM PRODUCT prod
-        join IMAGE img on prod.ID = img.PRODUCT
+        left join IMAGE img on prod.ID = img.PRODUCT
         left join PROMOTION p on p.PRODUCT = prod.ID
         WHERE CATEGORY='$idSubCat';");
 
@@ -193,7 +197,7 @@ class products_model {
 
         $consulta = $this->db->query("SELECT *,prod.ID, img.URL,FORMAT((prod.PRICE * (1-(p.DISCOUNTPERCENTAGE/100))),2) AS PRECIOFINAL 
             FROM PRODUCT prod
-            join IMAGE img on prod.ID = img.PRODUCT
+            left join IMAGE img on prod.ID = img.PRODUCT
             left join PROMOTION p on p.PRODUCT = prod.ID
             WHERE SHORTDESCRIPTION like '%$valor%';");
 
@@ -201,6 +205,19 @@ class products_model {
             $this->products[] = $filas;
         }
         return $this->products;
+    }
+
+    public function get_productsPagination() {
+        $consulta = $this->db->query("SELECT count(prod.ID)
+    FROM PRODUCT prod
+    join IMAGE img on prod.ID = img.PRODUCT
+    left join PROMOTION p on p.PRODUCT = prod.ID
+    WHERE SPONSORED = 'y';");
+
+        $filas = $consulta->fetch_array();
+        $numProducts = $filas[0];
+
+        return $numProducts;
     }
 
 }

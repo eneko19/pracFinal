@@ -15,12 +15,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/home.css">
-        <?php
+
+    </head>
+            <?php
         if (!empty($logedFail)) {
             echo $abrirModal;
         }
         ?>
-    </head>
     <!-- Barra de navegacion -->
     <?php require_once("views/header.phtml"); ?>
     <body class="bg-secondary">
@@ -171,6 +172,22 @@
                     <?php } ?>
                 </div>
             </div>
+                
+                    <div class="pagination">
+                      <nav aria-label="Page navigation example">
+                        <ul class="pagination ">
+                            <li class="page-item <?php if($pagina == 1){ ?> disabled <?php }?> "><a class="page-link" href="index.php?pagina=<?php echo ($pagina-1) ?>">Anterior</a></li>
+                            <?php for ($pagina = 1; $pagina <= $numPaginas;$pagina++) { ?>
+                          <li class="page-item"><a class="page-link" href="index.php?pagina=<?php echo $pagina ?>"><?php echo $pagina ?></a></li>
+                           <?php }
+                           if(empty($_GET['pagina'])){
+                           }else{ ?>
+                          <li class="page-item <?php if($_GET['pagina'] == $numPaginas){?> disabled <?php } ?>"><a class="page-link" href="index.php?pagina=<?php echo ($_GET['pagina'] +1) ?>">Siguiente</a></li>
+                           <?php } ?>
+                        </ul>
+                      </nav>
+                    </div>
+
 
         </body>
 

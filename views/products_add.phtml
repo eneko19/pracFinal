@@ -23,21 +23,21 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Nombre</span>
                     </div>
-                    <input type="text" class="form-control" name="nombre">
+                    <input type="text" class="form-control" name="nombre" maxlength="50" required="">
                 </div>
 
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Descripcion corta</span>
                     </div>
-                    <input type="text" class="form-control" name="descCorta">
+                    <input type="text" class="form-control" name="descCorta" maxlength="128" required="">
                 </div>
 
                 <div class="input-group ">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Descripcion larga</span>
                     </div>
-                    <textarea class="form-control" name="descLarga"></textarea>
+                    <textarea class="form-control" name="descLarga" maxlength="1024" required=""></textarea>
                 </div>
 
                 <fieldset class="form-group">
@@ -65,7 +65,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Precio</span>
                     </div>
-                    <input type="text" class="form-control" name="precio">
+                    <input type="number" class="form-control" name="precio" max="999999" step="0.01" required>
                     <div class="input-group-append">
                         <span class="input-group-text">.00€</span>
                     </div>
@@ -75,14 +75,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Stock</span>
                     </div>
-                    <input type="number" class="form-control" name="stock" >
+                    <input type="number" class="form-control" name="stock" max="99999999999" required>
                 </div>
 
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Marca</label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect01" name="marca">
+                    <select class="custom-select" id="inputGroupSelect01" name="marca" >
                         <option selected>Elige...</option>
                         <?php foreach ($datosB as $dato) { ?>
                             <option value=" <?php echo $dato['ID'] ?>"> <?php echo $dato['NAME'] ?></option>
@@ -94,7 +94,7 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Categoria</label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect02" name="categoria">
+                    <select class="custom-select" id="inputGroupSelect02" name="categoria" required>
                         <option selected>Elige...</option>
                         <?php foreach ($datosC as $dato) { ?>
                             <option value=" <?php echo $dato['ID'] ?>"><?php echo $dato['NAME'] ?></option>

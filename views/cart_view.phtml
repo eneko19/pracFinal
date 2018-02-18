@@ -24,9 +24,11 @@
         }
         ?>
     </head>
-    <?php if (empty($_SESSION['cart'])) {
+    <?php
+    if (empty($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
-    } ?>
+    }
+    ?>
     <!-- Barra de navegacion -->
     <?php require_once("views/header.phtml"); ?>
     <body class="bg-secondary">
@@ -36,7 +38,7 @@
                     <h2>
                         <th scope="col"><strong>(<?php echo count($_SESSION['cart']) ?>)</strong> Artículos <strong>en tu cest</strong>a</th>
                     </h2>
-                    <table class="table table-hover bg-white ">
+                    <table class="table table-hover ">
                         <thead>
                             <tr class="">
                                 <th scope="col"></th>
@@ -50,27 +52,75 @@
                             <?php
                             $precioTotal = 0;
                             if (!empty($_SESSION['cart'])) {
-                                foreach ($_SESSION['cart'] as $carrito) {
-                                    ?>
-                                    <tr>
-                                        <td scope="row" class="imgCartView"><img class="img-fluid" src="<?php echo $carrito['image'] ?>" alt="<?php echo $carrito['name'] ?>"/></td>
-                                        <td><small><strong><?php echo $carrito['name'] ?></strong></small></td>
-                                        <td class="text-center"><?php echo $carrito['numUnits'] ?></td>
-                                        <td><?php
-                                            if ($carrito['price'] > 1) {
-                                                $precioFinal = ($carrito['price'] * $carrito['numUnits']);
-                                                echo $precioFinal;
-                                            } else {
-                                                echo $carrito['price'];
-                                            }
-                                            $precioTotal = $precioFinal+ $precioTotal;
-                                            ?>€</td>
-                                        <td><a href="index.php?controller=cart&action=deleteFromCartView&product=<?php echo $carrito['id'] ?>"><button class="btn btn-danger  fa fa-close"></button></a></td>
-                                    </tr>
+                                if (empty($_SESSION['usuario'])) {
+                                    foreach ($_SESSION['cart'] as $carrito) {
+                                        ?>
+                                        <tr>
+                                            <td scope="row" class="imgCartView"><img class="img-fluid" src="<?php echo $carrito['image'] ?>" alt="<?php echo $carrito['name'] ?>"/></td>
+                                            <td><small><strong><?php echo $carrito['name'] ?></strong></small></td>
+                                            <td class="text-center"><?php echo $carrito['numUnits'] ?></td>
+                                            <td><?php
+                                                if (empty($carrito['finalPrice'])) {
+                                                    if ($carrito['price'] > 1) {
+                                                        $precioFinal = ($carrito['price'] * $carrito['numUnits']);
+                                                        echo $precioFinal;
+                                                    } else {
+                                                        echo $carrito['price'];
+                                                    }
+                                                } else {
+                                                    if ($carrito['finalPrice'] > 1) {
+                                                        $precioFinal = ($carrito['finalPrice'] * $carrito['numUnits']);
+                                                        echo $precioFinal;
+                                                    } else {
+                                                        echo $carrito['finalPrice'];
+                                                    }
+                                                }
+                                                $precioTotal = $precioFinal + $precioTotal;
+                                                ?>€</td>
+                                            <td><a href="index.php?controller=cart&action=deleteFromCartView&product=<?php echo $carrito['id'] ?>"><button class="btn btn-danger  fa fa-close"></button></a></td>
+                                        </tr>
 
-                                    <?php
-                                }
-                            }
+                                        <?php
+                                    }
+                            }} else {
+
+                                    foreach ($products as $carrito){ // echo "<pre>".print_r($products, 1)."</pre>"; die;
+
+                                    ?>
+                                        
+                                    <tr>
+                                        <td scope="row" class="imgCartView"><img class="img-fluid" src="<?php echo $carrito['URL'] ?>" alt="<?php echo $carrito['SHORTDESCRIPTION'] ?>"/></td>
+                                        <td><small><strong><?php echo $carrito['SHORTDESCRIPTION'] ?></strong></small></td>
+                                        <td class="text-center"><?php echo $carrito['QUANTITY'] ?></td>
+                                        <td><?php
+                                            if (empty($carrito['PRECIOFINAL'])) {
+                                                if ($carrito['PRICE'] > 1) {
+                                                    $precioFinal = ($carrito['PRICE'] * $carrito['QUANTITY']);
+                                                    echo $precioFinal;
+                                                } else {
+                                                    echo $carrito['PRICE'];
+                                                }
+                                            } else {
+                                                if ($carrito['PRECIOFINAL'] > 1) {
+                                                    $precioFinal = ($carrito['PRECIOFINAL'] * $carrito['QUANTITY']);
+                                                    echo $precioFinal;
+                                                } else {
+                                                    echo $carrito['PRECIOFINAL'];
+                                                }
+                                            }
+                                            $precioTotal = $precioFinal + $precioTotal;
+                                            ?>€</td>
+                                        <td><a href="index.php?controller=cart&action=deleteFromCartView&product=<?php
+                                        if(empty($_SESSION['usuario'])){
+                                        echo $carrito['ID'];
+                                        }else{
+                                        echo $carrito['ORDERLINE'];   
+                                        }
+                                        ?>"><button class="btn btn-danger  fa fa-close"></button></a></td>
+                                    </tr>
+                                <?php
+                                    }}
+                            
                             ?>
                         </tbody>
                     </table>
@@ -99,12 +149,16 @@
                             </p>
                             <h5 class="mb-2"><strong>TOTAL <span class="float-right"><?php echo $precioTotal ?>€</span></strong></h5>
                             <div class="row">
-                              <div class="col-6">
-                                <a href="index.php?controller=cart&action=deleteCart" class="btn btn-primary btn-block">Vacíar cesta</a>
-                              </div>
-                              <div class="col-6">
-                                <a href="#" class="btn btn-primary btn-block">Finalizar compra</a>
-                              </div>
+                                <div class="col-6">
+                                    <a href="index.php?controller=cart&action=deleteCart" class="btn btn-primary btn-block">Vacíar cesta</a>
+                                </div>
+                                <div class="col-6">
+                                    <?php if (!empty($_SESSION['usuario'])){ ?>
+                                    <a href="index.php?controller=cart&action=updateFromCartView" class="btn btn-primary btn-block">Finalizar compra</a>
+                                    <?php }else{ ?>
+                                        <a href="" class="btn btn-primary btn-block">Finalizar compra</a>
+                                    <?php } ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -114,6 +168,6 @@
         </div>
 
     </body>
-    <?php require_once("footer.phtml"); ?>
+<?php require_once("footer.phtml"); ?>
 
 </html>

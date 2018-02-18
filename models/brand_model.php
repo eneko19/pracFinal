@@ -33,8 +33,16 @@ class brand_model {
   public function setName($name) {
     $this->name = $name;
   }
+    
+    public function get_brandsToProd(){
+        $consulta=$this->db->query("SELECT * FROM BRAND;");
 
-        /**
+        while($filas=$consulta->fetch_assoc()){
+            $this->categoria[]=$filas;
+        }
+        return $this->categoria;
+    }
+   /**
     * Extreu totes les persones de la taula
     * @return array Bidimensional de totes les persones
     */

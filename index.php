@@ -1,5 +1,6 @@
 <?php
-
+error_reporting(0);
+ini_set('display_errors', 0);
 require_once("db/db.php");
 require_once("controllers/products_controller.php");
 require_once("controllers/categories_controller.php");
@@ -16,9 +17,11 @@ if (empty($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 if (isset($_GET['controller']) && isset($_GET['action'])) {
+    $pagina = !empty($_GET['pagina']) ? $_GET['pagina'] : 1;
 
     if ($_GET['controller'] == "cart") {
         $cart = new cart_controller();
+        //echo "<pre>".print_r( $_SESSION['cart'], 1)."</pre>";die;
         if ($_GET['action'] == "addToCart") {
 
             $num = !empty($_GET['numAddUnits']) ? $_GET['numAddUnits'] : 1;
@@ -31,6 +34,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
                 "stock" => $_GET['productStock'],
                 "finalPrice" => $_GET['productPriceFinal']
             ];
+
             $cart->addToCart($products);
             header('Location: index.php');
         }
@@ -51,7 +55,14 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
         if ($_GET['action'] == "deleteCart") {
             $cart = new cart_controller();
             $cart->deleteCart();
-            $cart->view();
+            $product = new products_controller();
+            $product->view($pagina);
+        }
+        if ($_GET['action'] == "updateFromCartView") {
+            $cart = new cart_controller();
+            $cart->updateFromCart();
+            $product = new products_controller();
+            $product->view($pagina);
         }
     }
 
@@ -60,7 +71,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
 
         if ($_GET['action'] == "view") {
             $controller = new products_controller();
-            $controller->view();
+            $controller->view($pagina);
         }
 
         if ($_GET['action'] == "viewPage") {
@@ -76,7 +87,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
         if ($_GET['action'] == "insert") {
             $controller = new products_controller();
             $controller->insert();
-            $controller->view();
+            $controller->view($pagina);
         }
         if ($_GET['action'] == "search") {
             $valor = $_POST["buscador"];
@@ -95,11 +106,11 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
         if ($_GET['action'] == "insert") {
             $controller = new categories_controller();
             $controller->insert();
-            $controllerP->view();
+            $controllerP->view($pagina);
         }
         if ($_GET['action'] == "view") {
             $controller = new categories_controller();
-            $controller->view();
+            $controller->view($pagina);
         }
     }
 
@@ -117,6 +128,17 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             if (!$loged) {
                 $logedFail = $login->loginFailed();
             }
+            $cart = new cart_controller();
+            $cart->insertarCartBD();
+
+            if ($loged) {
+                if (!empty($_SESSION['cart'])) {
+                    $idOrder = $_SESSION['idOrder'];
+                    $cart->get_cartFromDB($idOrder);
+                }
+            }
+            $cart->deleteCart();
+            //var_dump($idOrder);
         }
 
         if ($_GET['action'] == "register") {
@@ -132,7 +154,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             }
         }
 
-        $controller->view();
+        $controller->view($pagina);
     }
     if ($_GET['controller'] == "promotion") {
         $controllerP = new products_controller();
@@ -141,17 +163,19 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
 
         if ($_GET['action'] == "view") {
             $promotion = new promotion_controller();
-            $promotion->view();
+            $promotion->view($pagina);
         }
         if ($_GET['action'] == "insert") {
             $promotion = new promotion_controller();
             $promotion->insert();
-            $controllerP->view();
+            $controllerP->view($pagina);
         }
     }
 } else {
     $controller = new products_controller();
     $cart = $controller->getCart();
-    $controller->view();
+    $cartC = new cart_controller();
+    $pagina = !empty($_GET['pagina']) ? $_GET['pagina'] : 1;
+    $controller->view($pagina);
 }
 ?>
