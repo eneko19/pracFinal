@@ -35,7 +35,7 @@
     <body class="bg-secondary">
         <div class="container vistaContainer">
             <div class="row">
-                <div class="col-8 bg-light mt-3">
+                <div class="col-12 col-md-8 bg-light mt-3">
                     <h2>
                         <th scope="col"><strong>(<?php echo count($_SESSION['cart']) ?>)</strong> Artículos <strong>en tu cest</strong>a</th>
                     </h2>
@@ -54,15 +54,15 @@
                             $precioTotal = 0;
                             if (!empty($_SESSION['cart'])) {
                                 if (empty($_SESSION['usuario'])) {
-                                    foreach ($_SESSION['cart'] as $carrito) {                   
+                                    foreach ($_SESSION['cart'] as $carrito) {
                                         ?>
                                         <tr>
                                             <td scope="row" class="imgCartView"><img class="img-fluid" src="<?php echo $carrito['image'] ?>" alt="<?php echo $carrito['name'] ?>"/></td>
                                             <td><small><strong><?php echo $carrito['name'] ?></strong></small></td>
                                             <td class="text-center">
-                                                <button onclick="restarUnidad(<?php echo $carrito['id'] ?>)"><i class="fa fa-minus text-danger" aria-hidden="true"></i></i></button>
-                                                <input class="text-center inputUnit" id="a<?php echo $carrito['id'] ?>" type="text" value="<?php echo $carrito['numUnits'] ?>">
-                                                <button onclick="sumarUnidad(<?php echo $carrito['id'] ?>)"><i class="fa fa-plus text-success" aria-hidden="true"></i></button>
+                                                <button class="align-top" onclick="restarUnidad(<?php echo $carrito['id'] ?>)"><i class="fa fa-minus text-danger" aria-hidden="true"></i></i></button>
+                                                <input class="align-middle text-center inputUnit" id="a<?php echo $carrito['id'] ?>" type="text" value="<?php echo $carrito['numUnits'] ?>">
+                                                <button class="align-bottom" onclick="sumarUnidad(<?php echo $carrito['id'] ?>)"><i class="fa fa-plus text-success" aria-hidden="true"></i></button>
                                             </td>
                                             <td><?php
                                                 if (empty($carrito['finalPrice'])) {
@@ -92,7 +92,7 @@
                                     foreach ($products as $carrito){ // echo "<pre>".print_r($products, 1)."</pre>"; die;
 
                                     ?>
-                                        
+
                                     <tr>
                                         <td scope="row" class="imgCartView"><img class="img-fluid" src="<?php echo $carrito['URL'] ?>" alt="<?php echo $carrito['SHORTDESCRIPTION'] ?>"/></td>
                                         <td><small><strong><?php echo $carrito['SHORTDESCRIPTION'] ?></strong></small></td>
@@ -119,18 +119,18 @@
                                         if(empty($_SESSION['usuario'])){
                                         echo $carrito['ID'];
                                         }else{
-                                        echo $carrito['ORDERLINE'];   
+                                        echo $carrito['ORDERLINE'];
                                         }
                                         ?>"><button class="btn btn-danger  fa fa-close"></button></a></td>
                                     </tr>
                                 <?php
                                     }}
-                            
+
                             ?>
                         </tbody>
                     </table>
                 </div>
-                <div class="col-4 mt-3">
+                <div class="col-12 col-md-4 mt-3">
                     <div class="card">
                         <h5 class="card-header">Elije el tipo de envío</h5>
                         <div class="card-body">
@@ -154,14 +154,14 @@
                             </p>
                             <h5 class="mb-2"><strong>TOTAL <span class="float-right"><?php echo $precioTotal ?>€</span></strong></h5>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12 col-lg-6 mb-2">
                                     <a href="index.php?controller=cart&action=deleteCart" class="btn btn-primary btn-block">Vacíar cesta</a>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12 col-lg-6">
                                     <?php if (!empty($_SESSION['usuario'])){ ?>
                                     <a href="index.php?controller=cart&action=updateFromCartView" class="btn btn-primary btn-block">Finalizar compra</a>
                                     <?php }else{ ?>
-                                        <a href="" class="btn btn-primary btn-block">Finalizar compra</a>
+                                        <a href="" class="btn btn-primary btn-block">Comprar</a>
                                     <?php } ?>
                                 </div>
                             </div>

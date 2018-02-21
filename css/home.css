@@ -1,4 +1,39 @@
 
+/** Cambio el color de las clases de Bootstrap **/
+.btn-primary {
+  color: #fff;
+  background-color: #196F3D;
+  border-color: #FFBF00
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #229954;
+  border-color: #000
+}
+
+.btn-primary.focus, .btn-primary:focus {
+  box-shadow: 0 0 0 .2rem #196F3D
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  background-color: #ff8000;
+  border-color: #ff8000
+}
+
+.btn-primary:not([disabled]):not(.disabled).active, .btn-primary:not([disabled]):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #ff8000;
+  border-color: #ff8000
+}
+
+.btn-primary:not([disabled]):not(.disabled).active:focus, .btn-primary:not([disabled]):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 .2rem #196F3D
+}
+/*** * ***/
+.dropdown-hover:hover>.dropdown-menu {
+  display: block;
+}
 .bigicon {
     color: white;
 }
@@ -219,18 +254,4 @@ ul.dropdown-cart li .item-right button {
 }
 .custom-toggler .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(189,189,107, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-}
-
-/********** Dropdown item Color **********/
-.dropdown .nav-link {color:#fff; text-decoration: none;}
-.dropdown .dropdown-menu a{color: #000; text-decoration: none;}
-.dropdown .btn {background: #196F3D; color:#000;}
-.dropdown .btn:hover {background: #229954; color:#000;}
-.dropdown .btn:active {background: #229954; color:#000;}
-.dropdown .btn:focus {background: #229954; color:#000;}
-.dropdown-menu .dropdown-item {display: inline-block; width: 100%; padding: 10px 5px;}
-.container .dropdown .dropdown-menu a:hover{
-    color: #fff;
-    background-color: #b91773;
-    border-color: #fff;
 }

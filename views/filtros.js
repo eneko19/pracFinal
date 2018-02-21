@@ -54,41 +54,47 @@ $('ul.nav li.dropdown, div.dropdown').hover(function() {
 
       // Si los valores de los campos son correctos mostrará un alert
       // si no escribirá un mensaje de incorrecto y pasará a color rojo
-      if (names.value != "") {
-        if (email.value.match(formEmail)) {
-          if (address.value != ""){
-            if (postalcode.value.match(postalCode)){
-              if (user.value != ""){
-            if (password.value.match(formPass)) {
-              if (password.value == passwordConfirm.value) {
+      if (names.value != "") {document.getElementById("nameErr").classList.add("invisible");
+        if (email.value.match(formEmail)) {document.getElementById("emailErr").classList.add("invisible");
+          if (address.value != ""){document.getElementById("addressErr").classList.add("invisible");
+            if (postalcode.value.match(postalCode)){document.getElementById("postalcodeErr").classList.add("invisible");
+              if (user.value != ""){document.getElementById("userErr").classList.add("invisible");
+            if (password.value.match(formPass)) {document.getElementById("passwordErr").classList.add("invisible");
+              if (password.value == passwordConfirm.value) {document.getElementById("passwordConfirmErr").classList.add("invisible");
                   document.getElementById("submit").submit();
-                echo("Todos los datos correctos.");
             } else {
+              document.getElementById("passwordConfirmErr").classList.remove("invisible");
               passwordConfirmErr.innerHTML = "Las contraseñas no coinciden.";
               passwordConfirm.focus();
             }
 
           } else {
+            document.getElementById("passwordErr").classList.remove("invisible");
             passwordErr.innerHTML = "Contraseña inválida.";
             password.focus();
           }
         }else{
+          document.getElementById("userErr").classList.remove("invisible");
           userErr.innerHTML = "Usuario vacío.";
           user.focus();
         }
         }else{
-          postalcodeErr.innerHTML = "Codigo postal incorrecto.";
+          document.getElementById("postalcodeErr").classList.remove("invisible");
+          postalcodeErr.innerHTML = "Código postal incorrecto.";
           postalcode.focus();
         }
         }else {
+          document.getElementById("addressErr").classList.remove("invisible");
           addressErr.innerHTML = "Dirección vacía.";
           address.focus();
         }
         } else {
+          document.getElementById("emailErr").classList.remove("invisible");
           emailErr.innerHTML = "Email incorrecto.";
           email.focus();
         }
       } else {
+        document.getElementById("nameErr").classList.remove("invisible");
         nameErr.innerHTML = "Nombre vacío.";
         names.focus();
       }
@@ -104,13 +110,15 @@ $('ul.nav li.dropdown, div.dropdown').hover(function() {
         arr[i].innerHTML = "";
       }
     }
-    
+// Función que suma una unidad en la vista de carrito
     function sumarUnidad(x){
         x = document.getElementById("a"+x);
         valor = parseInt(x.value);
         x.value = valor+1;
 
     }
+
+    // Función que resta una unidad en la vista de carrito
         function restarUnidad(x){
         x = x = document.getElementById("a"+x);
         valor = parseInt(x.value);
@@ -119,5 +127,5 @@ $('ul.nav li.dropdown, div.dropdown').hover(function() {
         }else{
          x.value = valor-1;
         }
- 
+
     }
