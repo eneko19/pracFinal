@@ -15,6 +15,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/home.css">
+        <script src="views/filtros.js"></script>
 
     </head>
             <?php
@@ -23,9 +24,9 @@
         }
         ?>
     <!-- Barra de navegacion -->
-    <?php require_once("views/header.phtml"); ?>
-    <body class="bg-secondary">
 
+    <body class="bg-secondary">
+    <?php require_once("views/header.phtml"); ?>
         <!-- Carousel -->
         <div id="carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner bg-dark py-1" role="listbox">
@@ -63,10 +64,10 @@
                     ?>
                     <div class="col-6 col-md-3 mb-2">
                         <div class="dropdown">
-                            <button type="button" class="btn btn-block dropdown-toggle text-muted" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class=" btn btn-block dropdown-toggle text-muted" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <a class="text-light" href="#"><?php echo $catName; ?></a>
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width:16rem;">
+                            <div class="dropdown-menu " aria-labelledby="dropdownMenuButton" >
 
                                 <?php
                                 for ($i = 1; $i < count($category); $i++) {
@@ -94,7 +95,7 @@
                     <div class="col-12 col-sm-6 col-md-4 col-xl-3">
                         <div class="card my-3">
                             <a href="index.php?controller=products&action=viewPage&id=<?php echo $dato['ID'] ?>">
-                                <img class="card-img-top img-fluid" src="<?php echo $dato['URL'] ?> " alt="Card image">
+                                <img class="card-img-top img-fluid zoom" src="<?php echo $dato['URL'] ?> " alt="Card image">
                             </a>
                             <div class="card-body">
                                 <p class="card-title"><strong><?php echo $dato['SHORTDESCRIPTION'] ?> </strong></p>

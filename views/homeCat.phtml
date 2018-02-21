@@ -68,10 +68,11 @@
                     </div>
                     <div id="precio" class="panel-collapse collapse mb-2">
                       <div class="panel-body bg-secondary">
+                          
                         <span>desde</span>
-                        <input type="text" class="form-control" id="price-min" name="price-min" class="filtro range-price" placeholder="min">
+                        <input type="text" class="form-control" id="price-min" name="price-min" placeholder="min">
                         <span>hasta</span>
-                        <input type="text" class="form-control" id="price-max" name="price-max" class="filtro range-price" placeholder="max">
+                        <input type="text" class="form-control" id="price-max" name="price-max" placeholder="max">
 
                         <a href="#" class="btn btn-success">Filtrar</a>
                       </div>
@@ -107,7 +108,7 @@
 
                       <div class="card my-3" id="<?php echo $dato['BRAND']; ?>">
                            <a href="index.php?controller=products&action=viewPage&id=<?php echo $dato['ID']?>">
-                               <img class="card-img-top img-fluid" src="<?php echo $dato['URL'] ?> " alt="Card image">
+                               <img class="card-img-top zoom img-fluid" src="<?php echo $dato['URL'] ?> " alt="Card image">
                            </a>
                           <div class="card-body">
                               <p class="card-title"><strong><?php echo $dato['SHORTDESCRIPTION'] ?> </strong></p>

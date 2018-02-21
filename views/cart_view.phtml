@@ -12,6 +12,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <script src="views/filtros.js"></script>
         <script>
             $(document).ready(function () {
                 $('[data-toggle="popover"]').popover();
@@ -53,12 +54,16 @@
                             $precioTotal = 0;
                             if (!empty($_SESSION['cart'])) {
                                 if (empty($_SESSION['usuario'])) {
-                                    foreach ($_SESSION['cart'] as $carrito) {
+                                    foreach ($_SESSION['cart'] as $carrito) {                   
                                         ?>
                                         <tr>
                                             <td scope="row" class="imgCartView"><img class="img-fluid" src="<?php echo $carrito['image'] ?>" alt="<?php echo $carrito['name'] ?>"/></td>
                                             <td><small><strong><?php echo $carrito['name'] ?></strong></small></td>
-                                            <td class="text-center"><?php echo $carrito['numUnits'] ?></td>
+                                            <td class="text-center">
+                                                <button onclick="restarUnidad(<?php echo $carrito['id'] ?>)"><i class="fa fa-minus text-danger" aria-hidden="true"></i></i></button>
+                                                <input class="text-center inputUnit" id="a<?php echo $carrito['id'] ?>" type="text" value="<?php echo $carrito['numUnits'] ?>">
+                                                <button onclick="sumarUnidad(<?php echo $carrito['id'] ?>)"><i class="fa fa-plus text-success" aria-hidden="true"></i></button>
+                                            </td>
                                             <td><?php
                                                 if (empty($carrito['finalPrice'])) {
                                                     if ($carrito['price'] > 1) {
