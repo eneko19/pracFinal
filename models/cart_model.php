@@ -120,7 +120,7 @@ class cart_model {
      */
     public function insertarOrder() {
 
-        $sql = "INSERT INTO `order` (PAYMENTINFO,SHIPPINGADDRESS,USER)
+        $sql = "INSERT INTO `ORDER` (PAYMENTINFO,SHIPPINGADDRESS,USER)
               VALUES ('{$this->paymentInfo}','{$this->shippingAddress}','{$this->user}')";
 
         $result = $this->db->query($sql);
@@ -141,7 +141,7 @@ class cart_model {
      */
     public function insertarOrderItem() {
 
-        $sql = "INSERT INTO `orderitem` (ORDERLINE,`ORDER`,PRODUCT,QUANTITY,PRICE)
+        $sql = "INSERT INTO `ORDERITEM` (ORDERLINE,`ORDER`,PRODUCT,QUANTITY,PRICE)
               VALUES ({$this->orderline},{$this->order},{$this->product},{$this->quantity},{$this->price});";
 
         $result = $this->db->query($sql);
@@ -156,11 +156,11 @@ class cart_model {
     public function get_cartFromDB($idOrder) {
 
         $consulta = $this->db->query("SELECT *,FORMAT((prod.PRICE * (1-(p.DISCOUNTPERCENTAGE/100))),2) AS PRECIOFINAL
-            FROM `product` prod
+            FROM PRODUCT prod
             left join PROMOTION p on p.PRODUCT = prod.ID
-            join `orderitem` ordIt on ordIt.PRODUCT = prod.ID
+            join ORDERITEM ordIt on ordIt.PRODUCT = prod.ID
             join IMAGE img on prod.ID = img.PRODUCT
-            join `order` ord on ord.ID = ordIt.ORDER
+            join `ORDER` ord on ord.ID = ordIt.ORDER
             where ord.USER = '{$_SESSION['usuario']}' and ord.ID = {$idOrder};");
 
         while ($filas = $consulta->fetch_assoc()) {
@@ -173,11 +173,11 @@ class cart_model {
 
     public function get_lastProducts() {
         $consulta = $this->db->query("SELECT *,FORMAT((prod.PRICE * (1-(p.DISCOUNTPERCENTAGE/100))),2) AS PRECIOFINAL
-            FROM `product` prod
+            FROM `PRODUCT` prod
             left join PROMOTION p on p.PRODUCT = prod.ID
-            join `orderitem` ordIt on ordIt.PRODUCT = prod.ID
+            join `ORDERITEM` ordIt on ordIt.PRODUCT = prod.ID
             join IMAGE img on prod.ID = img.PRODUCT
-            join `order` ord on ord.ID = ordIt.ORDER
+            join `ORDER` ord on ord.ID = ordIt.ORDER
             where ord.PAYMENTINFO = 'pending'");
 
 
@@ -191,7 +191,7 @@ class cart_model {
 
     public function insertProductCart() {
 
-        $sql = "INSERT INTO `orderitem` (ORDERLINE,`ORDER`,PRODUCT,QUANTITY,PRICE) VALUES
+        $sql = "INSERT INTO `ORDERITEM` (ORDERLINE,`ORDER`,PRODUCT,QUANTITY,PRICE) VALUES
                ('{$this->orderline}','{$this->order}','{$this->product}','{$this->quantity}','{$this->price}');";
         //print_r($sql);die;
         $result = $this->db->query($sql);
@@ -204,7 +204,7 @@ class cart_model {
     }
 
     public function get_maxOrderItem() {
-        $consulta = $this->db->query("SELECT max(ORDERLINE) FROM `orderitem`;");
+        $consulta = $this->db->query("SELECT max(ORDERLINE) FROM `ORDERITEM`;");
 
         $filas = $consulta->fetch_array();
         $numProducts = $filas[0];
@@ -213,7 +213,7 @@ class cart_model {
     }
 
     public function get_lastOrderId() {
-        $consulta = $this->db->query("SELECT ID FROM `order` WHERE PAYMENTINFO = 'pending' and user = {$_SESSION['usuario']};");
+        $consulta = $this->db->query("SELECT ID FROM `ORDER` WHERE PAYMENTINFO = 'pending' and user = {$_SESSION['usuario']};");
 
         $filas = $consulta->fetch_array();
         $numProducts = $filas[0];
@@ -222,12 +222,12 @@ class cart_model {
     }
         public function deleteOrderItem() {
 
-        $consulta = $this->db->query("DELETE FROM `orderitem` WHERE `orderitem`.`ORDERLINE` = {$this->orderline} AND `orderitem`.`ORDER` = {$_SESSION['idOrder']};");
+        $consulta = $this->db->query("DELETE FROM `ORDERITEM` WHERE `ORDERITEM`.`ORDERLINE` = {$this->orderline} AND `ORDERITEM`.`ORDER` = {$_SESSION['idOrder']};");
 
     }
      public function updateOrderLogOut() {
 
-        $consulta = $this->db->query("UPDATE `order` SET PAYMENTINFO='paid' where ID = {$_SESSION['idOrder']};");
+        $consulta = $this->db->query("UPDATE `ORDER` SET PAYMENTINFO='paid' where ID = {$_SESSION['idOrder']};");
 
     }
 

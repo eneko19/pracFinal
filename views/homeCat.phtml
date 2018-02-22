@@ -30,7 +30,7 @@
                     ?>
                     <div class="col-6 col-md-3 mb-2">
                         <div class="dropdown">
-                            <button type="button" class="btn btn-block dropdown-toggle text-muted" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-block btn-primary dropdown-toggle text-muted" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <a class="text-light" href="#"><?php echo $catName; ?></a>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width:16rem;">
@@ -151,6 +151,19 @@
               </div>
             </div>
         </div>
+        
+                            <div class="pagination">
+                      <nav aria-label="Page navigation example">
+                        <ul class="pagination ">
+                            <li class="page-item"><a class="page-link" href="">Inicio</a></li>
+                            <?php for ($pagina = 1; $pagina <= 3;$pagina++) { ?>
+                          <li class="page-item"><a class="page-link" href=""><?php echo $pagina ?></a></li>
+                           <?php } ?>
+
+                          <li class="page-item"><a class="page-link" href="">Final</a></li>
+                        </ul>
+                      </nav>
+                    </div>
 
     </body>
     <footer class="mt-4">
@@ -203,5 +216,7 @@
     <div class="myModal">
         <?php include("views/login_view.phtml"); ?>
     </div>
+    
+    
 
 </html>
