@@ -68,13 +68,14 @@
                     </div>
                     <div id="precio" class="panel-collapse collapse mb-2">
                       <div class="panel-body bg-secondary">
-                          
-                        <span>desde</span>
-                        <input type="text" class="form-control" id="price-min" name="price-min" placeholder="min">
-                        <span>hasta</span>
-                        <input type="text" class="form-control" id="price-max" name="price-max" placeholder="max">
 
-                        <a href="#" class="btn btn-success">Filtrar</a>
+                        <span>desde</span>
+                        <input type="text" class="form-control" id="priceMin" name="price-min" placeholder="min" onfocusout="checkMax()">
+                        <span>hasta</span>
+                        <input type="text" class="form-control" id="priceMax" name="price-max" placeholder="max" onfocusout="checkMin()">
+
+                        <a href="#" class="btn btn-success" onclick="filtrarPrecio()">Filtrar</a>
+                        <p id="demo"></p>
                       </div>
                     </div>
                   </div>
@@ -101,9 +102,9 @@
               </div>
               <div class="col-xs-12 col-md-9">
               <div class="row">
-              <?php foreach ($datos as $dato) { 
+              <?php foreach ($datos as $dato) {
                   ?>
-                  
+
                   <div class="col-xs-12 col-md-6 col-lg-4">
 
                       <div class="card my-3" id="<?php echo $dato['BRAND']; ?>">
@@ -113,10 +114,10 @@
                           <div class="card-body">
                               <p class="card-title"><strong><?php echo $dato['SHORTDESCRIPTION'] ?> </strong></p>
                               <?php if (empty($dato['DISCOUNTPERCENTAGE']))  { ?>
-                                <p class="card-text text-center"><strong><?php echo $dato['PRICE'];?>€</strong></p>
+                                <p class="card-text text-center"><strong class="precios"><?php echo $dato['PRICE'];?>€</strong></p>
                             <?php  }else{ ?>
                                 <p class="card-text text-center">
-                                    <span><strong><?php echo $dato['PRECIOFINAL'];?>€</strong></span>
+                                    <span><strong class="precios"><?php echo $dato['PRECIOFINAL'];?>€</strong></span>
                                     <span class="text-muted"><small><s><?php echo $dato['PRICE']; ?>€</s></small></span>
                                     <span class="badge badge-danger"><?php echo $dato['DISCOUNTPERCENTAGE'];?>%</span>
                                 </p>
@@ -151,7 +152,7 @@
               </div>
             </div>
         </div>
-        
+
                             <div class="pagination">
                       <nav aria-label="Page navigation example">
                         <ul class="pagination ">
@@ -216,7 +217,7 @@
     <div class="myModal">
         <?php include("views/login_view.phtml"); ?>
     </div>
-    
-    
+
+
 
 </html>

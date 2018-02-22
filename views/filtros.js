@@ -126,5 +126,25 @@ $('ul.nav li.dropdown, div.dropdown').hover(function() {
         }else{
          x.value = valor-1;
         }
-
     }
+
+/** Filtros precio **/
+var preciosC = document.getElementsByClassName("precios");
+var precios = [];
+for (var i = 0; i < preciosC.length; i++) {
+  // precios = precios + Number(document.getElementsByClassName("precios")[i].innerHTML.replace("€",""));
+       precios.push(Number(document.getElementsByClassName("precios")[i].innerHTML.replace("€","")));
+}
+function checkMax(pre) {
+    var precio = document.getElementById("priceMin").value;
+    return pre >= precio;
+}
+function checkMin(pre) {
+  var precio = document.getElementById("priceMax").value;
+    return pre <= precio;
+}
+
+function filtrarPrecio() {
+    document.getElementById("demo").innerHTML = precios.filter(checkMax);
+    document.getElementById("demo").innerHTML = precios.filter(checkMin);
+}
